@@ -19,7 +19,8 @@ public class Player {
     public int yCoord;
 
     public int moveCounter;
-    public Color colorEatChange;
+    public Color colorEatChange; //Changes color when snake eats.
+    public int snakeSpeed; //Snake speed changer debug buttons. Press "P" to increase and "O" to decrease.
     public String direction;//is your first name one?
 
     public Player(Handler handler){
@@ -34,9 +35,15 @@ public class Player {
     }
 
     public void tick(){
-    	int snakeSpeed = 4; // 0 up to 5
-        moveCounter+=snakeSpeed;
-        if(moveCounter>=5) {
+        moveCounter++;
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) { //Increases snake speed.
+        	snakeSpeed++;
+        	System.out.println("Debug Speed increased to: "+snakeSpeed);
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_O)) { //Decreases snake speed.
+        	snakeSpeed--;
+        	System.out.println("Debug Speed decreased to: "+snakeSpeed);
+        }
+        if(moveCounter>=5-snakeSpeed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -50,10 +57,6 @@ public class Player {
             direction="Right";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
         	tailDebug();
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) {
-        	snakeSpeed++;
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
-        	snakeSpeed--;
         }
 
     }
