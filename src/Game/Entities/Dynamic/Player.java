@@ -36,14 +36,7 @@ public class Player {
 
     public void tick(){
         moveCounter++;
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) { //Increases snake speed.
-        	snakeSpeed++;
-        	System.out.println("Debug Speed increased to: "+snakeSpeed);
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_O)) { //Decreases snake speed.
-        	snakeSpeed--;
-        	System.out.println("Debug Speed decreased to: "+snakeSpeed);
-        }
-        if(moveCounter>=5-snakeSpeed) {
+        if(moveCounter>=10-snakeSpeed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -55,8 +48,22 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
+            
+        //Debug keys
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){ //Add tail to snake.
         	tailDebug();
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_PLUS)) { //Increases snake speed.
+        	snakeSpeed++;
+        	System.out.println("Debug Speed increased to: "+snakeSpeed);
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) { //Increases snake speed.
+        	snakeSpeed++;
+        	System.out.println("Debug Speed increased to: "+snakeSpeed);
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) { //Decreases snake speed.
+        	snakeSpeed--;
+        	System.out.println("Debug Speed decreased to: "+snakeSpeed);
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_O)) { //Decreases snake speed.
+        	snakeSpeed--;
+        	System.out.println("Debug Speed decreased to: "+snakeSpeed);
         }
 
     }
@@ -69,6 +76,7 @@ public class Player {
             case "Left":
                 if(xCoord==0){
                     kill();
+                    xCoord = handler.getWorld().GridWidthHeightPixelCount-1;
                 }else{
                     xCoord--;
                 }
@@ -76,6 +84,7 @@ public class Player {
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
                     kill();
+                    xCoord = 0;
                 }else{
                     xCoord++;
                 }
@@ -83,6 +92,7 @@ public class Player {
             case "Up":
                 if(yCoord==0){
                     kill();
+                    yCoord = handler.getWorld().GridWidthHeightPixelCount-1;
                 }else{
                     yCoord--;
                 }
@@ -90,6 +100,7 @@ public class Player {
             case "Down":
                 if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
                     kill();
+                    yCoord = 0;
                 }else{
                     yCoord++;
                 }
@@ -241,6 +252,7 @@ public class Player {
     public void tailDebug(){
         lenght++;
         Tail tail= null;
+        System.out.println("Length of snake is currently " + lenght + ".");
         handler.getWorld().appleLocation[xCoord][yCoord]=false;
         handler.getWorld().appleOnBoard=true;
         switch (direction){
