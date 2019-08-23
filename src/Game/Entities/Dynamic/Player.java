@@ -52,20 +52,13 @@ public class Player {
         //Debug keys
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){ //Add tail to snake.
         	tailDebug();
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_PLUS)) { //Increases snake speed.
+        }if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS))||(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ADD))) { //Increases snake speed.
         	snakeSpeed++;
         	System.out.println("Debug Speed increased to: "+snakeSpeed);
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) { //Increases snake speed.
-        	snakeSpeed++;
-        	System.out.println("Debug Speed increased to: "+snakeSpeed);
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) { //Decreases snake speed.
-        	snakeSpeed--;
-        	System.out.println("Debug Speed decreased to: "+snakeSpeed);
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_O)) { //Decreases snake speed.
+        }if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)||handler.getKeyManager().keyJustPressed(KeyEvent.VK_SUBTRACT))) { //Decreases snake speed.
         	snakeSpeed--;
         	System.out.println("Debug Speed decreased to: "+snakeSpeed);
         }
-
     }
 
     public void checkCollisionAndMove(){
