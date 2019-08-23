@@ -34,8 +34,9 @@ public class Player {
     }
 
     public void tick(){
+    	int snakeSpeed = 0; // 0 up to 5
         moveCounter++;
-        if(moveCounter>=5) {
+        if(moveCounter>=5-snakeSpeed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
