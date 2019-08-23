@@ -14,7 +14,7 @@ import java.util.LinkedList;
  */
 public abstract class WorldBase {
 
-    //How many pixels are from left to right
+	//How many pixels are from left to right
     //How many pixels are from top to bottom
     //Must be equal
     public int GridWidthHeightPixelCount;
@@ -54,10 +54,11 @@ public abstract class WorldBase {
     public void render(Graphics g){
 
         for (int i = 0; i <= 800; i = i + GridPixelsize) {
+        	//Color PURPLE = new Color(102,0,153);
+            //g.setColor(PURPLE);
+            //g.drawLine(0, i, handler.getWidth() , i);
+            //g.drawLine(i,0,i,handler.getHeight());
 
-            g.setColor(Color.white);
-            g.drawLine(0, i, handler.getWidth() , i);
-            g.drawLine(i,0,i,handler.getHeight());
 
         }
 
