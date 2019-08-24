@@ -6,6 +6,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import Game.GameStates.GameState;
+import Game.GameStates.PauseState;
+import Game.GameStates.State;
+
 /**
  * Created by AlexVR on 7/2/2018.
  */
@@ -13,6 +17,7 @@ public class Player {
 
     public int lenght;
     public boolean justAte;
+    public State pauseState;
     private Handler handler;
 
     public int xCoord;
@@ -20,7 +25,7 @@ public class Player {
 
     public int moveCounter;
     public Color colorEatChange; //Changes color when snake eats.
-    public int snakeSpeed; //Snake speed changer debug buttons. Press "P" to increase and "O" to decrease.
+    public int snakeSpeed; //Snake speed changer debug buttons.
     public String direction;//is your first name one?
 
     public Player(Handler handler){
@@ -36,6 +41,7 @@ public class Player {
 
     public void tick(){
         moveCounter++;
+        pauseState = new PauseState(handler);
         if(moveCounter>=10-snakeSpeed) {
             checkCollisionAndMove();
             moveCounter=0;
@@ -48,9 +54,15 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
+        }
+        
+        //Menu keys
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
+        	GameState.setState(pauseState);
+        }
             
         //Debug keys
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){ //Add tail to snake.
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){ //Add tail to snake.
         	tailDebug();
         }if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS))||(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ADD))) { //Increases snake speed.
         	snakeSpeed++;
