@@ -8,6 +8,7 @@ import java.util.Random;
 import Game.GameStates.GameState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
+import Game.GameStates.GameOverState;
 
 /**
  * Created by AlexVR on 7/2/2018.
@@ -17,6 +18,7 @@ public class Player {
     public int lenght;
     public boolean justAte;
     public State pauseState;
+    public State gameOverState;
     private Handler handler;
 
     public int xCoord;
@@ -42,6 +44,7 @@ public class Player {
     public void tick(){
         moveCounter++;
         pauseState = new PauseState(handler);
+        gameOverState = new GameOverState(handler);
         if(moveCounter>=10-snakeSpeed) {
             checkCollisionAndMove();
             moveCounter=0;
@@ -78,7 +81,9 @@ public class Player {
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) { //Color change
 			colorEatChange = SnakeColor.colorChange();
 			System.out.println("Color changed.");
-		}
+		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_K)){ //Insta Game Over
+        	GameState.setState(gameOverState);
+        }
     }
 
     public void checkCollisionAndMove(){

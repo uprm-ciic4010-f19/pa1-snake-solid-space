@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>res/Sheets/GameOver.gif</name>
+			<type>1</type>
+			<location>D:/Games/PSpice/SPB_Data/git/pa1-snake-solid-space/res/Sheets/GameOver.gif</location>
+		</link>
+	</linkedResources>
 </projectDescription>
