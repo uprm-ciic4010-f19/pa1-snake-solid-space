@@ -43,7 +43,7 @@ public class Images {
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
 
-            gameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.gif"));
+            gameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.png"));
             //gameOver = new ImageIcon("/Sheets/GameOver.gif").getImage();
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
 
