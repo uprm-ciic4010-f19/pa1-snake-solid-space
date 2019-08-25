@@ -26,6 +26,7 @@ public class Player {
     public int moveCounter;
     public Color colorEatChange; //Changes color when snake eats.
     public int snakeSpeed; //Snake speed changer debug buttons.
+    public double gameScore; //Game score.
     public String direction;//is your first name one?
 
     public Player(Handler handler){
@@ -147,6 +148,8 @@ public class Player {
 
     public void Eat(){
         lenght++;
+        gameScore += Math.sqrt(2 * gameScore + 1);
+        System.out.println("Score: "+gameScore);
         colorEatChange = SnakeColor.colorChange();
         Tail tail= null;
         handler.getWorld().appleLocation[xCoord][yCoord]=false;
