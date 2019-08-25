@@ -28,6 +28,7 @@ public class Player {
 
     public int moveCounter;
     public Color colorEatChange; //Changes color when snake eats.
+    public Color appleColorChange; //changes the apple color
     public int snakeSpeed; //Snake speed changer debug buttons.
     public double gameScore; //Game score.
     public String direction;//is your first name one?
@@ -151,8 +152,20 @@ public class Player {
                 }else {
                 	g.setColor(new Color(80, 220, 100));
                 }
+                
+                if(playeLocation[i][j]){
+                    g.fillRect((i*handler.getWorld().GridPixelsize),
+                            (j*handler.getWorld().GridPixelsize),
+                            handler.getWorld().GridPixelsize,
+                            handler.getWorld().GridPixelsize);
+                }
 
-                if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
+                if(handler.getWorld().appleLocation[i][j]){
+                    if(appleColorChange != null) {
+                    	g.setColor(appleColorChange);
+                    }else {
+                    	g.setColor(new Color(255, 0, 0));
+                    }
                     g.fillRect((i*handler.getWorld().GridPixelsize),
                             (j*handler.getWorld().GridPixelsize),
                             handler.getWorld().GridPixelsize,
@@ -171,6 +184,7 @@ public class Player {
         gameScore += Math.sqrt(2 * gameScore + 1);
         System.out.println("Score: "+gameScore);
         colorEatChange = SnakeColor.colorChange();
+        appleColorChange = SnakeColor.appleColorChange();
         Tail tail= null;
         handler.getWorld().appleLocation[xCoord][yCoord]=false;
         handler.getWorld().appleOnBoard=false;
