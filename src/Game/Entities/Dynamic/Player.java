@@ -14,6 +14,8 @@ import Game.GameStates.GameOverState;
  * Created by AlexVR on 7/2/2018.
  */
 public class Player {
+	
+	public int lastStudentIDDigit;
 
     public int lenght;
     public boolean justAte;
@@ -32,6 +34,7 @@ public class Player {
 
     public Player(Handler handler){
         this.handler = handler;
+        lastStudentIDDigit = 7;
         xCoord = 0;
         yCoord = 0;
         moveCounter = 0;
@@ -45,7 +48,7 @@ public class Player {
         moveCounter++;
         pauseState = new PauseState(handler);
         gameOverState = new GameOverState(handler);
-        if(moveCounter>=10-snakeSpeed) {
+        if(moveCounter>=25-snakeSpeed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -164,6 +167,7 @@ public class Player {
 
     public void Eat(){
         lenght++;
+        snakeSpeed += lastStudentIDDigit + 1;
         gameScore += Math.sqrt(2 * gameScore + 1);
         System.out.println("Score: "+gameScore);
         colorEatChange = SnakeColor.colorChange();
