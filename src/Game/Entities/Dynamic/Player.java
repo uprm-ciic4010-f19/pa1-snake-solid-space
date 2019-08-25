@@ -71,7 +71,15 @@ public class Player {
         }if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)||handler.getKeyManager().keyJustPressed(KeyEvent.VK_SUBTRACT))) { //Decreases snake speed.
         	snakeSpeed--;
         	System.out.println("Debug Speed decreased to: "+snakeSpeed);
-        }
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_R)) { //Reset game
+			handler.getMouseManager().setUimanager(null);
+			handler.getGame().reStart();
+			State.setState(handler.getGame().gameState);
+			System.out.println("Game reseted.");
+		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) { //Color change
+			colorEatChange = SnakeColor.colorChange();
+			System.out.println("Color changed.");
+		}
     }
 
     public void checkCollisionAndMove(){
