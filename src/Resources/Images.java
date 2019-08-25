@@ -22,6 +22,8 @@ public class Images {
     public static ImageIcon icon;
     public static BufferedImage gameOver;
     public static BufferedImage crt;
+    public static BufferedImage score;
+    public static BufferedImage dialog;
 
     public Images() {
 
@@ -44,6 +46,8 @@ public class Images {
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
             crt = ImageIO.read(getClass().getResourceAsStream("/Sheets/CRT2.png"));
+            score = ImageIO.read(getClass().getResourceAsStream("/Sheets/score.png"));
+            dialog = ImageIO.read(getClass().getResourceAsStream("/Sheets/what.png"));
             
             gameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.png"));
             //gameOver = new ImageIcon("/Sheets/GameOver.gif").getImage();

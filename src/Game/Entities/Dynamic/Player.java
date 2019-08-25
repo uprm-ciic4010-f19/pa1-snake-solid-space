@@ -149,8 +149,10 @@ public class Player {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
             	
         		if(gameScore >= 0) {
-        			g.setColor(Color.GREEN);
-        			g.drawString("Score: " +(int)gameScore, 10, 10);
+        			Color GO = new Color(0,171,102); 
+        			g.setColor(GO);
+        			g.setFont(new Font("arial", Font.PLAIN, 40));
+        			g.drawString("" +(int)gameScore, 1400, 200);
         		}
                 if(colorEatChange != null) {
                 	g.setColor(colorEatChange);

@@ -71,25 +71,38 @@ public abstract class WorldBase {
 
         }
         
-       Color PHOSPHOR = new Color(65,255,0);  
+       Color GO = new Color(0,171,102);  
        //draw background for the score panel
        g.setColor(Color.BLACK);
        g.fillRect(1020, 0, ScreenRes.width, ScreenRes.height);
        
        //draw title image border
-       g.setColor(PHOSPHOR);
+       g.setColor(GO);
        g.drawRect(1080, 10, 350, 55);
         
        //draw game border
        g.setColor(Color.BLACK);
        g.drawRect(0, 0, 1020, ScreenRes.height);
+       
+       g.setColor(Color.BLACK);
+       g.drawRect(1, 1, 1020, ScreenRes.height);
+       
+       g.setColor(Color.BLACK);
+       g.drawRect(2, 2, 1020, ScreenRes.height);
         
        //draw title image
        g.drawImage(Images.crt,0,0,handler.getWidth(),handler.getHeight(),null);
        
+       //dialog
+       g.drawImage(Images.dialog, 1020, 600, 464, 464,null);
+       
        //draw panel border
-       g.setColor(PHOSPHOR);
+       g.setColor(GO);
        g.drawRect(1020, 0, 464, ScreenRes.height);
+       
+       //score
+       g.drawImage(Images.score,1080,10,355,55,null);
+       
         
         
 
