@@ -17,6 +17,10 @@ public class Apple {
         this.xCoord=x;
         this.yCoord=y;
     }
+    
+    public void isGood(){
+    	
+    }
 
 
 }
