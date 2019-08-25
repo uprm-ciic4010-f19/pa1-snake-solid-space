@@ -42,6 +42,7 @@ public class DisplayScreen {
             e.printStackTrace();
         }
 
+
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
@@ -49,9 +50,11 @@ public class DisplayScreen {
         canvas.setFocusable(false);
         Color PURPLE = new Color(91,50,86);
         canvas.setBackground(PURPLE);
-
+        
+        
         frame.add(canvas);
         frame.pack();
+
     }
 
     public Canvas getCanvas(){

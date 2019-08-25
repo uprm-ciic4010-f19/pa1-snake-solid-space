@@ -21,6 +21,7 @@ public class Images {
     public static BufferedImage[] Options;
     public static ImageIcon icon;
     public static BufferedImage gameOver;
+    public static BufferedImage crt;
 
     public Images() {
 
@@ -42,7 +43,8 @@ public class Images {
             butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
-
+            crt = ImageIO.read(getClass().getResourceAsStream("/Sheets/CRT2.png"));
+            
             gameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.png"));
             //gameOver = new ImageIcon("/Sheets/GameOver.gif").getImage();
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));

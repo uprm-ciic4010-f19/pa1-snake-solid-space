@@ -5,9 +5,12 @@ import Game.Entities.Dynamic.Tail;
 import Game.Entities.Static.Apple;
 import Main.Handler;
 import Main.ScreenRes;
+import Resources.Images;
 
 import java.awt.*;
 import java.util.LinkedList;
+
+import javax.swing.ImageIcon;
 
 
 /**
@@ -51,17 +54,44 @@ public abstract class WorldBase {
 
 
     }
-
+    
+    private ImageIcon titleImage;
+    
     public void render(Graphics g){
+    	
 
-        for (int i = 0; i <= ScreenRes.height; i = i + GridPixelsize) {
-        	//Color PURPLE = new Color(102,0,153);
-            //g.setColor(PURPLE);
-            //g.drawLine(0, i, handler.getWidth() , i);
-            //g.drawLine(i,0,i,handler.getHeight());
+        for (int i = 0; i <= ScreenRes.width; i = i + GridPixelsize){
+        	//if (i == 1080) {
+        		//Color PURPLE = new Color(102,0,153);
+                //g.setColor(Color.BLACK);
+                //g.drawLine(0, i, handler.getWidth() , i);
+                //g.drawLine(i,0,i,handler.getHeight());
+        	//}
 
 
         }
+        
+       Color PHOSPHOR = new Color(65,255,0);  
+       //draw background for the score panel
+       g.setColor(Color.BLACK);
+       g.fillRect(1020, 0, ScreenRes.width, ScreenRes.height);
+       
+       //draw title image border
+       g.setColor(PHOSPHOR);
+       g.drawRect(1080, 10, 350, 55);
+        
+       //draw game border
+       g.setColor(Color.BLACK);
+       g.drawRect(0, 0, 1020, ScreenRes.height);
+        
+       //draw title image
+       g.drawImage(Images.crt,0,0,handler.getWidth(),handler.getHeight(),null);
+       
+       //draw panel border
+       g.setColor(PHOSPHOR);
+       g.drawRect(1020, 0, 464, ScreenRes.height);
+        
+        
 
 
 
