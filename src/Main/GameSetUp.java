@@ -10,12 +10,13 @@ import Input.MouseManager;
 import Resources.Images;
 
 import javax.sound.sampled.*;
+
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -45,7 +46,7 @@ public class GameSetUp implements Runnable {
     public State gameState;
     public State menuState;
     public State pauseState;
-
+    
     //Res.music
     private InputStream audioFile;
     private AudioInputStream audioStream;
@@ -86,7 +87,7 @@ public class GameSetUp implements Runnable {
 
         try {
 
-            audioFile = getClass().getResourceAsStream("/music/nature.wav");
+            audioFile = getClass().getResourceAsStream("/music/twinsnakes.wav");
             audioStream = AudioSystem.getAudioInputStream(audioFile);
             format = audioStream.getFormat();
             info = new DataLine.Info(Clip.class, format);

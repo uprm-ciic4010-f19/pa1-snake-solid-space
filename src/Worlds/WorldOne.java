@@ -2,6 +2,7 @@ package Worlds;
 
 import Game.Entities.Static.Apple;
 import Main.Handler;
+import Main.ScreenRes;
 
 import java.awt.*;
 import java.util.Random;
@@ -16,7 +17,8 @@ public class WorldOne extends WorldBase{
 
         //has to be a number bigger than 20 and even
         GridWidthHeightPixelCount = 60;
-        GridPixelsize = (800/GridWidthHeightPixelCount);
+        
+        GridPixelsize = (ScreenRes.height/GridWidthHeightPixelCount);
         playerLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
         appleLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
 

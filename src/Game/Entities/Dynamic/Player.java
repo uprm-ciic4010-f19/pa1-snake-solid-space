@@ -1,7 +1,6 @@
 package Game.Entities.Dynamic;
 
 import Main.Handler;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;

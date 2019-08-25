@@ -4,6 +4,7 @@ import Game.Entities.Dynamic.Player;
 import Game.Entities.Dynamic.Tail;
 import Game.Entities.Static.Apple;
 import Main.Handler;
+import Main.ScreenRes;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -53,7 +54,7 @@ public abstract class WorldBase {
 
     public void render(Graphics g){
 
-        for (int i = 0; i <= 800; i = i + GridPixelsize) {
+        for (int i = 0; i <= ScreenRes.height; i = i + GridPixelsize) {
         	//Color PURPLE = new Color(102,0,153);
             //g.setColor(PURPLE);
             //g.drawLine(0, i, handler.getWidth() , i);
