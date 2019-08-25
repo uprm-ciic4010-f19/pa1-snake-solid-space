@@ -143,7 +143,11 @@ public class Player {
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-                g.setColor(colorEatChange);
+                if(colorEatChange != null) {
+                	g.setColor(colorEatChange);
+                }else {
+                	g.setColor(new Color(80, 220, 100));
+                }
 
                 if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
                     g.fillRect((i*handler.getWorld().GridPixelsize),
