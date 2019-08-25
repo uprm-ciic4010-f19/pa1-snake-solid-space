@@ -147,6 +147,11 @@ public class Player {
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
+            	
+        		if(gameScore >= 0) {
+        			g.setColor(Color.GREEN);
+        			g.drawString("Score: " +(int)gameScore, 10, 10);
+        		}
                 if(colorEatChange != null) {
                 	g.setColor(colorEatChange);
                 }else {
