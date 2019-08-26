@@ -22,6 +22,8 @@ public class GameOverState extends State {
 		uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(64/ScreenRes.downscale), handler.getHeight()-(250/ScreenRes.downscale), 140/ScreenRes.downscale, 50/ScreenRes.downscale, Images.BTitle, () -> {
 			handler.getMouseManager().setUimanager(null);
 			State.setState(handler.getGame().menuState);
+            Game.GameStates.AudioPlay.stopSound();
+            Game.GameStates.AudioPlay.playSound(0);
 		}));
 
 	}
