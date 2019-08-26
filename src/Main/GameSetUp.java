@@ -84,8 +84,9 @@ public class GameSetUp implements Runnable {
         pauseState = new PauseState(handler);
 
         State.setState(menuState);
-
-        try {
+        
+        Game.GameStates.AudioPlay.playSound(0);
+        /*try {
 
             audioFile = getClass().getResourceAsStream("/music/twinsnakes.wav");
             audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -101,12 +102,13 @@ public class GameSetUp implements Runnable {
             e.printStackTrace();
         } catch (LineUnavailableException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public void reStart(){
+    	Game.GameStates.AudioPlay.stopSound();
+        Game.GameStates.AudioPlay.playSound(1);
         gameState = new GameState(handler);
-        audioClip.close();
     }
 
     public synchronized void start(){

@@ -80,7 +80,7 @@ public class Player {
             direction="Right";
         }
         
-        if (count == 0) {
+        /*if (count == 0) {
         	try {
 
                 InputStream audioFile = getClass().getResourceAsStream("/music/gamemusic.wav");
@@ -99,10 +99,12 @@ public class Player {
                 e.printStackTrace();
             }
     		count++;
-        }
+        }*/
         
         //Menu keys
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
+        	Game.GameStates.AudioPlay.stopSound();
+            Game.GameStates.AudioPlay.playSound(2);
         	GameState.setState(pauseState);
         }
             
