@@ -96,10 +96,13 @@ public class Player {
         handler.getWorld().playerLocation[xCoord][yCoord]=false;
         int x = xCoord;
         int y = yCoord;
+        
+        selfCollisionCheck();
+        
         switch (direction){
             case "Left":
                 if(xCoord==0){
-                    kill();
+                    shorten();
                     xCoord = handler.getWorld().GridWidthHeightPixelCount-1;
                 }else{
                     xCoord--;
@@ -107,7 +110,7 @@ public class Player {
                 break;
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-                    kill();
+                    shorten();
                     xCoord = 0;
                 }else{
                     xCoord++;
@@ -115,7 +118,7 @@ public class Player {
                 break;
             case "Up":
                 if(yCoord==0){
-                    kill();
+                    shorten();
                     yCoord = handler.getWorld().GridWidthHeightPixelCount-1;
                 }else{
                     yCoord--;
@@ -123,7 +126,7 @@ public class Player {
                 break;
             case "Down":
                 if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-                    kill();
+                    shorten();
                     yCoord = 0;
                 }else{
                     yCoord++;
@@ -143,6 +146,20 @@ public class Player {
             handler.getWorld().body.addFirst(new Tail(x, y,handler));
         }
 
+    }
+    
+    public void selfCollisionCheck() {
+    	handler.getWorld().playerLocation[xCoord][yCoord]=false;
+        int x = xCoord;
+        int y = yCoord;
+        for (Tail i: handler.getWorld().body){
+        	if (i.x == xCoord) {
+        		if (i.y == yCoord) {
+        			GameState.setState(gameOverState);
+        		}
+        		
+        	}
+        }
     }
 
     public void render(Graphics g,Boolean[][] playeLocation){
@@ -414,7 +431,7 @@ public class Player {
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
     }
 
-    public void kill(){
+    public void shorten(){
         lenght = 0;
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
