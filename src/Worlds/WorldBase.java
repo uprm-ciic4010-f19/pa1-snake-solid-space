@@ -70,11 +70,8 @@ public abstract class WorldBase {
 
 
 		}
-		System.out.println(ScreenRes.width);
-		System.out.println(ScreenRes.height);
 		Color GO = new Color(0,171,102);  
 		//draw background for the score panel
-		System.out.println(GridPixelsize);
 		g.setColor(Color.BLACK);
 		g.fillRect(GridPixelsize*GridWidthHeightPixelCount, 0, ScreenRes.width, ScreenRes.height);
 
