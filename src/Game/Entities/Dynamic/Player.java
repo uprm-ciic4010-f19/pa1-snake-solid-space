@@ -66,7 +66,7 @@ public class Player {
         moveCounter++;
         pauseState = new PauseState(handler);
         gameOverState = new GameOverState(handler);
-        if(moveCounter>=5) {
+        if(moveCounter>=25-snakeSpeed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -79,27 +79,6 @@ public class Player {
         }if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)) && (direction!="Left")){
             direction="Right";
         }
-        
-        /*if (count == 0) {
-        	try {
-
-                InputStream audioFile = getClass().getResourceAsStream("/music/gamemusic.wav");
-                AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-                AudioFormat format = audioStream.getFormat();
-                Info info = new DataLine.Info(Clip.class, format);
-                Clip audioClip = (Clip) AudioSystem.getLine(info);
-                audioClip.open(audioStream);
-                audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-
-            } catch (UnsupportedAudioFileException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
-            }
-    		count++;
-        }*/
         
         //Menu keys
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
@@ -210,7 +189,7 @@ public class Player {
         		if(gameScore >= 0) {
         			Color GO = new Color(0,171,102); 
         			g.setColor(GO);
-        			g.setFont(new Font("arial", Font.PLAIN, 40));
+        			g.setFont(new Font("arial", Font.PLAIN, 60/ScreenRes.downscale));
         			g.drawString("" +(int)gameScore, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5);
         		}
                 if(colorEatChange != null) {
