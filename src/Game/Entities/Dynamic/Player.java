@@ -15,7 +15,6 @@ import Game.GameStates.GameOverState;
  */
 public class Player {
 	
-	public int lastStudentIDDigit;
 
     public int lenght;
     public boolean justAte;
@@ -32,6 +31,7 @@ public class Player {
     public int snakeSpeed; //Snake speed changer debug buttons.
     public double gameScore; //Game score.
     public String direction;//is your first name one?
+    public int lastStudentIDDigit;
 
     public Player(Handler handler){
         this.handler = handler;
