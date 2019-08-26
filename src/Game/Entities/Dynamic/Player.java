@@ -49,7 +49,7 @@ public class Player {
         moveCounter++;
         pauseState = new PauseState(handler);
         gameOverState = new GameOverState(handler);
-        if(moveCounter>=25-snakeSpeed) {
+        if(moveCounter>=5) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -87,6 +87,8 @@ public class Player {
 			System.out.println("Color changed.");
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_K)){ //Insta Game Over
         	GameState.setState(gameOverState);
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E)){ //Add score debug button
+        	scoreDebug();
         }
     }
 
@@ -152,7 +154,7 @@ public class Player {
         			Color GO = new Color(0,171,102); 
         			g.setColor(GO);
         			g.setFont(new Font("arial", Font.PLAIN, 40));
-        			g.drawString("" +(int)gameScore, 1400, 200);
+        			g.drawString("" +(int)gameScore, 1100, 200);
         		}
                 if(colorEatChange != null) {
                 	g.setColor(colorEatChange);
@@ -296,6 +298,11 @@ public class Player {
         }
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
+    }
+    
+    public void scoreDebug() {
+    	gameScore += Math.sqrt(2 * gameScore + 1);
+        System.out.println("Score: "+gameScore);
     }
     
     public void tailDebug(){

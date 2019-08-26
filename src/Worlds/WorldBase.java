@@ -100,7 +100,7 @@ public abstract class WorldBase {
        g.setColor(GO);
        g.drawRect(1020, 0, 464, ScreenRes.height);
        
-       //score
+       //score image
        g.drawImage(Images.score,1080,10,355,55,null);
        
         
