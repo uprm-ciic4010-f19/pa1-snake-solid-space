@@ -106,24 +106,7 @@ public class GameSetUp implements Runnable {
 
     public void reStart(){
         gameState = new GameState(handler);
-        try {
-        	audioClip.close();
-
-            audioFile = getClass().getResourceAsStream("/music/gamemusic.wav");
-            audioStream = AudioSystem.getAudioInputStream(audioFile);
-            format = audioStream.getFormat();
-            info = new DataLine.Info(Clip.class, format);
-            audioClip = (Clip) AudioSystem.getLine(info);
-            audioClip.open(audioStream);
-            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
+        audioClip.close();
     }
 
     public synchronized void start(){

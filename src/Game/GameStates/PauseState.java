@@ -1,5 +1,6 @@
 package Game.GameStates;
 
+import Main.GameSetUp;
 import Main.Handler;
 import Main.ScreenRes;
 import Resources.Images;
@@ -7,6 +8,17 @@ import UI.UIImageButton;
 import UI.UIManager;
 
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.DataLine.Info;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -20,7 +32,7 @@ public class PauseState extends State {
         super(handler);
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUimanager(uiManager);
-
+        
         uiManager.addObjects(new UIImageButton(ScreenRes.width/33, ScreenRes.height/4-ScreenRes.height/43, ScreenRes.width/14, ScreenRes.width/16, Images.Resume, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().gameState);
@@ -63,6 +75,7 @@ public class PauseState extends State {
     public void render(Graphics g) {
         g.drawImage(Images.Pause,0,0,ScreenRes.width,ScreenRes.height,null);
         uiManager.Render(g);
+        
 
     }
 }

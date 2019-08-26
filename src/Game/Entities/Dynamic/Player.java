@@ -1,9 +1,25 @@
 package Game.Entities.Dynamic;
 
 import Main.Handler;
+import Main.ScreenRes;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Random;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import com.sun.media.jfxmedia.AudioClip;
+
+import javax.sound.sampled.DataLine.Info;
 
 import Game.GameStates.GameState;
 import Game.GameStates.PauseState;
@@ -15,12 +31,12 @@ import Game.GameStates.GameOverState;
  */
 public class Player {
 	
-
     public int lenght;
     public boolean justAte;
     public State pauseState;
     public State gameOverState;
     private Handler handler;
+    private int count;
 
     public int xCoord;
     public int yCoord;
@@ -38,6 +54,7 @@ public class Player {
         lastStudentIDDigit = 7;
         xCoord = 0;
         yCoord = 0;
+        count = 0;
         moveCounter = 0;
         direction= "Right";
         justAte = false;
@@ -61,6 +78,27 @@ public class Player {
             direction="Left";
         }if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)) && (direction!="Left")){
             direction="Right";
+        }
+        
+        if (count == 0) {
+        	try {
+
+                InputStream audioFile = getClass().getResourceAsStream("/music/gamemusic.wav");
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+                AudioFormat format = audioStream.getFormat();
+                Info info = new DataLine.Info(Clip.class, format);
+                Clip audioClip = (Clip) AudioSystem.getLine(info);
+                audioClip.open(audioStream);
+                audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
+    		count++;
         }
         
         //Menu keys
@@ -171,7 +209,7 @@ public class Player {
         			Color GO = new Color(0,171,102); 
         			g.setColor(GO);
         			g.setFont(new Font("arial", Font.PLAIN, 40));
-        			g.drawString("" +(int)gameScore, 1100, 200);
+        			g.drawString("" +(int)gameScore, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5);
         		}
                 if(colorEatChange != null) {
                 	g.setColor(colorEatChange);
@@ -315,6 +353,8 @@ public class Player {
         }
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
+        
+	
     }
     
     public void scoreDebug() {
@@ -430,7 +470,7 @@ public class Player {
         handler.getWorld().body.addLast(tail);
         handler.getWorld().playerLocation[tail.x][tail.y] = true;
     }
-
+    
     public void shorten(){
         lenght = 0;
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
