@@ -22,6 +22,8 @@ public class WorldOne extends WorldBase{
         GridSize = ScreenRes.GridSize;
         playerLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
         appleLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
+        playerLocation2 = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
+        appleLocation2 = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
 
     }
 
