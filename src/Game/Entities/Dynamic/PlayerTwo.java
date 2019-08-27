@@ -2,25 +2,11 @@ package Game.Entities.Dynamic;
 
 import Main.Handler;
 import Main.ScreenRes;
-import Resources.Images;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.util.Random;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
-import com.sun.media.jfxmedia.AudioClip;
-
-import javax.sound.sampled.DataLine.Info;
 
 import Game.GameStates.GameState;
 import Game.GameStates.PauseState;
@@ -34,7 +20,6 @@ public class PlayerTwo {
 	public State pauseState;
 	public State gameOverState;
 	private Handler handler;
-	private int count;
 
 	public int xCoord2;
 	public int yCoord2;
@@ -53,7 +38,6 @@ public class PlayerTwo {
 		lastStudentIDDigit2 = 7;
 		xCoord2 = 0;
 		yCoord2 = 0;
-		count = 0;
 		moveCounter2 = 0;
 		direction2 = "Down";
 		justAte2 = false;
@@ -163,12 +147,12 @@ public class PlayerTwo {
 			} else {
 				rottenEat();
 			}
+		}
 
-			if (!handler.getWorld().body2.isEmpty()) {
-				handler.getWorld().playerLocation2[handler.getWorld().body2.getLast().x][handler.getWorld().body2.getLast().y] = false;
-				handler.getWorld().body2.removeLast();
-				handler.getWorld().body2.addFirst(new TailTwo(x, y, handler));
-			}
+		if (!handler.getWorld().body2.isEmpty()) {
+			handler.getWorld().playerLocation2[handler.getWorld().body2.getLast().x][handler.getWorld().body2.getLast().y] = false;
+			handler.getWorld().body2.removeLast();
+			handler.getWorld().body2.addFirst(new TailTwo(x, y, handler));
 		}
 
 	}
@@ -210,7 +194,7 @@ public class PlayerTwo {
 					g.setFont(new Font("arial", Font.PLAIN, 60 / ScreenRes.downscale));
 					g.drawString("PLAYER 2", handler.getWorld().GridSize + handler.getWorld().GridPixelsize * 5, ScreenRes.height / 2 - ScreenRes.height/20);
 					g.drawString("" +(int)gameScore2, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 + ScreenRes.height/3);
-					
+
 				}
 				if (colorEatChange2 != null) {
 					g.setColor(colorEatChange2);
@@ -249,7 +233,7 @@ public class PlayerTwo {
 		handler.getWorld().appleLocation2[xCoord2][yCoord2] = false;
 		handler.getWorld().appleLocation[xCoord2][yCoord2] = false;
 		handler.getWorld().appleOnBoard = false;
-	    
+
 		switch (direction2) {
 		case "Left":
 			if (handler.getWorld().body2.isEmpty()) {

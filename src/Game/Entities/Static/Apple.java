@@ -21,8 +21,7 @@ public class Apple {
     }
     
     public static Boolean isGood(){
-    	System.out.println(Player.totalMovement + "totalmove | gameScore" + Player.gameScore);
-    	return (!(Player.totalMovement >= 150 && (Player.gameScore >= 5 ||PlayerTwo.gameScore2 >=5)));
+    	return (!(Player.totalMovement >= 150 && (Player.gameScore >= 5 && PlayerTwo.gameScore2 >=5)));
     }
 
 
