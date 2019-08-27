@@ -36,24 +36,6 @@ public class AudioPlay {
             Logger.getLogger(AudioPlay.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-		/*try {
-
-            InputStream audioFile = getClass().getResourceAsStream("/music/gamemusic.wav");
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-            AudioFormat format = audioStream.getFormat();
-            Info info = new DataLine.Info(Clip.class, format);
-            Clip audioClip = (Clip) AudioSystem.getLine(info);
-            audioClip.open(audioStream);
-            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-		count++;*/
 	}
 	public static void stopSound() {
         clip.stop();   

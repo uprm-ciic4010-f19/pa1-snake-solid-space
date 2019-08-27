@@ -84,7 +84,9 @@ public class Player {
 		//Menu keys
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
 			Game.GameStates.AudioPlay.stopSound();
-			Game.GameStates.AudioPlay.playSound(2);
+			if (!Game.GameStates.OptionsState.soundOff) {
+            	Game.GameStates.AudioPlay.playSound(2);
+            }
 			GameState.setState(pauseState);
 		}
 
@@ -117,7 +119,6 @@ public class Player {
 		int x = xCoord;
 		int y = yCoord;
 		totalMovement++;
-		System.out.println("Total movement: "+totalMovement);
 
 		selfCollisionCheck();
 
