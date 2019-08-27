@@ -1,6 +1,7 @@
 package Game.GameStates;
 
 import Game.Entities.Dynamic.Player;
+import Game.Entities.Dynamic.PlayerTwo;
 import Main.Handler;
 import Worlds.WorldBase;
 import Worlds.WorldOne;
@@ -20,15 +21,19 @@ public class GameState extends State {
         world = new WorldOne(handler);
         handler.setWorld(world);
         handler.getWorld().player= new Player(handler);
+        handler.getWorld().player2= new PlayerTwo(handler);
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
                 handler.getWorld().playerLocation[i][j]=false;
                 handler.getWorld().appleLocation[i][j]=false;
+                handler.getWorld().playerLocation2[i][j]=false;
+                handler.getWorld().appleLocation2[i][j]=false;
 
             }
         }
         handler.getWorld().playerLocation[handler.getWorld().player.xCoord][handler.getWorld().player.yCoord] =true;
+        handler.getWorld().playerLocation[handler.getWorld().player2.xCoord2][handler.getWorld().player2.yCoord2] =true;
 
 
     }

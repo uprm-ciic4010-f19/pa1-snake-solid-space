@@ -22,6 +22,8 @@ public class WorldOne extends WorldBase{
         GridSize = ScreenRes.GridSize;
         playerLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
         appleLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
+        playerLocation2 = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
+        appleLocation2 = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
 
     }
 
@@ -29,6 +31,7 @@ public class WorldOne extends WorldBase{
     public void tick() {
         super.tick();
         player.tick();
+        player2.tick();
         if(!appleOnBoard){
             appleOnBoard=true;
             int appleX = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
@@ -37,13 +40,14 @@ public class WorldOne extends WorldBase{
             //change coordinates till one is selected in which the player isnt standing
             boolean goodCoordinates=false;
             do{
-                if(!handler.getWorld().playerLocation[appleX][appley]){
+                if(!handler.getWorld().playerLocation[appleX][appley] && !handler.getWorld().playerLocation2[appleX][appley]){
                     goodCoordinates=true;
                 }
             }while(!goodCoordinates);
 
             apple = new Apple(handler,appleX,appley);
             appleLocation[appleX][appley]=true;
+            appleLocation2[appleX][appley]=true;
 
         }
     }
@@ -52,6 +56,7 @@ public class WorldOne extends WorldBase{
     public void render(Graphics g){
         super.render(g);
         player.render(g,playerLocation);
+        player2.render(g, playerLocation2);
     }
 
 }

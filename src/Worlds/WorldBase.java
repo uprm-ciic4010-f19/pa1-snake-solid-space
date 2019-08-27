@@ -1,7 +1,9 @@
 package Worlds;
 
 import Game.Entities.Dynamic.Player;
+import Game.Entities.Dynamic.PlayerTwo;
 import Game.Entities.Dynamic.Tail;
+import Game.Entities.Dynamic.TailTwo;
 import Game.Entities.Static.Apple;
 import Main.Handler;
 import Main.ScreenRes;
@@ -42,6 +44,7 @@ public abstract class WorldBase {
 	private int count;
 
 	public Player player;
+	public PlayerTwo player2;
 
 	protected Handler handler;
 
@@ -49,11 +52,14 @@ public abstract class WorldBase {
 	public Boolean appleOnBoard;
 	protected Apple apple;
 	public Boolean[][] appleLocation;
+	public Boolean[][] appleLocation2;
 
 
 	public Boolean[][] playerLocation;
+	public Boolean[][] playerLocation2;
 
 	public LinkedList<Tail> body = new LinkedList<>();
+	public LinkedList<TailTwo> body2 = new LinkedList<>();
 
 
 	public WorldBase(Handler handler){
