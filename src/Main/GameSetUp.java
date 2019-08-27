@@ -27,7 +27,6 @@ public class GameSetUp implements Runnable {
     private DisplayScreen display;
     private int width, height;
     public String title;
-    public static int fps;
 
     private boolean running = false;
     private Thread thread;
@@ -111,7 +110,7 @@ public class GameSetUp implements Runnable {
         //initiallizes everything in order to run without breaking
         init();
 
-        fps = 30;
+        int fps = 60;
         double timePerTick = 1000000000 / fps;
         double delta = 0;
         long now;

@@ -2,6 +2,7 @@ package Game.Entities.Dynamic;
 
 import Main.Handler;
 import Main.ScreenRes;
+import Resources.Images;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -24,6 +25,7 @@ import javax.sound.sampled.DataLine.Info;
 import Game.GameStates.GameState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
+import Game.Entities.Static.Apple;
 import Game.GameStates.GameOverState;
 
 /**
@@ -43,11 +45,10 @@ public class Player {
 
 	public int moveCounter;
 	public Color colorEatChange; //Changes color when snake eats.
-	public Color appleColorChange; //changes the apple color
 	public int snakeSpeedModifier; //Snake speed changer debug buttons.
-	public double gameScore; //Game score.
+	public static double gameScore; //Game score.
 	public String direction;//is your first name one?
-	public int totalMovement; 
+	public static int totalMovement; 
 	public int lastStudentIDDigit;
 
 	public Player(Handler handler){
@@ -67,7 +68,7 @@ public class Player {
 		moveCounter++;
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
-		if(moveCounter>=6) {
+		if(moveCounter>=5) {
 			checkCollisionAndMove();
 			moveCounter=0;
 		}
@@ -85,8 +86,8 @@ public class Player {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
 			Game.GameStates.AudioPlay.stopSound();
 			if (!Game.GameStates.OptionsState.soundOff) {
-            	Game.GameStates.AudioPlay.playSound(2);
-            }
+				Game.GameStates.AudioPlay.playSound(2);
+			}
 			GameState.setState(pauseState);
 		}
 
@@ -105,7 +106,7 @@ public class Player {
 			State.setState(handler.getGame().gameState);
 			System.out.println("Game reseted.");
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)) { //Color change
-			colorEatChange = SnakeColor.colorChange();
+			colorEatChange = EntityColor.colorChange();
 			System.out.println("Color changed.");
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_K)){ //Insta Game Over
 			GameState.setState(gameOverState);
@@ -159,11 +160,12 @@ public class Player {
 		handler.getWorld().playerLocation[xCoord][yCoord]=true;
 
 
-		if((handler.getWorld().appleLocation[xCoord][yCoord]||handler.getWorld().appleLocation2[xCoord][yCoord])&&totalMovement>150 && gameScore >= 5){
-			rottenEat();
-		}else {
-			if(handler.getWorld().appleLocation[xCoord][yCoord]||handler.getWorld().appleLocation2[xCoord][yCoord])
-				Eat();
+		if(handler.getWorld().appleLocation[xCoord][yCoord]||handler.getWorld().appleLocation2[xCoord][yCoord]){
+			if (Apple.isGood()) {
+				eat();
+			} else {
+				rottenEat();
+			}
 		}
 
 		if(!handler.getWorld().body.isEmpty()) {
@@ -183,8 +185,8 @@ public class Player {
 				if (i.y == yCoord) {
 					Game.GameStates.AudioPlay.stopSound();
 					if (!Game.GameStates.OptionsState.soundOff) {
-	                	Game.GameStates.AudioPlay.playSound(3);
-	                }
+						Game.GameStates.AudioPlay.playSound(3);
+					}
 					GameState.setState(gameOverState);
 				}
 
@@ -194,8 +196,6 @@ public class Player {
 
 	public void render(Graphics g,Boolean[][] playeLocation){
 		Random r = new Random();
-		if(totalMovement==150&&gameScore >= 5)
-			appleColorChange = SnakeColor.badAppleColorChange();
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
@@ -205,7 +205,7 @@ public class Player {
 					g.setFont(new Font("arial", Font.PLAIN, 60/ScreenRes.downscale));
 					g.drawString("PLAYER 1", handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 - ScreenRes.height/28);
 					g.drawString("" +(int)gameScore, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 + ScreenRes.height/20);
-					
+
 				}
 				if(colorEatChange != null) {
 					g.setColor(colorEatChange);
@@ -214,22 +214,25 @@ public class Player {
 				}
 
 				if(playeLocation[i][j]){
-					g.fillRect((i*handler.getWorld().GridPixelsize),
-							(j*handler.getWorld().GridPixelsize),
-							handler.getWorld().GridPixelsize,
-							handler.getWorld().GridPixelsize);
+					g.setColor(Color.BLACK);
+					g.drawRoundRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize,handler.getWorld().GridPixelsize);
+					if (colorEatChange != null) {
+						g.setColor(colorEatChange);
+						g.drawRoundRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize-1, handler.getWorld().GridPixelsize-1, handler.getWorld().GridPixelsize,handler.getWorld().GridPixelsize);
+					} else {
+						g.setColor(new Color(80, 220, 100));
+						g.drawRoundRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize-1, handler.getWorld().GridPixelsize-1, handler.getWorld().GridPixelsize,handler.getWorld().GridPixelsize);
+					}
 				}
 
 				if(handler.getWorld().appleLocation[i][j]){
-					if(appleColorChange != null) {
-						g.setColor(appleColorChange);
-					}else {
-						g.setColor(new Color(255, 0, 0));
+					Apple.isGood();
+					if (Apple.isGood()) {
+						g.drawImage(Images.apple, (i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
+					} else {
+						g.drawImage(Images.rottenApple, (i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
 					}
-					g.fillRect((i*handler.getWorld().GridPixelsize),
-							(j*handler.getWorld().GridPixelsize),
-							handler.getWorld().GridPixelsize,
-							handler.getWorld().GridPixelsize);
+
 				}
 
 			}
@@ -238,20 +241,20 @@ public class Player {
 
 	}
 
-	public void Eat(){
+	public void eat(){
 		lenght++;
 		totalMovement = 0;
+		PlayerTwo.totalMovement2 = 0;
 		snakeSpeedModifier += lastStudentIDDigit + 1;
-		
+
 		gameScore += Math.sqrt(2 * gameScore + 1);
 		System.out.println("Score: "+gameScore);
-		colorEatChange = SnakeColor.colorChange();
-		appleColorChange = SnakeColor.appleColorChange();
+		colorEatChange = EntityColor.colorChange();
 		Tail tail= null;
 		handler.getWorld().appleLocation[xCoord][yCoord]=false;
 		handler.getWorld().appleLocation2[xCoord][yCoord] = false;
 		handler.getWorld().appleOnBoard = false;
-		
+
 		switch (direction){
 		case "Left":
 			if( handler.getWorld().body.isEmpty()){
@@ -474,7 +477,7 @@ public class Player {
 	public void rottenEat() {
 		snakeSpeedModifier -= (lastStudentIDDigit + 1);
 		gameScore -= Math.sqrt(2 * gameScore + 1);
-		Eat();
+		eat();
 		gameScore -= Math.sqrt(2 * (gameScore) + 1);
 	}
 

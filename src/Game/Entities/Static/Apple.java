@@ -1,5 +1,7 @@
 package Game.Entities.Static;
 
+import Game.Entities.Dynamic.Player;
+import Game.Entities.Dynamic.PlayerTwo;
 import Main.Handler;
 
 /**
@@ -18,8 +20,9 @@ public class Apple {
         this.yCoord=y;
     }
     
-    public void isGood(){
-    	
+    public static Boolean isGood(){
+    	System.out.println(Player.totalMovement + "totalmove | gameScore" + Player.gameScore);
+    	return (!(Player.totalMovement >= 150 && (Player.gameScore >= 5 ||PlayerTwo.gameScore2 >=5)));
     }
 
 

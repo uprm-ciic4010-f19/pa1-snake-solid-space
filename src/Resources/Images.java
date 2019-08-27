@@ -30,6 +30,8 @@ public class Images {
     public static BufferedImage[] On;
     public static BufferedImage Sound;
     public static BufferedImage options;
+    public static BufferedImage apple;
+    public static BufferedImage rottenApple;
 
     public Images() {
 
@@ -64,7 +66,6 @@ public class Images {
             On[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/On.png"));
             On[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/OnP.png"));
             Sound= ImageIO.read(getClass().getResourceAsStream("/Buttons/Sound.png"));
-            //Sound[1]=ImageIO.read(getClass().getResourceAsStream("/Buttons/SoundP.png"));
             crt = ImageIO.read(getClass().getResourceAsStream("/Sheets/CRT2.png"));
             score = ImageIO.read(getClass().getResourceAsStream("/Sheets/score.png"));
             dialog = ImageIO.read(getClass().getResourceAsStream("/Sheets/what.png"));
@@ -73,6 +74,8 @@ public class Images {
             gameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.png"));
             //gameOver = new ImageIcon("/Sheets/GameOver.gif").getImage();
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
+            apple = ImageIO.read(getClass().getResourceAsStream("/Assets/Apple.png"));
+            rottenApple = ImageIO.read(getClass().getResourceAsStream("/Assets/AppleR.png"));
 
 
         }catch (IOException e) {

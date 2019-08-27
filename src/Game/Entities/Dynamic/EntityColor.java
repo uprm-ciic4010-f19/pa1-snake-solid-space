@@ -3,7 +3,7 @@ package Game.Entities.Dynamic;
 import java.awt.Color;
 
 
-public class SnakeColor {
+public class EntityColor {
 
 	public static Color colorChange() {
 		Color colorChange = new Color(redShade(), greenShade(), blueShade());
