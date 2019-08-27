@@ -203,7 +203,9 @@ public class Player {
 					Color GO = new Color(0,171,102); 
 					g.setColor(GO);
 					g.setFont(new Font("arial", Font.PLAIN, 60/ScreenRes.downscale));
-					g.drawString("" +(int)gameScore, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5);
+					g.drawString("PLAYER 1", handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 - ScreenRes.height/28);
+					g.drawString("" +(int)gameScore, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 + ScreenRes.height/20);
+					
 				}
 				if(colorEatChange != null) {
 					g.setColor(colorEatChange);

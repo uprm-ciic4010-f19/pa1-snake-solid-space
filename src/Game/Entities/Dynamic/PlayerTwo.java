@@ -49,11 +49,11 @@ public class PlayerTwo {
 	public PlayerTwo(Handler handler) {
 		this.handler = handler;
 		lastStudentIDDigit2 = 7;
-		xCoord2 = 10;
-		yCoord2 = 10;
+		xCoord2 = 0;
+		yCoord2 = 0;
 		count = 0;
 		moveCounter2 = 0;
-		direction2 = "Right";
+		direction2 = "Down";
 		justAte2 = false;
 		length2 = 1;
 
@@ -202,8 +202,8 @@ public class PlayerTwo {
 					Color GO = new Color(0, 171, 102);
 					g.setColor(GO);
 					g.setFont(new Font("arial", Font.PLAIN, 60 / ScreenRes.downscale));
-					g.drawString("" + (int) gameScore2,
-							handler.getWorld().GridSize + handler.getWorld().GridPixelsize * 5, ScreenRes.height / 5);
+					g.drawString("PLAYER 2", handler.getWorld().GridSize + handler.getWorld().GridPixelsize * 5, ScreenRes.height / 2 - ScreenRes.height/20);
+					g.drawString("" +(int)gameScore2, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 + ScreenRes.height/3);
 				}
 				if (colorEatChange2 != null) {
 					g.setColor(colorEatChange2);
