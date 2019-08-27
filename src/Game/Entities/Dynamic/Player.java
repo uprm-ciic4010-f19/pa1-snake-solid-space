@@ -36,6 +36,7 @@ public class Player {
 	public String direction;//is your first name one?
 	public static int totalMovement; 
 	public int lastStudentIDDigit;
+	public int maxSpeed;
 
 	public Player(Handler handler){
 		this.handler = handler;
@@ -46,6 +47,7 @@ public class Player {
 		direction= "Right";
 		justAte = false;
 		lenght= 1;
+		maxSpeed = 17;
 
 	}
 
@@ -53,7 +55,7 @@ public class Player {
 		moveCounter++;
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
-		if(moveCounter>=5) {
+		if(moveCounter>=maxSpeed-snakeSpeedModifier) {
 			checkCollisionAndMove();
 			moveCounter=0;
 		}
@@ -240,7 +242,10 @@ public class Player {
 		lenght++;
 		totalMovement = 0;
 		PlayerTwo.totalMovement2 = 0;
-		snakeSpeedModifier += lastStudentIDDigit + 1;
+		if (snakeSpeedModifier < maxSpeed) {
+			snakeSpeedModifier += lastStudentIDDigit + 1;
+		}
+
 
 		gameScore += Math.sqrt(2 * gameScore + 1);
 		System.out.println("Score: "+gameScore);

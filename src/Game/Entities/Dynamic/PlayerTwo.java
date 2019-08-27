@@ -32,6 +32,7 @@ public class PlayerTwo {
 	public String direction2;// is your first name one?
 	public static int totalMovement2;
 	public int lastStudentIDDigit2;
+	public int maxSpeed2;
 
 	public PlayerTwo(Handler handler) {
 		this.handler = handler;
@@ -42,6 +43,7 @@ public class PlayerTwo {
 		direction2 = "Down";
 		justAte2 = false;
 		length2 = 1;
+		maxSpeed2 = 17;
 
 	}
 
@@ -49,7 +51,7 @@ public class PlayerTwo {
 		moveCounter2++;
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
-		if (moveCounter2 >= 5) {
+		if (moveCounter2 >= maxSpeed2 - snakeSpeedModifier2) {
 			checkCollisionAndMove();
 			moveCounter2 = 0;
 		}
@@ -224,7 +226,9 @@ public class PlayerTwo {
 		length2++;
 		totalMovement2 = 0;
 		Player.totalMovement = 0;
-		snakeSpeedModifier2 += lastStudentIDDigit2 + 1;
+		if (snakeSpeedModifier2 < (maxSpeed2-1)) {
+			snakeSpeedModifier2 += lastStudentIDDigit2 + 1;
+		}
 
 		gameScore2 += Math.sqrt(2 * gameScore2 + 1);
 		System.out.println("Score: " + gameScore2);
