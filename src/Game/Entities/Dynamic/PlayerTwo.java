@@ -66,19 +66,16 @@ public class PlayerTwo {
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
 		if (moveCounter2 >= 5) {
-			checkCollisionAndMove2();
+			checkCollisionAndMove();
 			moveCounter2 = 0;
 		}
 		if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)) && (direction2 != "Down")) {
 			direction2 = "Up";
-		}
-		if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_S)) && (direction2 != "Up")) {
+		}if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_S)) && (direction2 != "Up")) {
 			direction2 = "Down";
-		}
-		if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_A)) && (direction2 != "Right")) {
+		}if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_A)) && (direction2 != "Right")) {
 			direction2 = "Left";
-		}
-		if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)) && (direction2 != "Left")) {
+		}if ((handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)) && (direction2 != "Left")) {
 			direction2 = "Right";
 		}
 
@@ -114,13 +111,14 @@ public class PlayerTwo {
 		}
 	}
 
-	public void checkCollisionAndMove2() {
+	public void checkCollisionAndMove() {
 		handler.getWorld().playerLocation2[xCoord2][yCoord2] = false;
 		int x = xCoord2;
 		int y = yCoord2;
 		totalMovement2++;
 
-		selfCollisionCheck2();
+		selfCollisionCheck();
+		playerCollisionCheck();
 
 		switch (direction2) {
 		case "Left":
@@ -158,6 +156,7 @@ public class PlayerTwo {
 		}
 		handler.getWorld().playerLocation2[xCoord2][yCoord2] = true;
 
+
 		if(handler.getWorld().appleLocation[xCoord2][yCoord2]||handler.getWorld().appleLocation2[xCoord2][yCoord2]){
 			if (Apple.isGood()) {
 				eat();
@@ -166,8 +165,7 @@ public class PlayerTwo {
 			}
 
 			if (!handler.getWorld().body2.isEmpty()) {
-				handler.getWorld().playerLocation2[handler.getWorld().body2.getLast().x][handler.getWorld().body2
-				                                                                         .getLast().y] = false;
+				handler.getWorld().playerLocation2[handler.getWorld().body2.getLast().x][handler.getWorld().body2.getLast().y] = false;
 				handler.getWorld().body2.removeLast();
 				handler.getWorld().body2.addFirst(new TailTwo(x, y, handler));
 			}
@@ -175,28 +173,34 @@ public class PlayerTwo {
 
 	}
 
-	public void selfCollisionCheck2() {
-		handler.getWorld().playerLocation2[xCoord2][yCoord2] = false;
-		int x = xCoord2;
-		int y = yCoord2;
+	public void selfCollisionCheck() {
 		for (TailTwo i : handler.getWorld().body2) {
-			if (i.x == xCoord2) {
-				if (i.y == yCoord2) {
-					Game.GameStates.AudioPlay.stopSound();
-					if (!Game.GameStates.OptionsState.soundOff) {
-						Game.GameStates.AudioPlay.playSound(3);
-					}
-					GameState.setState(gameOverState);
+			if (i.x == xCoord2 && i.y == yCoord2) {
+				Game.GameStates.AudioPlay.stopSound();
+				if (!Game.GameStates.OptionsState.soundOff) {
+					Game.GameStates.AudioPlay.playSound(3);
 				}
-
+				GameState.setState(gameOverState);
 			}
+
+		}
+	}
+
+	public void playerCollisionCheck() {
+		for (TailTwo i: handler.getWorld().body2){
+			if (i.x == xCoord2 && i.y == yCoord2) {
+				Game.GameStates.AudioPlay.stopSound();
+				if (!Game.GameStates.OptionsState.soundOff) {
+					Game.GameStates.AudioPlay.playSound(3);
+				}
+				GameState.setState(gameOverState);
+			}
+
 		}
 	}
 
 	public void render(Graphics g, Boolean[][] playeLocation) {
 		Random r = new Random();
-		if (totalMovement2 == 150 && gameScore2 >= 5)
-			appleColorChange2 = EntityColor.badAppleColorChange();
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 

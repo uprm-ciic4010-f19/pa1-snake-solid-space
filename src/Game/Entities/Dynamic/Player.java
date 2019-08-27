@@ -122,6 +122,7 @@ public class Player {
 		totalMovement++;
 
 		selfCollisionCheck();
+		playerCollisionCheck();
 
 		switch (direction){
 		case "Left":
@@ -177,20 +178,29 @@ public class Player {
 	}
 
 	public void selfCollisionCheck() {
-		handler.getWorld().playerLocation[xCoord][yCoord]=false;
-		int x = xCoord;
-		int y = yCoord;
 		for (Tail i: handler.getWorld().body){
-			if (i.x == xCoord) {
-				if (i.y == yCoord) {
-					Game.GameStates.AudioPlay.stopSound();
-					if (!Game.GameStates.OptionsState.soundOff) {
-						Game.GameStates.AudioPlay.playSound(3);
-					}
-					GameState.setState(gameOverState);
+			if (i.x == xCoord && i.y == yCoord) {
+				Game.GameStates.AudioPlay.stopSound();
+				if (!Game.GameStates.OptionsState.soundOff) {
+					Game.GameStates.AudioPlay.playSound(3);
 				}
-
+				GameState.setState(gameOverState);
 			}
+
+		}
+	}
+
+
+	public void playerCollisionCheck() {
+		for (TailTwo i: handler.getWorld().body2){
+			if (i.x == xCoord && i.y == yCoord) {
+				Game.GameStates.AudioPlay.stopSound();
+				if (!Game.GameStates.OptionsState.soundOff) {
+					Game.GameStates.AudioPlay.playSound(3);
+				}
+				GameState.setState(gameOverState);
+			}
+
 		}
 	}
 
