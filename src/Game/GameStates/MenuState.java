@@ -28,9 +28,20 @@ public class MenuState extends State {
             public void onClick() {
                 handler.getMouseManager().setUimanager(null);
                 handler.getGame().reStart();
+                Game.GameStates.AudioPlay.stopSound();
+                if (!Game.GameStates.OptionsState.soundOff) {
+                	Game.GameStates.AudioPlay.playSound(1);
+                }
                 State.setState(handler.getGame().gameState);
             }
         }));
+        
+        /*uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(64/ScreenRes.downscale), handler.getHeight()-(180/ScreenRes.downscale), 140/ScreenRes.downscale, 50/ScreenRes.downscale, Images.Options, () -> {
+            handler.getMouseManager().setUimanager(null);
+            State.setState(handler.getGame().optionsState);
+            Game.GameStates.AudioPlay.stopSound();
+            Game.GameStates.AudioPlay.playSound(0);
+        }));*/
     }
 
     @Override
