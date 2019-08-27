@@ -181,6 +181,10 @@ public class Player {
 		for (Tail i: handler.getWorld().body){
 			if (i.x == xCoord) {
 				if (i.y == yCoord) {
+					Game.GameStates.AudioPlay.stopSound();
+					if (!Game.GameStates.OptionsState.soundOff) {
+	                	Game.GameStates.AudioPlay.playSound(3);
+	                }
 					GameState.setState(gameOverState);
 				}
 

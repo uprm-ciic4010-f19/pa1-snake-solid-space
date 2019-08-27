@@ -24,7 +24,7 @@ public class GameOverState extends State {
 			State.setState(handler.getGame().menuState);
             Game.GameStates.AudioPlay.stopSound();
             if (!Game.GameStates.OptionsState.soundOff) {
-            	Game.GameStates.AudioPlay.playSound(1);
+            	Game.GameStates.AudioPlay.playSound(0);
             }
 		}));
 

@@ -50,6 +50,7 @@ public class AudioPlay {
 	       sounds[0]= "/music/twinsnakes.wav";
 	       sounds[1]= "/music/gamemusic.wav";
 	       sounds[2]= "/music/pausemusic.wav";
+	       sounds[3]= "/music/collision.wav";
 	       
 	       try {
 	    	   
@@ -59,8 +60,11 @@ public class AudioPlay {
 	            info = new DataLine.Info(Clip.class, format);
 	            clip = (Clip) AudioSystem.getLine(info);
 	            clip.open(audioStream);
+	            if (a < 3) {
 	            clip.loop(Clip.LOOP_CONTINUOUSLY);
-
+	            } else {
+	            	clip.start();
+	            }
 	        } catch (UnsupportedAudioFileException e) {
 	            e.printStackTrace();
 	        } catch (IOException e) {
