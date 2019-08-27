@@ -27,6 +27,7 @@ public class GameSetUp implements Runnable {
     private DisplayScreen display;
     private int width, height;
     public String title;
+    public static int fps;
 
     private boolean running = false;
     private Thread thread;
@@ -89,23 +90,7 @@ public class GameSetUp implements Runnable {
         State.setState(menuState);
         
         Game.GameStates.AudioPlay.playSound(0);
-        /*try {
-
-            audioFile = getClass().getResourceAsStream("/music/twinsnakes.wav");
-            audioStream = AudioSystem.getAudioInputStream(audioFile);
-            format = audioStream.getFormat();
-            info = new DataLine.Info(Clip.class, format);
-            audioClip = (Clip) AudioSystem.getLine(info);
-            audioClip.open(audioStream);
-            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }*/
+        
     }
 
     public void reStart(){
@@ -126,7 +111,7 @@ public class GameSetUp implements Runnable {
         //initiallizes everything in order to run without breaking
         init();
 
-        int fps = 60;
+        fps = 30;
         double timePerTick = 1000000000 / fps;
         double delta = 0;
         long now;
@@ -135,14 +120,14 @@ public class GameSetUp implements Runnable {
         int ticks = 0;
 
         while(running){
-            //makes sure the games runs smoothly at 60 FPS
+            //makes sure the games runs smoothly
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             timer += now - lastTime;
             lastTime = now;
 
             if(delta >= 1){
-                //re-renders and ticks the game around 60 times per second
+                //re-renders and ticks the game
                 tick();
                 render();
                 ticks++;

@@ -44,7 +44,7 @@ public class Player {
 	public int moveCounter;
 	public Color colorEatChange; //Changes color when snake eats.
 	public Color appleColorChange; //changes the apple color
-	public int snakeSpeed; //Snake speed changer debug buttons.
+	public int snakeSpeedModifier; //Snake speed changer debug buttons.
 	public double gameScore; //Game score.
 	public String direction;//is your first name one?
 	public int totalMovement; 
@@ -67,7 +67,7 @@ public class Player {
 		moveCounter++;
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
-		if(moveCounter>=25-snakeSpeed) {
+		if(moveCounter>=6) {
 			checkCollisionAndMove();
 			moveCounter=0;
 		}
@@ -94,11 +94,11 @@ public class Player {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){ //Add tail to snake.
 			tailDebug();
 		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS))||(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ADD))) { //Increases snake speed.
-			snakeSpeed++;
-			System.out.println("Debug Speed increased to: "+snakeSpeed);
+			snakeSpeedModifier++;
+			System.out.println("Debug Speed increased to: "+snakeSpeedModifier);
 		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)||handler.getKeyManager().keyJustPressed(KeyEvent.VK_SUBTRACT))) { //Decreases snake speed.
-			snakeSpeed--;
-			System.out.println("Debug Speed decreased to: "+snakeSpeed);
+			snakeSpeedModifier--;
+			System.out.println("Debug Speed decreased to: "+snakeSpeedModifier);
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_R)) { //Reset game
 			handler.getMouseManager().setUimanager(null);
 			handler.getGame().reStart();
@@ -159,10 +159,10 @@ public class Player {
 		handler.getWorld().playerLocation[xCoord][yCoord]=true;
 
 
-		if(handler.getWorld().appleLocation[xCoord][yCoord]&&totalMovement>150 && gameScore >= 5){
+		if((handler.getWorld().appleLocation[xCoord][yCoord]||handler.getWorld().appleLocation2[xCoord][yCoord])&&totalMovement>150 && gameScore >= 5){
 			rottenEat();
 		}else {
-			if(handler.getWorld().appleLocation[xCoord][yCoord])
+			if(handler.getWorld().appleLocation[xCoord][yCoord]||handler.getWorld().appleLocation2[xCoord][yCoord])
 				Eat();
 		}
 
@@ -241,14 +241,17 @@ public class Player {
 	public void Eat(){
 		lenght++;
 		totalMovement = 0;
-		snakeSpeed += lastStudentIDDigit + 1;
+		snakeSpeedModifier += lastStudentIDDigit + 1;
+		
 		gameScore += Math.sqrt(2 * gameScore + 1);
 		System.out.println("Score: "+gameScore);
 		colorEatChange = SnakeColor.colorChange();
 		appleColorChange = SnakeColor.appleColorChange();
 		Tail tail= null;
 		handler.getWorld().appleLocation[xCoord][yCoord]=false;
-		handler.getWorld().appleOnBoard=false;
+		handler.getWorld().appleLocation2[xCoord][yCoord] = false;
+		handler.getWorld().appleOnBoard = false;
+		
 		switch (direction){
 		case "Left":
 			if( handler.getWorld().body.isEmpty()){
@@ -469,7 +472,7 @@ public class Player {
 	}
 
 	public void rottenEat() {
-		snakeSpeed -= (lastStudentIDDigit + 1);
+		snakeSpeedModifier -= (lastStudentIDDigit + 1);
 		gameScore -= Math.sqrt(2 * gameScore + 1);
 		Eat();
 		gameScore -= Math.sqrt(2 * (gameScore) + 1);
