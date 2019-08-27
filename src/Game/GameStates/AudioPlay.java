@@ -70,6 +70,7 @@ public class AudioPlay {
 	       sounds[2]= "/music/pausemusic.wav";
 	       
 	       try {
+	    	   
 	    	    audioFile = AudioPlay.class.getResourceAsStream(sounds[a]);
 	            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
 	            format = audioStream.getFormat();

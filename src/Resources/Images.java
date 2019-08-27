@@ -24,6 +24,10 @@ public class Images {
     public static BufferedImage crt;
     public static BufferedImage score;
     public static BufferedImage dialog;
+    public static BufferedImage[] Off;
+    public static BufferedImage[] On;
+    public static BufferedImage Sound;
+    public static BufferedImage options;
 
     public Images() {
 
@@ -31,11 +35,13 @@ public class Images {
         Resume = new BufferedImage[2];
         BTitle = new BufferedImage[2];
         Options = new BufferedImage[2];
+        Off = new BufferedImage[2];
+        On = new BufferedImage[2];
 
         try {
 
             title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
-            Pause = ImageIO.read(getClass().getResourceAsStream("/Buttons/Pause.png"));
+            Pause = ImageIO.read(getClass().getResourceAsStream("/Sheets/Pause.png"));
             Resume[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Resume.png"));
             Resume[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/ResumeP.png"));
             BTitle[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitle.png"));
@@ -45,9 +51,16 @@ public class Images {
             butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
+            Off[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/Off.png"));
+            Off[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/OffP.png"));
+            On[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/On.png"));
+            On[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/OnP.png"));
+            Sound= ImageIO.read(getClass().getResourceAsStream("/Buttons/Sound.png"));
+            //Sound[1]=ImageIO.read(getClass().getResourceAsStream("/Buttons/SoundP.png"));
             crt = ImageIO.read(getClass().getResourceAsStream("/Sheets/CRT2.png"));
             score = ImageIO.read(getClass().getResourceAsStream("/Sheets/score.png"));
             dialog = ImageIO.read(getClass().getResourceAsStream("/Sheets/what.png"));
+            options = ImageIO.read(getClass().getResourceAsStream("/Sheets/OptionsS.png"));
             
             gameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.png"));
             //gameOver = new ImageIcon("/Sheets/GameOver.gif").getImage();

@@ -3,6 +3,7 @@ package Main;
 import Display.DisplayScreen;
 import Game.GameStates.GameState;
 import Game.GameStates.MenuState;
+import Game.GameStates.OptionsState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
 import Input.KeyManager;
@@ -46,6 +47,7 @@ public class GameSetUp implements Runnable {
     public State gameState;
     public State menuState;
     public State pauseState;
+    public State optionsState;
     
     //Res.music
     private InputStream audioFile;
@@ -82,6 +84,7 @@ public class GameSetUp implements Runnable {
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
         pauseState = new PauseState(handler);
+        optionsState = new OptionsState(handler);
 
         State.setState(menuState);
         
@@ -106,8 +109,6 @@ public class GameSetUp implements Runnable {
     }
 
     public void reStart(){
-    	Game.GameStates.AudioPlay.stopSound();
-        Game.GameStates.AudioPlay.playSound(1);
         gameState = new GameState(handler);
     }
 
