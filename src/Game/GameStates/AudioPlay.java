@@ -17,51 +17,51 @@ public class AudioPlay {
 
 	private static Clip clip;
 	public static InputStream audioFile;
-    private static AudioFormat format;
-    private static DataLine.Info info;
-	
+	private static AudioFormat format;
+	private static DataLine.Info info;
+
 	public AudioPlay() {
 		try {
-            this.clip = AudioSystem.getClip();
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(AudioPlay.class.getName()).log(Level.SEVERE, null, ex);
-        }
+			this.clip = AudioSystem.getClip();
+		} catch (LineUnavailableException ex) {
+			Logger.getLogger(AudioPlay.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
 	}
 	public static void stopSound() {
-        clip.stop();   
-        //clip.flush();
-        clip.close();
+		clip.stop();   
+		//clip.flush();
+		clip.close();
 	}
-	
+
 	public static void playSound(int a){
 
-	       // Open an audio input stream.
-	       String[] sounds = new String[10];
-	       sounds[0]= "/music/twinsnakes.wav";
-	       sounds[1]= "/music/gamemusic.wav";
-	       sounds[2]= "/music/pausemusic.wav";
-	       sounds[3]= "/music/collision.wav";
-	       
-	       try {
-	    	   
-	    	    audioFile = AudioPlay.class.getResourceAsStream(sounds[a]);
-	            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-	            format = audioStream.getFormat();
-	            info = new DataLine.Info(Clip.class, format);
-	            clip = (Clip) AudioSystem.getLine(info);
-	            clip.open(audioStream);
-	            if (a < 3) {
-	            clip.loop(Clip.LOOP_CONTINUOUSLY);
-	            } else {
-	            	clip.start();
-	            }
-	        } catch (UnsupportedAudioFileException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        } catch (LineUnavailableException e) {
-	            e.printStackTrace();
-	        }
-	       }
+		// Open an audio input stream.
+		String[] sounds = new String[10];
+		sounds[0]= "/music/twinsnakes.wav";
+		sounds[1]= "/music/gamemusic.wav";
+		sounds[2]= "/music/pausemusic.wav";
+		sounds[3]= "/music/collision.wav";
+
+		try {
+
+			audioFile = AudioPlay.class.getResourceAsStream(sounds[a]);
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+			format = audioStream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			clip = (Clip) AudioSystem.getLine(info);
+			clip.open(audioStream);
+			if (a == 3) {
+				clip.start();
+			} else {
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
 }
