@@ -1,12 +1,7 @@
 package Game.GameStates;
 
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,15 +12,11 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.sound.sampled.DataLine.Info;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 
 public class AudioPlay {
 
 	private static Clip clip;
 	public static InputStream audioFile;
-    private AudioInputStream audioStream;
     private static AudioFormat format;
     private static DataLine.Info info;
 	

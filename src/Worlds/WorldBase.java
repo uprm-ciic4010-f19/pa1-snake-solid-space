@@ -10,19 +10,8 @@ import Main.ScreenRes;
 import Resources.Images;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.LinkedList;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.sound.sampled.DataLine.Info;
-import javax.swing.ImageIcon;
+import java.util.LinkedList;
 
 
 /**
@@ -41,7 +30,6 @@ public abstract class WorldBase {
 
 	public int GridSize;
 	
-	private int count;
 
 	public Player player;
 	public PlayerTwo player2;
@@ -75,7 +63,6 @@ public abstract class WorldBase {
 
 	}
 
-	private ImageIcon titleImage;
 
 	public void render(Graphics g){
 

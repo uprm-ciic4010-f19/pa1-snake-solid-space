@@ -210,6 +210,7 @@ public class PlayerTwo {
 					g.setFont(new Font("arial", Font.PLAIN, 60 / ScreenRes.downscale));
 					g.drawString("PLAYER 2", handler.getWorld().GridSize + handler.getWorld().GridPixelsize * 5, ScreenRes.height / 2 - ScreenRes.height/20);
 					g.drawString("" +(int)gameScore2, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 + ScreenRes.height/3);
+					
 				}
 				if (colorEatChange2 != null) {
 					g.setColor(colorEatChange2);
@@ -217,7 +218,7 @@ public class PlayerTwo {
 					g.setColor(new Color(80, 220, 100));
 				}
 
-				if (playeLocation[i][j]) {
+				if(playeLocation[i][j]){
 					g.setColor(Color.BLACK);
 					g.fillOval((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize+1, handler.getWorld().GridPixelsize+1);
 					if (colorEatChange2 != null) {
@@ -226,15 +227,6 @@ public class PlayerTwo {
 					} else {
 						g.setColor(new Color(80, 220, 100));
 						g.fillOval((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
-					}
-				}
-
-				if(handler.getWorld().appleLocation[i][j]){
-					Apple.isGood();
-					if (Apple.isGood()) {
-						g.drawImage(Images.apple, (i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
-					} else {
-						g.drawImage(Images.rottenApple, (i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
 					}
 
 				}
@@ -257,6 +249,7 @@ public class PlayerTwo {
 		handler.getWorld().appleLocation2[xCoord2][yCoord2] = false;
 		handler.getWorld().appleLocation[xCoord2][yCoord2] = false;
 		handler.getWorld().appleOnBoard = false;
+	    
 		switch (direction2) {
 		case "Left":
 			if (handler.getWorld().body2.isEmpty()) {

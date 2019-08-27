@@ -6,21 +6,8 @@ import Resources.Images;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.util.Random;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
-import com.sun.media.jfxmedia.AudioClip;
-
-import javax.sound.sampled.DataLine.Info;
 
 import Game.GameStates.GameState;
 import Game.GameStates.PauseState;
@@ -38,7 +25,6 @@ public class Player {
 	public State pauseState;
 	public State gameOverState;
 	private Handler handler;
-	private int count;
 
 	public int xCoord;
 	public int yCoord;
@@ -56,7 +42,6 @@ public class Player {
 		lastStudentIDDigit = 7;
 		xCoord = 0;
 		yCoord = 0;
-		count = 0;
 		moveCounter = 0;
 		direction= "Right";
 		justAte = false;
