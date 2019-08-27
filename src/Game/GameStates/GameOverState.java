@@ -19,12 +19,21 @@ public class GameOverState extends State {
 		handler.getMouseManager().setUimanager(uiManager);
 		
 
-		uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(64/ScreenRes.downscale), handler.getHeight()-(250/ScreenRes.downscale), 140/ScreenRes.downscale, 50/ScreenRes.downscale, Images.BTitle, () -> {
+		uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(-52/ScreenRes.downscale), handler.getHeight()-(548/ScreenRes.downscale), 90/ScreenRes.downscale, 15/ScreenRes.downscale, Images.gTitle, () -> {
 			handler.getMouseManager().setUimanager(null);
 			State.setState(handler.getGame().menuState);
             Game.GameStates.AudioPlay.stopSound();
             if (!Game.GameStates.OptionsState.soundOff) {
             	Game.GameStates.AudioPlay.playSound(0);
+            }
+		}));
+		
+		uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(130/ScreenRes.downscale), handler.getHeight()-(548/ScreenRes.downscale), 90/ScreenRes.downscale, 15/ScreenRes.downscale, Images.Continue, () -> {
+            handler.getMouseManager().setUimanager(null);
+            State.setState(handler.getGame().gameState);
+            Game.GameStates.AudioPlay.stopSound();
+            if (!Game.GameStates.OptionsState.soundOff) {
+            	Game.GameStates.AudioPlay.playSound(1);
             }
 		}));
 
