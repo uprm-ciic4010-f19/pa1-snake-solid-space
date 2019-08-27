@@ -65,7 +65,7 @@ public class PlayerTwo {
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
 		if(moveCounter2>=25-snakeSpeed2) {
-			checkCollisionAndMove();
+			checkCollisionAndMove2();
 			moveCounter2=0;
 		}
 		if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)) && (direction2!="Down")){
@@ -103,13 +103,13 @@ public class PlayerTwo {
 		}
 	}
 
-	public void checkCollisionAndMove(){
+	public void checkCollisionAndMove2(){
 		handler.getWorld().playerLocation2[xCoord2][yCoord2]=false;
 		int x = xCoord2;
 		int y = yCoord2;
 		totalMovement2++;
 
-		selfCollisionCheck();
+		selfCollisionCheck2();
 
 		switch (direction2){
 		case "Left":
@@ -163,7 +163,7 @@ public class PlayerTwo {
 
 	}
 
-	public void selfCollisionCheck() {
+	public void selfCollisionCheck2() {
 		handler.getWorld().playerLocation2[xCoord2][yCoord2]=false;
 		int x = xCoord2;
 		int y = yCoord2;
