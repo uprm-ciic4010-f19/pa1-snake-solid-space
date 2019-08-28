@@ -37,6 +37,7 @@ public class Player {
 	public static int totalMovement; 
 	public int lastStudentIDDigit;
 	public int maxSpeed;
+	public int additionalSpeed;
 
 	public Player(Handler handler){
 		this.handler = handler;
@@ -47,7 +48,8 @@ public class Player {
 		direction= "Right";
 		justAte = false;
 		lenght= 1;
-		maxSpeed = 17;
+		maxSpeed = 8;
+		additionalSpeed = 0;
 
 	}
 
@@ -56,17 +58,34 @@ public class Player {
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
 		if(moveCounter>=maxSpeed-snakeSpeedModifier) {
-			checkCollisionAndMove();
 			moveCounter=0;
+			checkCollisionAndMove();
+			if(additionalSpeed >=64) {
+				checkCollisionAndMove();
+			}
+			if(additionalSpeed >=128) {
+				checkCollisionAndMove();
+			}
+			if(additionalSpeed >=256) {
+				checkCollisionAndMove();
+			}
+			if(additionalSpeed >=512) {
+				checkCollisionAndMove();
+			}
+
 		}
-		if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)) && (direction!="Down")){
+		if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)) && (direction!="Down") && (direction!="Up")){
 			direction="Up";
-		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)) && (direction!="Up")){
+			checkCollisionAndMove();
+		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)) && (direction!="Up") && (direction!="Down")){
 			direction="Down";
-		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)) && (direction!="Right")){
+			checkCollisionAndMove();
+		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)) && (direction!="Right") && (direction!="Left")){
 			direction="Left";
-		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)) && (direction!="Left")){
+			checkCollisionAndMove();
+		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)) && (direction!="Left") && (direction!="Right")){
 			direction="Right";
+			checkCollisionAndMove();
 		}
 
 		//Menu keys
@@ -82,10 +101,10 @@ public class Player {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){ //Add tail to snake.
 			tailDebug();
 		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS))||(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ADD))) { //Increases snake speed.
-			snakeSpeedModifier++;
+			snakeSpeedModifier+=lastStudentIDDigit+1;
 			System.out.println("Debug Speed increased to: "+snakeSpeedModifier);
 		}if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)||handler.getKeyManager().keyJustPressed(KeyEvent.VK_SUBTRACT))) { //Decreases snake speed.
-			snakeSpeedModifier--;
+			snakeSpeedModifier-=lastStudentIDDigit+1;
 			System.out.println("Debug Speed decreased to: "+snakeSpeedModifier);
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_R)) { //Reset game
 			handler.getMouseManager().setUimanager(null);
@@ -114,7 +133,6 @@ public class Player {
 		switch (direction){
 		case "Left":
 			if(xCoord==0){
-				//shorten();
 				xCoord = handler.getWorld().GridWidthHeightPixelCount-1;
 			}else{
 				xCoord--;
@@ -122,7 +140,6 @@ public class Player {
 			break;
 		case "Right":
 			if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-				//shorten();
 				xCoord = 0;
 			}else{
 				xCoord++;
@@ -130,7 +147,6 @@ public class Player {
 			break;
 		case "Up":
 			if(yCoord==0){
-				//shorten();
 				yCoord = handler.getWorld().GridWidthHeightPixelCount-1;
 			}else{
 				yCoord--;
@@ -138,7 +154,6 @@ public class Player {
 			break;
 		case "Down":
 			if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-				//shorten();
 				yCoord = 0;
 			}else{
 				yCoord++;
@@ -244,6 +259,8 @@ public class Player {
 		PlayerTwo.totalMovement2 = 0;
 		if (snakeSpeedModifier < maxSpeed) {
 			snakeSpeedModifier += lastStudentIDDigit + 1;
+		}else {
+			additionalSpeed += lastStudentIDDigit + 1;
 		}
 
 
