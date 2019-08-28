@@ -3,8 +3,10 @@ package Resources;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -31,6 +33,9 @@ public class Images {
     public static BufferedImage options;
     public static BufferedImage apple;
     public static BufferedImage rottenApple;
+    public static BufferedImage[] titleOverlay;
+    public static Image titleAni;
+    public static Image titleAni2;
 
     public Images() {
 
@@ -42,6 +47,7 @@ public class Images {
         Options = new BufferedImage[2];
         Off = new BufferedImage[2];
         On = new BufferedImage[2];
+        titleOverlay = new BufferedImage[2];
 
         try {
 
@@ -69,12 +75,17 @@ public class Images {
             score = ImageIO.read(getClass().getResourceAsStream("/Sheets/score.png"));
             dialog = ImageIO.read(getClass().getResourceAsStream("/Sheets/what.png"));
             options = ImageIO.read(getClass().getResourceAsStream("/Sheets/OptionsS.png"));
+            titleOverlay[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/PressStart.png"));
+            titleOverlay[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/PressStartP.png"));
             
             gameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.png"));
-            //gameOver = new ImageIcon("/Sheets/GameOver.gif").getImage();
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
             apple = ImageIO.read(getClass().getResourceAsStream("/Assets/Apple.png"));
             rottenApple = ImageIO.read(getClass().getResourceAsStream("/Assets/AppleR.png"));
+            URL url = this.getClass().getResource("/Sheets/FullTrim.gif");
+            titleAni = new ImageIcon(url).getImage();
+            URL url2 = this.getClass().getResource("/Sheets/TRIM2T.gif");
+            titleAni2 = new ImageIcon(url2).getImage();
 
 
         }catch (IOException e) {
@@ -93,5 +104,6 @@ public class Images {
         }
         return null;
     }
+    
 
 }

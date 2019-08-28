@@ -6,6 +6,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+
+
+
 /**
  * Created by AlexVR on 7/1/2018.
  */
@@ -33,6 +36,7 @@ public class DisplayScreen {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        frame.setBounds(30, 30, 450, 450);
         frame.setVisible(true);
         frame.setBackground(Color.black);
 
@@ -50,6 +54,7 @@ public class DisplayScreen {
         canvas.setFocusable(false);
         Color PURPLE = new Color(91,50,86);
         canvas.setBackground(PURPLE);
+        
         
         
         frame.add(canvas);
