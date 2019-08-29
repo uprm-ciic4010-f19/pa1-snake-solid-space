@@ -33,6 +33,7 @@ public class Images {
     public static BufferedImage options;
     public static BufferedImage apple;
     public static BufferedImage rottenApple;
+    public static BufferedImage goldenApple;
     public static BufferedImage[] titleOverlay;
     public static Image titleAni;
     public static Image titleAni2;
@@ -51,7 +52,7 @@ public class Images {
 
         try {
 
-            title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
+            //title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
             Pause = ImageIO.read(getClass().getResourceAsStream("/Sheets/Pause.png"));
             Resume[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Resume.png"));
             Resume[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/ResumeP.png"));
@@ -71,7 +72,7 @@ public class Images {
             On[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/On.png"));
             On[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/OnP.png"));
             Sound= ImageIO.read(getClass().getResourceAsStream("/Buttons/Sound.png"));
-            crt = ImageIO.read(getClass().getResourceAsStream("/Sheets/CRT2.png"));
+            crt = ImageIO.read(getClass().getResourceAsStream("/Sheets/CRT.png"));
             score = ImageIO.read(getClass().getResourceAsStream("/Sheets/score.png"));
             dialog = ImageIO.read(getClass().getResourceAsStream("/Sheets/what.png"));
             options = ImageIO.read(getClass().getResourceAsStream("/Sheets/OptionsS.png"));
@@ -82,10 +83,9 @@ public class Images {
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
             apple = ImageIO.read(getClass().getResourceAsStream("/Assets/Apple.png"));
             rottenApple = ImageIO.read(getClass().getResourceAsStream("/Assets/AppleR.png"));
+            goldenApple = ImageIO.read(getClass().getResourceAsStream("/Assets/AppleG.png"));
             URL url = this.getClass().getResource("/Sheets/FullTrim.gif");
             titleAni = new ImageIcon(url).getImage();
-            URL url2 = this.getClass().getResource("/Sheets/TRIM2T.gif");
-            titleAni2 = new ImageIcon(url2).getImage();
 
 
         }catch (IOException e) {

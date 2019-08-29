@@ -186,7 +186,7 @@ public class PlayerTwo {
 	}
 
 	public void playerCollisionCheck() {
-		for (TailTwo i: handler.getWorld().body2){
+		for (Tail i: handler.getWorld().body){
 			if (i.x == xCoord2 && i.y == yCoord2) {
 				Game.GameStates.AudioPlay.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {

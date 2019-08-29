@@ -38,7 +38,7 @@ public class AudioPlay {
 
 		// Open an audio input stream.
 		String[] sounds = new String[10];
-		sounds[0]= "/music/twinsnakes1.wav";
+		sounds[0]= "/music/menumusic.wav";
 		sounds[1]= "/music/gamemusic.wav";
 		sounds[2]= "/music/pausemusic.wav";
 		sounds[3]= "/music/collision.wav";

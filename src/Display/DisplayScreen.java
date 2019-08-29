@@ -36,7 +36,6 @@ public class DisplayScreen {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setBounds(30, 30, 450, 450);
         frame.setVisible(true);
         frame.setBackground(Color.black);
 

@@ -78,7 +78,7 @@ public void render(Graphics g) {
 	g.setColor(Color.darkGray);
 	g.fillRect(0,0,handler.getWidth(),handler.getHeight());
 	g.drawImage(Images.title,0,0,handler.getWidth(),handler.getHeight(),null);
-	g.drawImage(Images.titleAni, 0-(71/ScreenRes.downscale), 0-(136/ScreenRes.downscale), handler.getWidth()+(71/ScreenRes.downscale)*2, handler.getHeight()+(136/ScreenRes.downscale)*2, null);
+	g.drawImage(Images.titleAni, 0-(71/ScreenRes.downscale), 0, handler.getWidth()+(71/ScreenRes.downscale)*2, handler.getHeight(), null);
 	uiManager.Render(g);
 
 }

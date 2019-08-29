@@ -7,7 +7,7 @@ public class ScreenRes {
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public static int downscale = 2;
+	public static int downscale = 1;
 	
 	public static int GridWidthHeightPixelCount = 60;
 	
