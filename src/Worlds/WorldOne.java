@@ -1,6 +1,7 @@
 package Worlds;
 
 import Game.Entities.Static.Apple;
+import Game.GameStates.GameState;
 import Main.Handler;
 import Main.ScreenRes;
 
@@ -20,10 +21,10 @@ public class WorldOne extends WorldBase{
         
         GridPixelsize = ScreenRes.GridPixelsize;
         GridSize = ScreenRes.GridSize;
-        playerLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
-        appleLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
-        playerLocation2 = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
-        appleLocation2 = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
+        playerLocation = new Boolean[GameState.boardLocationEndX][GridWidthHeightPixelCount];
+        appleLocation = new Boolean[GameState.boardLocationEndX][GridWidthHeightPixelCount];
+        playerLocation2 = new Boolean[GameState.boardLocationEndX][GridWidthHeightPixelCount];
+        appleLocation2 = new Boolean[GameState.boardLocationEndX][GridWidthHeightPixelCount];
 
     }
 
@@ -34,7 +35,7 @@ public class WorldOne extends WorldBase{
         player2.tick();
         if(!appleOnBoard){
             appleOnBoard=true;
-            int appleX = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
+            int appleX = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1) + GameState.boardLocationStartX;
             int appley = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
 
             //change coordinates till one is selected in which the player isnt standing

@@ -34,6 +34,13 @@ public class Images {
     public static BufferedImage apple;
     public static BufferedImage rottenApple;
     public static BufferedImage goldenApple;
+    public static BufferedImage playOne;
+    public static BufferedImage playerOneScore;
+    public static BufferedImage playerTwoScore;
+    public static Image playerOne;
+    public static Image playerOneWin;
+    public static Image playerTwo;
+    public static Image playerTwoWin;
     public static BufferedImage[] titleOverlay;
     public static Image titleAni;
     public static Image titleAni2;
@@ -74,7 +81,10 @@ public class Images {
             Sound= ImageIO.read(getClass().getResourceAsStream("/Buttons/Sound.png"));
             crt = ImageIO.read(getClass().getResourceAsStream("/Sheets/CRT.png"));
             score = ImageIO.read(getClass().getResourceAsStream("/Sheets/score.png"));
+            playerOneScore = ImageIO.read(getClass().getResourceAsStream("/Sheets/PlayerOne.png"));
+            playerTwoScore = ImageIO.read(getClass().getResourceAsStream("/Sheets/PlayerTwo.png"));
             dialog = ImageIO.read(getClass().getResourceAsStream("/Sheets/what.png"));
+            playOne = ImageIO.read(getClass().getResourceAsStream("/Assets/PlayerOne.gif"));
             options = ImageIO.read(getClass().getResourceAsStream("/Sheets/OptionsS.png"));
             titleOverlay[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/PressStart.png"));
             titleOverlay[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/PressStartP.png"));
@@ -86,6 +96,14 @@ public class Images {
             goldenApple = ImageIO.read(getClass().getResourceAsStream("/Assets/AppleG.png"));
             URL url = this.getClass().getResource("/Sheets/FullTrim.gif");
             titleAni = new ImageIcon(url).getImage();
+            URL url1 = this.getClass().getResource("/Assets/PlayerOne.gif");
+            playerOne = new ImageIcon(url1).getImage();
+            URL url2 = this.getClass().getResource("/Assets/PlayerOneWin.gif");
+            playerOneWin = new ImageIcon(url2).getImage();
+            URL url3 = this.getClass().getResource("/Assets/PlayerTwo.gif");
+            playerTwo = new ImageIcon(url3).getImage();
+            URL url4 = this.getClass().getResource("/Assets/PlayerTwoWin.gif");
+            playerTwoWin = new ImageIcon(url4).getImage();
 
 
         }catch (IOException e) {

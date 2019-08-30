@@ -15,6 +15,8 @@ import java.awt.*;
 public class GameState extends State {
 
     private WorldBase world;
+    public static int boardLocationStartX = 24;
+    public static int boardLocationEndX = boardLocationStartX + 60;
 
     public GameState(Handler handler){
         super(handler);
@@ -22,7 +24,7 @@ public class GameState extends State {
         handler.setWorld(world);
         handler.getWorld().player= new Player(handler);
         handler.getWorld().player2= new PlayerTwo(handler);
-        for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
+        for (int i = boardLocationStartX; i < boardLocationEndX; i++) { //handler.getWorld().GridWidthHeightPixelCount
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
                 handler.getWorld().playerLocation[i][j]=false;

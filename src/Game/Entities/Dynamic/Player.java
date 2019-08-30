@@ -25,6 +25,7 @@ public class Player {
 	public State pauseState;
 	public State gameOverState;
 	private Handler handler;
+	public static Boolean playerOneLost;
 
 	public int xCoord;
 	public int yCoord;
@@ -42,7 +43,7 @@ public class Player {
 	public Player(Handler handler){
 		this.handler = handler;
 		lastStudentIDDigit = 7;
-		xCoord = 0;
+		xCoord = GameState.boardLocationStartX;
 		yCoord = 0;
 		moveCounter = 0;
 		direction= "Right";
@@ -50,6 +51,7 @@ public class Player {
 		lenght= 1;
 		maxSpeed = 8;
 		additionalSpeed = 0;
+		playerOneLost = false;
 
 	}
 
@@ -132,15 +134,15 @@ public class Player {
 
 		switch (direction){
 		case "Left":
-			if(xCoord==0){
-				xCoord = handler.getWorld().GridWidthHeightPixelCount-1;
+			if(xCoord==GameState.boardLocationStartX){
+				xCoord = GameState.boardLocationEndX-1;
 			}else{
 				xCoord--;
 			}
 			break;
 		case "Right":
-			if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
-				xCoord = 0;
+			if(xCoord==GameState.boardLocationEndX-1){
+				xCoord = GameState.boardLocationStartX;
 			}else{
 				xCoord++;
 			}
@@ -200,6 +202,7 @@ public class Player {
 				if (!Game.GameStates.OptionsState.soundOff) {
 					Game.GameStates.AudioPlay.playSound(3);
 				}
+				playerOneLost = true;
 				GameState.setState(gameOverState);
 			}
 
@@ -208,15 +211,15 @@ public class Player {
 
 	public void render(Graphics g,Boolean[][] playeLocation){
 		Random r = new Random();
-		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
+		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) {//handler.getWorld().GridWidthHeightPixelCount
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
 				if(gameScore >= 0) {
 					Color GO = new Color(0,171,102); 
 					g.setColor(GO);
 					g.setFont(new Font("arial", Font.PLAIN, 60/ScreenRes.downscale));
-					g.drawString("PLAYER 1", handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 - ScreenRes.height/28);
-					g.drawString("" +(int)gameScore, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 + ScreenRes.height/20);
+					g.drawString("" +(int)gameScore, 0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10, ScreenRes.height/5 + ScreenRes.height/20);
+					g.drawString("PTS", (ScreenRes.GridPixelsize*GameState.boardLocationStartX)-(ScreenRes.GridPixelsize*GameState.boardLocationStartX)/3, ScreenRes.height/5 + ScreenRes.height/20);
 
 				}
 				if(colorEatChange != null) {
@@ -275,7 +278,7 @@ public class Player {
 		switch (direction){
 		case "Left":
 			if( handler.getWorld().body.isEmpty()){
-				if(this.xCoord!=handler.getWorld().GridWidthHeightPixelCount-1){
+				if(this.xCoord!=GameState.boardLocationEndX-1){
 					tail = new Tail(this.xCoord+1,this.yCoord,handler);
 				}else{
 					if(this.yCoord!=0){
@@ -285,7 +288,7 @@ public class Player {
 					}
 				}
 			}else{
-				if(handler.getWorld().body.getLast().x!=handler.getWorld().GridWidthHeightPixelCount-1){
+				if(handler.getWorld().body.getLast().x!=GameState.boardLocationEndX-1){
 					tail=new Tail(handler.getWorld().body.getLast().x+1,this.yCoord,handler);
 				}else{
 					if(handler.getWorld().body.getLast().y!=0){
@@ -300,7 +303,7 @@ public class Player {
 			break;
 		case "Right":
 			if( handler.getWorld().body.isEmpty()){
-				if(this.xCoord!=0){
+				if(this.xCoord!=GameState.boardLocationStartX){
 					tail=new Tail(this.xCoord-1,this.yCoord,handler);
 				}else{
 					if(this.yCoord!=0){
@@ -310,7 +313,7 @@ public class Player {
 					}
 				}
 			}else{
-				if(handler.getWorld().body.getLast().x!=0){
+				if(handler.getWorld().body.getLast().x!=GameState.boardLocationStartX){
 					tail=(new Tail(handler.getWorld().body.getLast().x-1,this.yCoord,handler));
 				}else{
 					if(handler.getWorld().body.getLast().y!=0){
@@ -327,7 +330,7 @@ public class Player {
 				if(this.yCoord!=handler.getWorld().GridWidthHeightPixelCount-1){
 					tail=(new Tail(this.xCoord,this.yCoord+1,handler));
 				}else{
-					if(this.xCoord!=0){
+					if(this.xCoord!=GameState.boardLocationStartX){
 						tail=(new Tail(this.xCoord-1,this.yCoord,handler));
 					}else{
 						tail=(new Tail(this.xCoord+1,this.yCoord,handler));
@@ -337,7 +340,7 @@ public class Player {
 				if(handler.getWorld().body.getLast().y!=handler.getWorld().GridWidthHeightPixelCount-1){
 					tail=(new Tail(handler.getWorld().body.getLast().x,this.yCoord+1,handler));
 				}else{
-					if(handler.getWorld().body.getLast().x!=0){
+					if(handler.getWorld().body.getLast().x!=GameState.boardLocationStartX){
 						tail=(new Tail(handler.getWorld().body.getLast().x-1,this.yCoord,handler));
 					}else{
 						tail=(new Tail(handler.getWorld().body.getLast().x+1,this.yCoord,handler));
@@ -351,7 +354,7 @@ public class Player {
 				if(this.yCoord!=0){
 					tail=(new Tail(this.xCoord,this.yCoord-1,handler));
 				}else{
-					if(this.xCoord!=0){
+					if(this.xCoord!=GameState.boardLocationStartX){
 						tail=(new Tail(this.xCoord-1,this.yCoord,handler));
 					}else{
 						tail=(new Tail(this.xCoord+1,this.yCoord,handler));
@@ -361,7 +364,7 @@ public class Player {
 				if(handler.getWorld().body.getLast().y!=0){
 					tail=(new Tail(handler.getWorld().body.getLast().x,this.yCoord-1,handler));
 				}else{
-					if(handler.getWorld().body.getLast().x!=0){
+					if(handler.getWorld().body.getLast().x!=GameState.boardLocationStartX){
 						tail=(new Tail(handler.getWorld().body.getLast().x-1,this.yCoord,handler));
 					}else{
 						tail=(new Tail(handler.getWorld().body.getLast().x+1,this.yCoord,handler));
@@ -391,7 +394,7 @@ public class Player {
 		switch (direction){
 		case "Left":
 			if( handler.getWorld().body.isEmpty()){
-				if(this.xCoord!=handler.getWorld().GridWidthHeightPixelCount-1){
+				if(this.xCoord!=GameState.boardLocationEndX-1){
 					tail = new Tail(this.xCoord+1,this.yCoord,handler);
 				}else{
 					if(this.yCoord!=0){
@@ -401,7 +404,7 @@ public class Player {
 					}
 				}
 			}else{
-				if(handler.getWorld().body.getLast().x!=handler.getWorld().GridWidthHeightPixelCount-1){
+				if(handler.getWorld().body.getLast().x!=GameState.boardLocationEndX-1){
 					tail=new Tail(handler.getWorld().body.getLast().x+1,this.yCoord,handler);
 				}else{
 					if(handler.getWorld().body.getLast().y!=0){
@@ -416,7 +419,7 @@ public class Player {
 			break;
 		case "Right":
 			if( handler.getWorld().body.isEmpty()){
-				if(this.xCoord!=0){
+				if(this.xCoord!=GameState.boardLocationStartX){
 					tail=new Tail(this.xCoord-1,this.yCoord,handler);
 				}else{
 					if(this.yCoord!=0){
@@ -426,7 +429,7 @@ public class Player {
 					}
 				}
 			}else{
-				if(handler.getWorld().body.getLast().x!=0){
+				if(handler.getWorld().body.getLast().x!=GameState.boardLocationStartX){
 					tail=(new Tail(handler.getWorld().body.getLast().x-1,this.yCoord,handler));
 				}else{
 					if(handler.getWorld().body.getLast().y!=0){
@@ -443,7 +446,7 @@ public class Player {
 				if(this.yCoord!=handler.getWorld().GridWidthHeightPixelCount-1){
 					tail=(new Tail(this.xCoord,this.yCoord+1,handler));
 				}else{
-					if(this.xCoord!=0){
+					if(this.xCoord!=GameState.boardLocationStartX){
 						tail=(new Tail(this.xCoord-1,this.yCoord,handler));
 					}else{
 						tail=(new Tail(this.xCoord+1,this.yCoord,handler));
@@ -453,7 +456,7 @@ public class Player {
 				if(handler.getWorld().body.getLast().y!=handler.getWorld().GridWidthHeightPixelCount-1){
 					tail=(new Tail(handler.getWorld().body.getLast().x,this.yCoord+1,handler));
 				}else{
-					if(handler.getWorld().body.getLast().x!=0){
+					if(handler.getWorld().body.getLast().x!=GameState.boardLocationStartX){
 						tail=(new Tail(handler.getWorld().body.getLast().x-1,this.yCoord,handler));
 					}else{
 						tail=(new Tail(handler.getWorld().body.getLast().x+1,this.yCoord,handler));
@@ -467,7 +470,7 @@ public class Player {
 				if(this.yCoord!=0){
 					tail=(new Tail(this.xCoord,this.yCoord-1,handler));
 				}else{
-					if(this.xCoord!=0){
+					if(this.xCoord!=GameState.boardLocationStartX){
 						tail=(new Tail(this.xCoord-1,this.yCoord,handler));
 					}else{
 						tail=(new Tail(this.xCoord+1,this.yCoord,handler));
@@ -477,7 +480,7 @@ public class Player {
 				if(handler.getWorld().body.getLast().y!=0){
 					tail=(new Tail(handler.getWorld().body.getLast().x,this.yCoord-1,handler));
 				}else{
-					if(handler.getWorld().body.getLast().x!=0){
+					if(handler.getWorld().body.getLast().x!=GameState.boardLocationStartX){
 						tail=(new Tail(handler.getWorld().body.getLast().x-1,this.yCoord,handler));
 					}else{
 						tail=(new Tail(handler.getWorld().body.getLast().x+1,this.yCoord,handler));
@@ -500,7 +503,7 @@ public class Player {
 
 	public void shorten(){
 		lenght = 0;
-		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
+		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) { //handler.getWorld().GridWidthHeightPixelCount
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
 				handler.getWorld().playerLocation[i][j]=false;

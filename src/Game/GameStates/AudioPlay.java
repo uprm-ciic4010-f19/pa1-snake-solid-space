@@ -30,7 +30,7 @@ public class AudioPlay {
 	}
 	public static void stopSound() {
 		clip.stop();   
-		//clip.flush();
+		clip.flush();
 		clip.close();
 	}
 
@@ -42,7 +42,7 @@ public class AudioPlay {
 		sounds[1]= "/music/gamemusic.wav";
 		sounds[2]= "/music/pausemusic.wav";
 		sounds[3]= "/music/collision.wav";
-
+		sounds[4]= "/music/selection.wav";
 		try {
 
 			audioFile = AudioPlay.class.getResourceAsStream(sounds[a]);
@@ -51,7 +51,7 @@ public class AudioPlay {
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(audioStream);
-			if (a == 3) {
+			if (a == 3 || a == 4) {
 				clip.start();
 			} else {
 				clip.loop(Clip.LOOP_CONTINUOUSLY);

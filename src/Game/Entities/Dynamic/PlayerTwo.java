@@ -38,7 +38,7 @@ public class PlayerTwo {
 	public PlayerTwo(Handler handler) {
 		this.handler = handler;
 		lastStudentIDDigit2 = 7;
-		xCoord2 = 0;
+		xCoord2 = GameState.boardLocationStartX;
 		yCoord2 = 0;
 		moveCounter2 = 0;
 		direction2 = "Down";
@@ -125,15 +125,15 @@ public class PlayerTwo {
 
 		switch (direction2) {
 		case "Left":
-			if (xCoord2 == 0) {
-				xCoord2 = handler.getWorld().GridWidthHeightPixelCount - 1;
+			if (xCoord2 == GameState.boardLocationStartX) {
+				xCoord2 = GameState.boardLocationEndX - 1;
 			} else {
 				xCoord2--;
 			}
 			break;
 		case "Right":
-			if (xCoord2 == handler.getWorld().GridWidthHeightPixelCount - 1) {
-				xCoord2 = 0;
+			if (xCoord2 == GameState.boardLocationEndX - 1) {
+				xCoord2 = GameState.boardLocationStartX;
 			} else {
 				xCoord2++;
 			}
@@ -200,15 +200,15 @@ public class PlayerTwo {
 
 	public void render(Graphics g, Boolean[][] playeLocation) {
 		Random r = new Random();
-		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
+		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
 				if (gameScore2 >= 0) {
 					Color GO = new Color(0, 171, 102);
 					g.setColor(GO);
 					g.setFont(new Font("arial", Font.PLAIN, 60 / ScreenRes.downscale));
-					g.drawString("PLAYER 2", handler.getWorld().GridSize + handler.getWorld().GridPixelsize * 5, ScreenRes.height / 2 - ScreenRes.height/20);
-					g.drawString("" +(int)gameScore2, handler.getWorld().GridSize + handler.getWorld().GridPixelsize*5, ScreenRes.height/5 + ScreenRes.height/3);
+					g.drawString("" +(int)gameScore2, GameState.boardLocationEndX*ScreenRes.GridPixelsize+(ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10, ScreenRes.height/5 + ScreenRes.height/20);
+					g.drawString("PTS", ScreenRes.width -(ScreenRes.GridPixelsize*GameState.boardLocationStartX)/3, ScreenRes.height/5 + ScreenRes.height/20);
 
 				}
 				if (colorEatChange2 != null) {
@@ -256,7 +256,7 @@ public class PlayerTwo {
 		switch (direction2) {
 		case "Left":
 			if (handler.getWorld().body2.isEmpty()) {
-				if (this.xCoord2 != handler.getWorld().GridWidthHeightPixelCount - 1) {
+				if (this.xCoord2 != GameState.boardLocationEndX - 1) {
 					tail = new TailTwo(this.xCoord2 + 1, this.yCoord2, handler);
 				} else {
 					if (this.yCoord2 != 0) {
@@ -266,7 +266,7 @@ public class PlayerTwo {
 					}
 				}
 			} else {
-				if (handler.getWorld().body2.getLast().x != handler.getWorld().GridWidthHeightPixelCount - 1) {
+				if (handler.getWorld().body2.getLast().x != GameState.boardLocationEndX - 1) {
 					tail = new TailTwo(handler.getWorld().body2.getLast().x + 1, this.yCoord2, handler);
 				} else {
 					if (handler.getWorld().body2.getLast().y != 0) {
@@ -281,7 +281,7 @@ public class PlayerTwo {
 			break;
 		case "Right":
 			if (handler.getWorld().body2.isEmpty()) {
-				if (this.xCoord2 != 0) {
+				if (this.xCoord2 != GameState.boardLocationStartX) {
 					tail = new TailTwo(this.xCoord2 - 1, this.yCoord2, handler);
 				} else {
 					if (this.yCoord2 != 0) {
@@ -291,7 +291,7 @@ public class PlayerTwo {
 					}
 				}
 			} else {
-				if (handler.getWorld().body2.getLast().x != 0) {
+				if (handler.getWorld().body2.getLast().x != GameState.boardLocationStartX) {
 					tail = (new TailTwo(handler.getWorld().body2.getLast().x - 1, this.yCoord2, handler));
 				} else {
 					if (handler.getWorld().body2.getLast().y != 0) {
@@ -308,7 +308,7 @@ public class PlayerTwo {
 				if (this.yCoord2 != handler.getWorld().GridWidthHeightPixelCount - 1) {
 					tail = (new TailTwo(this.xCoord2, this.yCoord2 + 1, handler));
 				} else {
-					if (this.xCoord2 != 0) {
+					if (this.xCoord2 != GameState.boardLocationStartX) {
 						tail = (new TailTwo(this.xCoord2 - 1, this.yCoord2, handler));
 					} else {
 						tail = (new TailTwo(this.xCoord2 + 1, this.yCoord2, handler));
@@ -318,7 +318,7 @@ public class PlayerTwo {
 				if (handler.getWorld().body2.getLast().y != handler.getWorld().GridWidthHeightPixelCount - 1) {
 					tail = (new TailTwo(handler.getWorld().body2.getLast().x, this.yCoord2 + 1, handler));
 				} else {
-					if (handler.getWorld().body2.getLast().x != 0) {
+					if (handler.getWorld().body2.getLast().x != GameState.boardLocationStartX) {
 						tail = (new TailTwo(handler.getWorld().body2.getLast().x - 1, this.yCoord2, handler));
 					} else {
 						tail = (new TailTwo(handler.getWorld().body2.getLast().x + 1, this.yCoord2, handler));
@@ -332,7 +332,7 @@ public class PlayerTwo {
 				if (this.yCoord2 != 0) {
 					tail = (new TailTwo(this.xCoord2, this.yCoord2 - 1, handler));
 				} else {
-					if (this.xCoord2 != 0) {
+					if (this.xCoord2 != GameState.boardLocationStartX) {
 						tail = (new TailTwo(this.xCoord2 - 1, this.yCoord2, handler));
 					} else {
 						tail = (new TailTwo(this.xCoord2 + 1, this.yCoord2, handler));
@@ -343,7 +343,7 @@ public class PlayerTwo {
 				if (handler.getWorld().body2.getLast().y != 0) {
 					tail = (new TailTwo(handler.getWorld().body2.getLast().x, this.yCoord2 - 1, handler));
 				} else {
-					if (handler.getWorld().body2.getLast().x != 0) {
+					if (handler.getWorld().body2.getLast().x != GameState.boardLocationStartX) {
 						tail = (new TailTwo(handler.getWorld().body2.getLast().x - 1, this.yCoord2, handler));
 					} else {
 						tail = (new TailTwo(handler.getWorld().body2.getLast().x + 1, this.yCoord2, handler));
@@ -372,7 +372,7 @@ public class PlayerTwo {
 		switch (direction2) {
 		case "Left":
 			if (handler.getWorld().body2.isEmpty()) {
-				if (this.xCoord2 != handler.getWorld().GridWidthHeightPixelCount - 1) {
+				if (this.xCoord2 != GameState.boardLocationEndX - 1) {
 					tail = new TailTwo(this.xCoord2 + 1, this.yCoord2, handler);
 				} else {
 					if (this.yCoord2 != 0) {
@@ -382,7 +382,7 @@ public class PlayerTwo {
 					}
 				}
 			} else {
-				if (handler.getWorld().body2.getLast().x != handler.getWorld().GridWidthHeightPixelCount - 1) {
+				if (handler.getWorld().body2.getLast().x != GameState.boardLocationEndX - 1) {
 					tail = new TailTwo(handler.getWorld().body2.getLast().x + 1, this.yCoord2, handler);
 				} else {
 					if (handler.getWorld().body2.getLast().y != 0) {
@@ -397,7 +397,7 @@ public class PlayerTwo {
 			break;
 		case "Right":
 			if (handler.getWorld().body2.isEmpty()) {
-				if (this.xCoord2 != 0) {
+				if (this.xCoord2 != GameState.boardLocationStartX) {
 					tail = new TailTwo(this.xCoord2 - 1, this.yCoord2, handler);
 				} else {
 					if (this.yCoord2 != 0) {
@@ -407,7 +407,7 @@ public class PlayerTwo {
 					}
 				}
 			} else {
-				if (handler.getWorld().body2.getLast().x != 0) {
+				if (handler.getWorld().body2.getLast().x != GameState.boardLocationStartX) {
 					tail = (new TailTwo(handler.getWorld().body2.getLast().x - 1, this.yCoord2, handler));
 				} else {
 					if (handler.getWorld().body2.getLast().y != 0) {
@@ -424,7 +424,7 @@ public class PlayerTwo {
 				if (this.yCoord2 != handler.getWorld().GridWidthHeightPixelCount - 1) {
 					tail = (new TailTwo(this.xCoord2, this.yCoord2 + 1, handler));
 				} else {
-					if (this.xCoord2 != 0) {
+					if (this.xCoord2 != GameState.boardLocationStartX) {
 						tail = (new TailTwo(this.xCoord2 - 1, this.yCoord2, handler));
 					} else {
 						tail = (new TailTwo(this.xCoord2 + 1, this.yCoord2, handler));
@@ -434,7 +434,7 @@ public class PlayerTwo {
 				if (handler.getWorld().body2.getLast().y != handler.getWorld().GridWidthHeightPixelCount - 1) {
 					tail = (new TailTwo(handler.getWorld().body2.getLast().x, this.yCoord2 + 1, handler));
 				} else {
-					if (handler.getWorld().body2.getLast().x != 0) {
+					if (handler.getWorld().body2.getLast().x != GameState.boardLocationStartX) {
 						tail = (new TailTwo(handler.getWorld().body2.getLast().x - 1, this.yCoord2, handler));
 					} else {
 						tail = (new TailTwo(handler.getWorld().body2.getLast().x + 1, this.yCoord2, handler));
@@ -448,7 +448,7 @@ public class PlayerTwo {
 				if (this.yCoord2 != 0) {
 					tail = (new TailTwo(this.xCoord2, this.yCoord2 - 1, handler));
 				} else {
-					if (this.xCoord2 != 0) {
+					if (this.xCoord2 != GameState.boardLocationStartX) {
 						tail = (new TailTwo(this.xCoord2 - 1, this.yCoord2, handler));
 					} else {
 						tail = (new TailTwo(this.xCoord2 + 1, this.yCoord2, handler));
@@ -459,7 +459,7 @@ public class PlayerTwo {
 				if (handler.getWorld().body2.getLast().y != 0) {
 					tail = (new TailTwo(handler.getWorld().body2.getLast().x, this.yCoord2 - 1, handler));
 				} else {
-					if (handler.getWorld().body2.getLast().x != 0) {
+					if (handler.getWorld().body2.getLast().x != GameState.boardLocationStartX) {
 						tail = (new TailTwo(handler.getWorld().body2.getLast().x - 1, this.yCoord2, handler));
 					} else {
 						tail = (new TailTwo(handler.getWorld().body2.getLast().x + 1, this.yCoord2, handler));
@@ -482,7 +482,7 @@ public class PlayerTwo {
 
 	public void shorten() {
 		length2 = 0;
-		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
+		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
 				handler.getWorld().playerLocation2[i][j] = false;
