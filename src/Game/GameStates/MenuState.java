@@ -48,7 +48,6 @@ public class MenuState extends State {
 			}
 			State.setState(handler.getGame().gameState);
 	}));
-		System.out.println(ScreenRes.width);
 
 		/*uiManager.addObjects(new UIImageButton(ScreenRes.width/33, ScreenRes.height/4-ScreenRes.height/43, ScreenRes.width/13, ScreenRes.width/15, Images.Resume, () -> {
             handler.getMouseManager().setUimanager(null);

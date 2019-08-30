@@ -58,7 +58,6 @@ public class Player {
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
 		if(moveCounter>=maxSpeed-snakeSpeedModifier) {
-			moveCounter=0;
 			checkCollisionAndMove();
 			if(additionalSpeed >=64) {
 				checkCollisionAndMove();
@@ -122,6 +121,7 @@ public class Player {
 	}
 
 	public void checkCollisionAndMove(){
+		moveCounter=0;
 		handler.getWorld().playerLocation[xCoord][yCoord]=false;
 		int x = xCoord;
 		int y = yCoord;
