@@ -92,7 +92,7 @@ public class GameOverState extends State {
 				//score image
 				g.drawImage(Images.score,0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10,10,ScreenRes.height/3,ScreenRes.height/16,null);
 				g.drawImage(Images.playerOneScore,0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/13,ScreenRes.height/2-ScreenRes.height/20,ScreenRes.height/3,ScreenRes.height/18,null);
-				g.drawImage(Images.playerOneWin,29, ScreenRes.height/2+ScreenRes.height/9, ScreenRes.GridPixelsize*GameState.boardLocationStartX-2-50, 300,null);
+				g.drawImage(Images.playerOneWin,33/ScreenRes.downscale, ScreenRes.height/2+ScreenRes.height/9, ScreenRes.GridPixelsize*GameState.boardLocationStartX-2-(50/ScreenRes.downscale), 300/ScreenRes.downscale,null);
 				g.drawImage(Images.crt,0,0,handler.getWidth(),handler.getHeight(),null);
 			} else {
 				Color GO = new Color(0,171,102);

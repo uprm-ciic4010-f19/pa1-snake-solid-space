@@ -188,6 +188,7 @@ public class Player {
 				if (!Game.GameStates.OptionsState.soundOff) {
 					Game.GameStates.AudioPlay.playSound(3);
 				}
+				playerOneLost = true;
 				GameState.setState(gameOverState);
 			}
 

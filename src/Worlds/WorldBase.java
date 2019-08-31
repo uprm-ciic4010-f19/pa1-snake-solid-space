@@ -88,7 +88,7 @@ public abstract class WorldBase {
 
 		//draw score image border
 		g.setColor(GO);
-		g.drawRect(0, 0, GridPixelsize*GameState.boardLocationStartX, ScreenRes.height/18);
+		g.drawRect(0, 0, GridPixelsize*GameState.boardLocationStartX, ScreenRes.height/15);
 
 		//player one picture
 		g.drawImage(Images.playOne, 0, ScreenRes.height/2, GridPixelsize*GameState.boardLocationStartX-2, ScreenRes.height/2,null);
@@ -111,7 +111,7 @@ public abstract class WorldBase {
 
 		//draw score title image border
 		g.setColor(GO);
-		g.drawRect(GridPixelsize*GameState.boardLocationEndX+1, 0, GridPixelsize*GameState.boardLocationStartX, ScreenRes.height/18);
+		g.drawRect(GridPixelsize*GameState.boardLocationEndX+1, 0, GridPixelsize*GameState.boardLocationStartX, ScreenRes.height/15);
 
 		//player two picture
 		g.drawImage(Images.playerTwo, GridPixelsize*GameState.boardLocationEndX, ScreenRes.height/2, ScreenRes.width - GridPixelsize*GameState.boardLocationEndX - 2, ScreenRes.height/2,null);
