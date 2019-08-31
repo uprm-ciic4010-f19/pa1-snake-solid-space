@@ -243,7 +243,7 @@ public class Player {
 				if(handler.getWorld().appleLocation[i][j]){
 					Apple.isGood();
 					if (Apple.isGood()) {
-						g.drawImage(Images.apple, (i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
+						g.drawImage(Images.apple, (i * handler.getWorld().GridPixelsize)-handler.getWorld().GridPixelsize/2, (j * handler.getWorld().GridPixelsize)-handler.getWorld().GridPixelsize/2,handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
 					} else {
 						g.drawImage(Images.rottenApple, (i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
 					}
