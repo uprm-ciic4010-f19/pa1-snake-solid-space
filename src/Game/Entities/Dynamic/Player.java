@@ -51,7 +51,6 @@ public class Player {
 		lenght= 1;
 		maxSpeed = 8;
 		additionalSpeed = 0;
-		playerOneLost = false;
 
 	}
 
@@ -184,11 +183,11 @@ public class Player {
 	public void selfCollisionCheck() {
 		for (Tail i: handler.getWorld().body){
 			if (i.x == xCoord && i.y == yCoord) {
+				playerOneLost = true;
 				Game.GameStates.AudioPlay.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
 					Game.GameStates.AudioPlay.playSound(3);
 				}
-				playerOneLost = true;
 				GameState.setState(gameOverState);
 			}
 
@@ -199,11 +198,11 @@ public class Player {
 	public void playerCollisionCheck() {
 		for (TailTwo i: handler.getWorld().body2){
 			if (i.x == xCoord && i.y == yCoord) {
+				playerOneLost = true;
 				Game.GameStates.AudioPlay.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
 					Game.GameStates.AudioPlay.playSound(3);
 				}
-				playerOneLost = true;
 				GameState.setState(gameOverState);
 			}
 

@@ -176,6 +176,7 @@ public class PlayerTwo {
 		for (TailTwo i : handler.getWorld().body2) {
 			if (i.x == xCoord2 && i.y == yCoord2) {
 				Game.GameStates.AudioPlay.stopSound();
+				Player.playerOneLost = false;
 				if (!Game.GameStates.OptionsState.soundOff) {
 					Game.GameStates.AudioPlay.playSound(3);
 				}
@@ -189,6 +190,7 @@ public class PlayerTwo {
 		for (Tail i: handler.getWorld().body){
 			if (i.x == xCoord2 && i.y == yCoord2) {
 				Game.GameStates.AudioPlay.stopSound();
+				Player.playerOneLost = false;
 				if (!Game.GameStates.OptionsState.soundOff) {
 					Game.GameStates.AudioPlay.playSound(3);
 				}
