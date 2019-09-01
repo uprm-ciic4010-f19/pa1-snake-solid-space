@@ -15,15 +15,14 @@ public class GameOverState extends State {
 
 	private int count = 0;
 	private UIManager uiManager;
-	Boolean singleplayer = false;
 
 	public GameOverState(Handler handler) {
 		super(handler);
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
 
-		if (singleplayer) {
-			uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(-52/ScreenRes.downscale), handler.getHeight()-(548/ScreenRes.downscale), 90/ScreenRes.downscale, 15/ScreenRes.downscale, Images.gTitle, () -> {
+		if (ModeState.singlePlayerMode) {
+			uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(-52/ScreenRes.downscale), handler.getHeight()-(616/ScreenRes.downscale), 90/ScreenRes.downscale, 15/ScreenRes.downscale, Images.gTitle, () -> {
 				handler.getMouseManager().setUimanager(null);
 				State.setState(handler.getGame().menuState);
 				Game.GameStates.AudioPlay.stopSound();
@@ -32,7 +31,7 @@ public class GameOverState extends State {
 				}
 			}));
 
-			uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(130/ScreenRes.downscale), handler.getHeight()-(548/ScreenRes.downscale), 90/ScreenRes.downscale, 15/ScreenRes.downscale, Images.Continue, () -> {
+			uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(130/ScreenRes.downscale), handler.getHeight()-(616/ScreenRes.downscale), 90/ScreenRes.downscale, 15/ScreenRes.downscale, Images.Continue, () -> {
 				handler.getMouseManager().setUimanager(null);
 				State.setState(handler.getGame().gameState);
 				Game.GameStates.AudioPlay.stopSound();
@@ -64,7 +63,7 @@ public class GameOverState extends State {
 	@Override
 	public void render(Graphics g) {
 		handler.getGame().reStart();
-		if (singleplayer) {
+		if (ModeState.singlePlayerMode) {
 			g.drawImage(Images.gameOver,0,0,ScreenRes.width,ScreenRes.height,null);
 			uiManager.Render(g);
 		} else {

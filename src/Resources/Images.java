@@ -37,6 +37,9 @@ public class Images {
     public static BufferedImage playOne;
     public static BufferedImage playerOneScore;
     public static BufferedImage playerTwoScore;
+    public static BufferedImage[] singlePlayer;
+    public static BufferedImage[] versus;
+    public static BufferedImage[] titleOptions;
     public static Image playerOne;
     public static Image playerOneWin;
     public static Image playerTwo;
@@ -44,6 +47,7 @@ public class Images {
     public static BufferedImage[] titleOverlay;
     public static Image titleAni;
     public static Image titleAni2;
+    public static Image titleFix;
 
     public Images() {
 
@@ -56,6 +60,9 @@ public class Images {
         Off = new BufferedImage[2];
         On = new BufferedImage[2];
         titleOverlay = new BufferedImage[2];
+        singlePlayer = new BufferedImage[2];
+        versus = new BufferedImage[2];
+        titleOptions = new BufferedImage[2];
 
         try {
 
@@ -88,6 +95,13 @@ public class Images {
             options = ImageIO.read(getClass().getResourceAsStream("/Sheets/OptionsS.png"));
             titleOverlay[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/PressStart.png"));
             titleOverlay[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/PressStartP.png"));
+            singlePlayer[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/SinglePlayer.png"));
+            singlePlayer[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/SinglePlayerP.png"));
+            versus[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Versus.png"));
+            versus[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/VersusP.png"));
+            titleOptions[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/titleOptions.png"));
+            titleOptions[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/titleOptionsP.png"));
+            titleFix = ImageIO.read(getClass().getResourceAsStream("/Sheets/titleFix.png"));
             
             gameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.png"));
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));

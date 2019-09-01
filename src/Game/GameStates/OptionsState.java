@@ -22,6 +22,17 @@ public class OptionsState extends State {
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUimanager(uiManager);
         
+        if(ModeState.optionMode) {
+        	uiManager.addObjects(new UIImageButton(ScreenRes.width/33, ScreenRes.height/4-ScreenRes.height/43, ScreenRes.width/13, ScreenRes.width/15, Images.Resume, () -> {
+    			handler.getMouseManager().setUimanager(null);
+				Game.GameStates.AudioPlay.stopSound();
+				if (!Game.GameStates.OptionsState.soundOff) {
+					Game.GameStates.AudioPlay.playSound(0);
+				}
+    			State.setState(handler.getGame().modeState);
+    			ModeState.optionMode = false;
+			}));
+        }else {
         uiManager.addObjects(new UIImageButton(ScreenRes.width/33, ScreenRes.height/4-ScreenRes.height/43, ScreenRes.width/13, ScreenRes.width/15, Images.Resume, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().gameState);
@@ -30,6 +41,7 @@ public class OptionsState extends State {
             	Game.GameStates.AudioPlay.playSound(1);
             }
         }));
+        }
         
         uiManager.addObjects(new UIImageButton(ScreenRes.width/8, ScreenRes.height/2, ScreenRes.width/13, ScreenRes.width/15, Images.On, () -> {
             handler.getMouseManager().setUimanager(null);

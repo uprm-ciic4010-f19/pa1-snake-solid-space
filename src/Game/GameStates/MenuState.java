@@ -42,11 +42,12 @@ public class MenuState extends State {
 		uiManager.addObjects(new UIImageButton(0, 0, ScreenRes.width, ScreenRes.height, Images.titleOverlay, () -> {
 			handler.getMouseManager().setUimanager(null);
 			handler.getGame().reStart();
-			Game.GameStates.AudioPlay.stopSound();
-			if (!Game.GameStates.OptionsState.soundOff) {
-				Game.GameStates.AudioPlay.playSound(1);
-			}
-			State.setState(handler.getGame().gameState);
+			//Game.GameStates.AudioPlay.stopSound();
+			//if (!Game.GameStates.OptionsState.soundOff) {
+			//	Game.GameStates.AudioPlay.playSound(1);
+			//}
+			//State.setState(handler.getGame().gameState);
+			State.setState(handler.getGame().modeState);
 	}));
 
 		/*uiManager.addObjects(new UIImageButton(ScreenRes.width/33, ScreenRes.height/4-ScreenRes.height/43, ScreenRes.width/13, ScreenRes.width/15, Images.Resume, () -> {
