@@ -46,7 +46,7 @@ public class PlayerTwo {
 		length2 = 1;
 		maxSpeed2 = 8;
 		additionalSpeed2 = 0;
-		
+
 	}
 
 	public void tick() {
@@ -120,9 +120,10 @@ public class PlayerTwo {
 		int y = yCoord2;
 		totalMovement2++;
 
-		selfCollisionCheck();
-		playerCollisionCheck();
-
+		if(!Game.GameStates.ModeState.singlePlayerMode) {
+			playerCollisionCheck();
+			selfCollisionCheck();
+		}
 		switch (direction2) {
 		case "Left":
 			if (xCoord2 == GameState.boardLocationStartX) {
@@ -156,11 +157,13 @@ public class PlayerTwo {
 		handler.getWorld().playerLocation2[xCoord2][yCoord2] = true;
 
 
-		if(handler.getWorld().appleLocation[xCoord2][yCoord2]||handler.getWorld().appleLocation2[xCoord2][yCoord2]){
+		if(handler.getWorld().appleLocation[xCoord2][yCoord2]||handler.getWorld().appleLocation2[xCoord2][yCoord2] && !Game.GameStates.ModeState.singlePlayerMode){
 			if (Apple.isGood()) {
 				eat();
 			} else {
-				rottenEat();
+				if(!Game.GameStates.ModeState.singlePlayerMode) {
+					rottenEat();
+				}
 			}
 		}
 
