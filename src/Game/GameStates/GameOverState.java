@@ -34,6 +34,8 @@ public class GameOverState extends State {
 			uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(130/ScreenRes.downscale), handler.getHeight()-(616/ScreenRes.downscale), 90/ScreenRes.downscale, 15/ScreenRes.downscale, Images.Continue, () -> {
 				handler.getMouseManager().setUimanager(null);
 				State.setState(handler.getGame().gameState);
+				Game.Entities.Dynamic.Player.gameScore = 0;
+				Game.Entities.Dynamic.PlayerTwo.gameScore2 = 0;
 				Game.GameStates.AudioPlay.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
 					Game.GameStates.AudioPlay.playSound(1);
