@@ -129,8 +129,9 @@ public class Player {
 		totalMovement++;
 
 		selfCollisionCheck();
-		playerCollisionCheck();
-
+		if(!Game.GameStates.ModeState.singlePlayerMode) {
+			playerCollisionCheck();
+		}
 		switch (direction){
 		case "Left":
 			if(xCoord==GameState.boardLocationStartX){

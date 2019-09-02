@@ -48,6 +48,7 @@ public class Images {
     public static Image titleAni;
     public static Image titleAni2;
     public static Image titleFix;
+    public static Image noiseTv;
 
     public Images() {
 
@@ -118,8 +119,8 @@ public class Images {
             playerTwo = new ImageIcon(url3).getImage();
             URL url4 = this.getClass().getResource("/Assets/PlayerTwoWin.gif");
             playerTwoWin = new ImageIcon(url4).getImage();
-
-
+            URL url5 = this.getClass().getResource("/Assets/noiseTV.gif");
+            noiseTv = new ImageIcon(url5).getImage();
         }catch (IOException e) {
         e.printStackTrace();
     }

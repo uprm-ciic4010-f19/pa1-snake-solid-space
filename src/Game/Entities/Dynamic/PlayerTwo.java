@@ -205,7 +205,7 @@ public class PlayerTwo {
 		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
-				if (gameScore2 >= 0) {
+				if (gameScore2 >= 0 && !Game.GameStates.ModeState.singlePlayerMode) {
 					Color GO = new Color(0, 171, 102);
 					g.setColor(GO);
 					g.setFont(new Font("arial", Font.PLAIN, 60 / ScreenRes.downscale));
@@ -219,7 +219,7 @@ public class PlayerTwo {
 					g.setColor(new Color(80, 220, 100));
 				}
 
-				if(playeLocation[i][j]){
+				if(playeLocation[i][j] && !Game.GameStates.ModeState.singlePlayerMode){
 					g.setColor(Color.BLACK);
 					g.fillOval((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize+1, handler.getWorld().GridPixelsize+1);
 					if (colorEatChange2 != null) {

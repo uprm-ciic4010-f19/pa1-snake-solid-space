@@ -30,7 +30,7 @@ public abstract class WorldBase {
 	public int GridPixelsize;
 
 	public int GridSize;
-	
+
 
 	public Player player;
 	public PlayerTwo player2;
@@ -81,7 +81,7 @@ public abstract class WorldBase {
 		Color GO = new Color(0,171,102);
 
 		// -------------------------left panel---------------------- //
-		
+
 		//draw background for the score panel
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GridPixelsize*GameState.boardLocationStartX, ScreenRes.height);
@@ -102,41 +102,46 @@ public abstract class WorldBase {
 		//score image
 		g.drawImage(Images.score,0 + (GridPixelsize*GameState.boardLocationStartX)/10,10,ScreenRes.height/3,ScreenRes.height/16,null);
 		g.drawImage(Images.playerOneScore,0 + (GridPixelsize*GameState.boardLocationStartX)/13,ScreenRes.height/2-ScreenRes.height/20,ScreenRes.height/3,ScreenRes.height/18,null);
-		
+
 		//---------------------right panel---------------------------//
 
-		//draw background for the score panel
-		g.setColor(Color.BLACK);
-		g.fillRect(GridPixelsize*GameState.boardLocationEndX, 0, ScreenRes.width, ScreenRes.height);
 
-		//draw score title image border
-		g.setColor(GO);
-		g.drawRect(GridPixelsize*GameState.boardLocationEndX+1, 0, GridPixelsize*GameState.boardLocationStartX, ScreenRes.height/15);
+		if(!Game.GameStates.ModeState.singlePlayerMode) {
+			//draw background for the score panel
+			g.setColor(Color.BLACK);
+			g.fillRect(GridPixelsize*GameState.boardLocationEndX, 0, ScreenRes.width, ScreenRes.height);
 
-		//player two picture
-		g.drawImage(Images.playerTwo, GridPixelsize*GameState.boardLocationEndX, ScreenRes.height/2, ScreenRes.width - GridPixelsize*GameState.boardLocationEndX - 2, ScreenRes.height/2,null);
+			//draw score title image border
+			g.setColor(GO);
+			g.drawRect(GridPixelsize*GameState.boardLocationEndX+1, 0, GridPixelsize*GameState.boardLocationStartX, ScreenRes.height/15);
 
+			//player two picture
+			g.drawImage(Images.playerTwo, GridPixelsize*GameState.boardLocationEndX, ScreenRes.height/2, ScreenRes.width - GridPixelsize*GameState.boardLocationEndX - 2, ScreenRes.height/2,null);
+		
+			//score image
+			g.drawImage(Images.score,GridPixelsize*GameState.boardLocationEndX + (GridPixelsize*GameState.boardLocationStartX)/10,10,ScreenRes.height/3,ScreenRes.height/16,null);
+			g.drawImage(Images.playerTwoScore,GridPixelsize*GameState.boardLocationEndX + (GridPixelsize*GameState.boardLocationStartX)/15,ScreenRes.height/2-ScreenRes.height/20,ScreenRes.height/3,ScreenRes.height/18,null);
+
+		}else {
+			g.drawImage(Images.noiseTv, GridPixelsize*GameState.boardLocationEndX, 0, ScreenRes.width - GridPixelsize*GameState.boardLocationEndX - 2, ScreenRes.height,null);
+		}
 		//draw game border
 		g.setColor(GO);
 		g.drawRect(GridPixelsize*GameState.boardLocationStartX-1, 1, GridPixelsize*GridSize-3, ScreenRes.height-3);
 		g.drawRect(GridPixelsize*GameState.boardLocationStartX-1, 2, GridPixelsize*GridSize-3, ScreenRes.height-3);
 		g.drawRect(GridPixelsize*GameState.boardLocationStartX-1, 3, GridPixelsize*GridSize-3, ScreenRes.height-3);
-
+		
 		//draw panel border
 		g.setColor(GO);
 		g.drawRect(GridPixelsize*GameState.boardLocationEndX+1, 1, GridPixelsize*GameState.boardLocationStartX-15, ScreenRes.height-2);
 		g.drawRect(GridPixelsize*GameState.boardLocationEndX+2, 2, GridPixelsize*GameState.boardLocationStartX-16, ScreenRes.height-4);
 		g.drawRect(GridPixelsize*GameState.boardLocationEndX+3, 3, GridPixelsize*GameState.boardLocationStartX-17, ScreenRes.height-6);
 
-		//score image
-		g.drawImage(Images.score,GridPixelsize*GameState.boardLocationEndX + (GridPixelsize*GameState.boardLocationStartX)/10,10,ScreenRes.height/3,ScreenRes.height/16,null);
-		g.drawImage(Images.playerTwoScore,GridPixelsize*GameState.boardLocationEndX + (GridPixelsize*GameState.boardLocationStartX)/15,ScreenRes.height/2-ScreenRes.height/20,ScreenRes.height/3,ScreenRes.height/18,null);
-		
 		//crt effect
 		g.drawImage(Images.crt,0,0,handler.getWidth(),handler.getHeight(),null);
-		
-		
-		
+
+
+
 
 
 
