@@ -88,7 +88,7 @@ public class Images {
             On[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/OnP.png"));
             Sound= ImageIO.read(getClass().getResourceAsStream("/Buttons/Sound.png"));
             crt = ImageIO.read(getClass().getResourceAsStream("/Sheets/CRT.png"));
-            score = ImageIO.read(getClass().getResourceAsStream("/Sheets/score.png"));
+            score = ImageIO.read(getClass().getResourceAsStream("/Sheets/Score.png"));
             playerOneScore = ImageIO.read(getClass().getResourceAsStream("/Sheets/PlayerOne.png"));
             playerTwoScore = ImageIO.read(getClass().getResourceAsStream("/Sheets/PlayerTwo.png"));
             dialog = ImageIO.read(getClass().getResourceAsStream("/Sheets/what.png"));
