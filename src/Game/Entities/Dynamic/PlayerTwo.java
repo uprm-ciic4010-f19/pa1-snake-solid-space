@@ -1,18 +1,18 @@
 package Game.Entities.Dynamic;
 
-import Main.Handler;
-import Main.ScreenRes;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-
 import java.util.Random;
 
+import Game.Entities.Static.Apple;
+import Game.GameStates.GameOverState;
 import Game.GameStates.GameState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
-import Game.Entities.Static.Apple;
-import Game.GameStates.GameOverState;
+import Main.Handler;
+import Main.ScreenRes;
 
 public class PlayerTwo {
 	public int length2;
@@ -178,10 +178,10 @@ public class PlayerTwo {
 	public void selfCollisionCheck() {
 		for (TailTwo i : handler.getWorld().body2) {
 			if (i.x == xCoord2 && i.y == yCoord2) {
-				Game.GameStates.AudioPlay.stopSound();
+				Game.GameStates.PlayAudio.stopSound();
 				Player.playerOneLost = false;
 				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.AudioPlay.playSound(3);
+					Game.GameStates.PlayAudio.playSound(3);
 				}
 				GameState.setState(gameOverState);
 			}
@@ -192,10 +192,10 @@ public class PlayerTwo {
 	public void playerCollisionCheck() {
 		for (Tail i: handler.getWorld().body){
 			if (i.x == xCoord2 && i.y == yCoord2) {
-				Game.GameStates.AudioPlay.stopSound();
+				Game.GameStates.PlayAudio.stopSound();
 				Player.playerOneLost = false;
 				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.AudioPlay.playSound(3);
+					Game.GameStates.PlayAudio.playSound(3);
 				}
 				GameState.setState(gameOverState);
 			}

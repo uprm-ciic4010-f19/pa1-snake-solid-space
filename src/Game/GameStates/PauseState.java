@@ -1,12 +1,11 @@
 package Game.GameStates;
 
+import java.awt.Graphics;
+
 import Main.Handler;
-import Main.ScreenRes;
 import Resources.Images;
 import UI.UIImageButton;
 import UI.UIManager;
-
-import java.awt.*;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -21,26 +20,26 @@ public class PauseState extends State {
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUimanager(uiManager);
         
-        uiManager.addObjects(new UIImageButton(ScreenRes.width/33, ScreenRes.height/4-ScreenRes.height/43, ScreenRes.width/13, ScreenRes.width/15, Images.Resume, () -> {
+        uiManager.addObjects(new UIImageButton(handler.getWidth()/33, handler.getHeight()/4-handler.getHeight()/43, handler.getWidth()/13, handler.getWidth()/15, Images.Resume, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().gameState);
-            Game.GameStates.AudioPlay.stopSound();
+            Game.GameStates.PlayAudio.stopSound();
             if (!Game.GameStates.OptionsState.soundOff) {
-            	Game.GameStates.AudioPlay.playSound(1);
+            	Game.GameStates.PlayAudio.playSound(1);
             }
         }));
 
-        uiManager.addObjects(new UIImageButton(ScreenRes.width/33, ScreenRes.height/3, ScreenRes.width/13, ScreenRes.width/15, Images.Options, () -> {
+        uiManager.addObjects(new UIImageButton(handler.getWidth()/33, handler.getHeight()/3, handler.getWidth()/13, handler.getWidth()/15, Images.Options, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().optionsState);
         }));
 
-        uiManager.addObjects(new UIImageButton(ScreenRes.width/33, (ScreenRes.height/3+ScreenRes.height/10), ScreenRes.width/13, ScreenRes.width/15, Images.BTitle, () -> {
+        uiManager.addObjects(new UIImageButton(handler.getWidth()/33, (handler.getHeight()/3+handler.getHeight()/10), handler.getWidth()/13, handler.getWidth()/15, Images.BTitle, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().menuState);
-            Game.GameStates.AudioPlay.stopSound();
+            Game.GameStates.PlayAudio.stopSound();
             if (!Game.GameStates.OptionsState.soundOff) {
-            	Game.GameStates.AudioPlay.playSound(0);
+            	Game.GameStates.PlayAudio.playSound(0);
             }
         }));
 
@@ -69,7 +68,7 @@ public class PauseState extends State {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Images.Pause,0,0,ScreenRes.width,ScreenRes.height,null);
+        g.drawImage(Images.Pause,0,0,handler.getWidth(),handler.getHeight(),null);
         uiManager.Render(g);
         
 

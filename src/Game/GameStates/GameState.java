@@ -1,12 +1,12 @@
 package Game.GameStates;
 
+import java.awt.Graphics;
+
 import Game.Entities.Dynamic.Player;
 import Game.Entities.Dynamic.PlayerTwo;
 import Main.Handler;
 import Worlds.WorldBase;
 import Worlds.WorldOne;
-
-import java.awt.*;
 
 
 /**
@@ -15,6 +15,8 @@ import java.awt.*;
 public class GameState extends State {
 
     private WorldBase world;
+    
+    //Sets where the playing area will be located
     public static int boardLocationStartX = 24;
     public static int boardLocationEndX = boardLocationStartX + 60;
 

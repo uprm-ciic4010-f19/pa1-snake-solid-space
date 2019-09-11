@@ -13,18 +13,18 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class AudioPlay {
+public class PlayAudio {
 
 	private static Clip clip;
 	public static InputStream audioFile;
 	private static AudioFormat format;
 	private static DataLine.Info info;
 
-	public AudioPlay() {
+	public PlayAudio() {
 		try {
 			this.clip = AudioSystem.getClip();
 		} catch (LineUnavailableException ex) {
-			Logger.getLogger(AudioPlay.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}
@@ -36,16 +36,16 @@ public class AudioPlay {
 
 	public static void playSound(int a){
 
-		// Open an audio input stream.
 		String[] sounds = new String[10];
 		sounds[0]= "/music/menumusic.wav";
 		sounds[1]= "/music/gamemusic.wav";
 		sounds[2]= "/music/pausemusic.wav";
 		sounds[3]= "/music/collision.wav";
 		sounds[4]= "/music/selection.wav";
+		
 		try {
 
-			audioFile = AudioPlay.class.getResourceAsStream(sounds[a]);
+			audioFile = PlayAudio.class.getResourceAsStream(sounds[a]);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
 			format = audioStream.getFormat();
 			info = new DataLine.Info(Clip.class, format);

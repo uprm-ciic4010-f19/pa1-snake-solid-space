@@ -25,9 +25,9 @@ public class GameOverState extends State {
 			uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(-52/ScreenRes.downscale), handler.getHeight()-(616/ScreenRes.downscale), 90/ScreenRes.downscale, 15/ScreenRes.downscale, Images.gTitle, () -> {
 				handler.getMouseManager().setUimanager(null);
 				State.setState(handler.getGame().menuState);
-				Game.GameStates.AudioPlay.stopSound();
+				Game.GameStates.PlayAudio.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.AudioPlay.playSound(0);
+					Game.GameStates.PlayAudio.playSound(0);
 				}
 			}));
 
@@ -36,9 +36,9 @@ public class GameOverState extends State {
 				State.setState(handler.getGame().gameState);
 				Game.Entities.Dynamic.Player.gameScore = 0;
 				Game.Entities.Dynamic.PlayerTwo.gameScore2 = 0;
-				Game.GameStates.AudioPlay.stopSound();
+				Game.GameStates.PlayAudio.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.AudioPlay.playSound(1);
+					Game.GameStates.PlayAudio.playSound(1);
 				}
 			}));
 		}
@@ -66,7 +66,7 @@ public class GameOverState extends State {
 	public void render(Graphics g) {
 		handler.getGame().reStart();
 		if (ModeState.singlePlayerMode) {
-			g.drawImage(Images.gameOver,0,0,ScreenRes.width,ScreenRes.height,null);
+			g.drawImage(Images.gameOver,0,0,handler.getWidth(),handler.getHeight(),null);
 			uiManager.Render(g);
 		} else {
 			if (!Player.playerOneLost) {
@@ -76,30 +76,30 @@ public class GameOverState extends State {
 				
 				//draw background
 				g.setColor(Color.BLACK);
-				g.fillRect(0, 0, ScreenRes.width, ScreenRes.height);
+				g.fillRect(0, 0, handler.getWidth(), handler.getHeight());
 
 				//draw score header border
 				g.setColor(GO);
-				g.drawRect(0, 0, ScreenRes.GridPixelsize*GameState.boardLocationStartX, ScreenRes.height/15);
+				g.drawRect(0, 0, ScreenRes.GridPixelsize*GameState.boardLocationStartX, handler.getHeight()/15);
 
 				//player one avatar
-				g.drawImage(Images.playOne, 0, ScreenRes.height/2, ScreenRes.GridPixelsize*GameState.boardLocationStartX-2, ScreenRes.height/2,null);
+				g.drawImage(Images.playOne, 0, handler.getHeight()/2, ScreenRes.GridPixelsize*GameState.boardLocationStartX-2, handler.getHeight()/2,null);
 
 				//draw panel border
 				g.setColor(GO);
-				g.drawRect(0, 1, ScreenRes.GridPixelsize*GameState.boardLocationStartX-1, ScreenRes.height-2);
-				g.drawRect(0, 2, ScreenRes.GridPixelsize*GameState.boardLocationStartX-2, ScreenRes.height-4);
-				g.drawRect(0, 3, ScreenRes.GridPixelsize*GameState.boardLocationStartX-3, ScreenRes.height-6);
+				g.drawRect(0, 1, ScreenRes.GridPixelsize*GameState.boardLocationStartX-1, handler.getHeight()-2);
+				g.drawRect(0, 2, ScreenRes.GridPixelsize*GameState.boardLocationStartX-2, handler.getHeight()-4);
+				g.drawRect(0, 3, ScreenRes.GridPixelsize*GameState.boardLocationStartX-3, handler.getHeight()-6);
 
 				//score image
-				g.drawImage(Images.score,0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10,10,ScreenRes.height/3,ScreenRes.height/16,null);
-				g.drawImage(Images.playerOneScore,0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/13,ScreenRes.height/2-ScreenRes.height/20,ScreenRes.height/3,ScreenRes.height/18,null);
-				g.drawImage(Images.playerOneWin,33/ScreenRes.downscale, ScreenRes.height/2+ScreenRes.height/9, ScreenRes.GridPixelsize*GameState.boardLocationStartX-2-(50/ScreenRes.downscale), 300/ScreenRes.downscale,null);
+				g.drawImage(Images.score,0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10,10,handler.getHeight()/3,handler.getHeight()/16,null);
+				g.drawImage(Images.playerOneScore,0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/13,handler.getHeight()/2-handler.getHeight()/20,handler.getHeight()/3,handler.getHeight()/18,null);
+				g.drawImage(Images.playerOneWin,33/ScreenRes.downscale, handler.getHeight()/2+handler.getHeight()/9, ScreenRes.GridPixelsize*GameState.boardLocationStartX-2-(50/ScreenRes.downscale), 300/ScreenRes.downscale,null);
 				g.setColor(GO);
 				g.setFont(new Font("arial", Font.PLAIN, 80 / ScreenRes.downscale));
-				g.drawString("PLAYER ONE WINS!", ScreenRes.width/2-ScreenRes.GridPixelsize*GameState.boardLocationStartX/2, ScreenRes.height/2);
+				g.drawString("PLAYER ONE WINS!", handler.getWidth()/2-ScreenRes.GridPixelsize*GameState.boardLocationStartX/2, handler.getHeight()/2);
 				g.setFont(new Font("arial", Font.PLAIN, 60/ScreenRes.downscale));
-				g.drawString("" +(int)Player.gameScore, 0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10, ScreenRes.height/5 + ScreenRes.height/20);
+				g.drawString("" +(int)Player.gameScore, 0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10, handler.getHeight()/5 + handler.getHeight()/20);
 				g.drawImage(Images.crt,0,0,handler.getWidth(),handler.getHeight(),null);
 				
 			} else {
@@ -108,32 +108,32 @@ public class GameOverState extends State {
 				Color GO = new Color(0,171,102);
 				//draw background
 				g.setColor(Color.BLACK);
-				g.fillRect(0, 0, ScreenRes.width, ScreenRes.height);
+				g.fillRect(0, 0, handler.getWidth(), handler.getHeight());
 				
 
 				//draw score header border
 				g.setColor(GO);
-				g.drawRect(ScreenRes.GridPixelsize*GameState.boardLocationEndX+1, 0, ScreenRes.GridPixelsize*GameState.boardLocationStartX, ScreenRes.height/15);
+				g.drawRect(ScreenRes.GridPixelsize*GameState.boardLocationEndX+1, 0, ScreenRes.GridPixelsize*GameState.boardLocationStartX, handler.getHeight()/15);
 
 				//draw winning avatar
-				g.drawImage(Images.playerTwoWin, ScreenRes.GridPixelsize*GameState.boardLocationEndX, ScreenRes.height/2-ScreenRes.height/32, ScreenRes.width - ScreenRes.GridPixelsize*GameState.boardLocationEndX - 2, ScreenRes.height/2+ScreenRes.height/19,null);
+				g.drawImage(Images.playerTwoWin, ScreenRes.GridPixelsize*GameState.boardLocationEndX, handler.getHeight()/2-handler.getHeight()/32, handler.getWidth() - ScreenRes.GridPixelsize*GameState.boardLocationEndX - 2, handler.getHeight()/2+handler.getHeight()/19,null);
 				
 				//draw panel border
-				g.drawRect(ScreenRes.GridPixelsize*GameState.boardLocationEndX+1, 1, ScreenRes.width-ScreenRes.GridPixelsize*GameState.boardLocationStartX-1, ScreenRes.height-2);
-				g.drawRect(ScreenRes.GridPixelsize*GameState.boardLocationEndX+2, 2, ScreenRes.width-ScreenRes.GridPixelsize*GameState.boardLocationStartX-2, ScreenRes.height-4);
-				g.drawRect(ScreenRes.GridPixelsize*GameState.boardLocationEndX+3, 3, ScreenRes.width-ScreenRes.GridPixelsize*GameState.boardLocationStartX-3, ScreenRes.height-6);
+				g.drawRect(ScreenRes.GridPixelsize*GameState.boardLocationEndX+1, 1, handler.getWidth()-ScreenRes.GridPixelsize*GameState.boardLocationStartX-1, handler.getHeight()-2);
+				g.drawRect(ScreenRes.GridPixelsize*GameState.boardLocationEndX+2, 2, handler.getWidth()-ScreenRes.GridPixelsize*GameState.boardLocationStartX-2, handler.getHeight()-4);
+				g.drawRect(ScreenRes.GridPixelsize*GameState.boardLocationEndX+3, 3, handler.getWidth()-ScreenRes.GridPixelsize*GameState.boardLocationStartX-3, handler.getHeight()-6);
 				
 				g.setColor(GO);
 				
 				//draw winning message
 				g.setFont(new Font("arial", Font.PLAIN, 80 / ScreenRes.downscale));
-				g.drawString("PLAYER TWO WINS!", ScreenRes.GridPixelsize*GameState.boardLocationStartX, ScreenRes.height/2);
+				g.drawString("PLAYER TWO WINS!", ScreenRes.GridPixelsize*GameState.boardLocationStartX, handler.getHeight()/2);
 				g.setFont(new Font("arial", Font.PLAIN, 60 / ScreenRes.downscale));
-				g.drawString("" +(int)PlayerTwo.gameScore2, GameState.boardLocationEndX*ScreenRes.GridPixelsize+(ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10, ScreenRes.height/5 + ScreenRes.height/20);
+				g.drawString("" +(int)PlayerTwo.gameScore2, GameState.boardLocationEndX*ScreenRes.GridPixelsize+(ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10, handler.getHeight()/5 + handler.getHeight()/20);
 				
 				//draw final score
-				g.drawImage(Images.score,ScreenRes.GridPixelsize*GameState.boardLocationEndX + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10,10,ScreenRes.height/3,ScreenRes.height/16,null); //score image
-				g.drawImage(Images.playerTwoScore,ScreenRes.GridPixelsize*GameState.boardLocationEndX + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/15,ScreenRes.height/2-ScreenRes.height/20,ScreenRes.height/3,ScreenRes.height/18,null); //player two header
+				g.drawImage(Images.score,ScreenRes.GridPixelsize*GameState.boardLocationEndX + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10,10,handler.getHeight()/3,handler.getHeight()/16,null); //score image
+				g.drawImage(Images.playerTwoScore,ScreenRes.GridPixelsize*GameState.boardLocationEndX + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/15,handler.getHeight()/2-handler.getHeight()/20,handler.getHeight()/3,handler.getHeight()/18,null); //player two header
 				
 				//crt effect
 				g.drawImage(Images.crt,0,0,handler.getWidth(),handler.getHeight(),null); //crt effect

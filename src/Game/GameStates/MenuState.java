@@ -1,16 +1,14 @@
 package Game.GameStates;
 
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 import Main.Handler;
 import Main.ScreenRes;
 import Resources.Images;
-import UI.ClickListlener;
 import UI.UIImageButton;
 import UI.UIManager;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.image.ImageObserver;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -23,47 +21,15 @@ public class MenuState extends State {
 		super(handler);
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
-
-
-
-		/*uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(64/ScreenRes.downscale), handler.getHeight()-(400/ScreenRes.downscale), 140/ScreenRes.downscale, 50/ScreenRes.downscale, Images.butstart, new ClickListlener() {
-            @Override
-            public void onClick() {
-                handler.getMouseManager().setUimanager(null);
-                handler.getGame().reStart();
-                Game.GameStates.AudioPlay.stopSound();
-                if (!Game.GameStates.OptionsState.soundOff) {
-                	Game.GameStates.AudioPlay.playSound(1);
-                }
-                State.setState(handler.getGame().gameState);
-            }
-        }));*/
-
-		uiManager.addObjects(new UIImageButton(0, 0, ScreenRes.width, ScreenRes.height, Images.titleOverlay, () -> {
+		
+		//Renders transparent button over the whole screen
+		uiManager.addObjects(new UIImageButton(0, 0, handler.getWidth(), handler.getHeight(), Images.titleOverlay, () -> {
 			handler.getMouseManager().setUimanager(null);
 			handler.getGame().reStart();
-			//Game.GameStates.AudioPlay.stopSound();
-			//if (!Game.GameStates.OptionsState.soundOff) {
-			//	Game.GameStates.AudioPlay.playSound(1);
-			//}
-			//State.setState(handler.getGame().gameState);
 			State.setState(handler.getGame().modeState);
 	}));
 
-		/*uiManager.addObjects(new UIImageButton(ScreenRes.width/33, ScreenRes.height/4-ScreenRes.height/43, ScreenRes.width/13, ScreenRes.width/15, Images.Resume, () -> {
-            handler.getMouseManager().setUimanager(null);
-            State.setState(handler.getGame().gameState);
-            Game.GameStates.AudioPlay.stopSound();
-            if (!Game.GameStates.OptionsState.soundOff) {
-            	Game.GameStates.AudioPlay.playSound(1);
-            }*/
 
-		/*uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(64/ScreenRes.downscale), handler.getHeight()-(180/ScreenRes.downscale), 140/ScreenRes.downscale, 50/ScreenRes.downscale, Images.Options, () -> {
-            handler.getMouseManager().setUimanager(null);
-            State.setState(handler.getGame().optionsState);
-            Game.GameStates.AudioPlay.stopSound();
-            Game.GameStates.AudioPlay.playSound(0);
-        }));*/
 }
 
 @Override
@@ -75,6 +41,7 @@ public void tick() {
 
 @Override
 public void render(Graphics g) {
+	//Renders title menu animation
 	g.setColor(Color.darkGray);
 	g.fillRect(0,0,handler.getWidth(),handler.getHeight());
 	g.drawImage(Images.title,0,0,handler.getWidth(),handler.getHeight(),null);

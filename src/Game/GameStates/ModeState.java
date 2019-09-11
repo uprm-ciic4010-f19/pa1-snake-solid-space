@@ -23,31 +23,31 @@ public class ModeState extends State{
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
 
-		uiManager.addObjects(new UIImageButton(ScreenRes.width/10+(640/ScreenRes.downscale), ScreenRes.height/2-ScreenRes.height/13 +(75/ScreenRes.downscale), ScreenRes.width/8, ScreenRes.width/15, Images.singlePlayer, () -> {
+		uiManager.addObjects(new UIImageButton(handler.getWidth()/10+(640/ScreenRes.downscale), handler.getHeight()/2-handler.getHeight()/13 +(75/ScreenRes.downscale), handler.getWidth()/8, handler.getWidth()/15, Images.singlePlayer, () -> {
 			singlePlayerMode = true;
 			handler.getMouseManager().setUimanager(null);
 			handler.getGame().reStart();
-			Game.GameStates.AudioPlay.stopSound();
+			Game.GameStates.PlayAudio.stopSound();
 			if (!Game.GameStates.OptionsState.soundOff) {
-				Game.GameStates.AudioPlay.playSound(1);
+				Game.GameStates.PlayAudio.playSound(1);
 			}
 			State.setState(handler.getGame().gameState);
 		}));
 
 
-		uiManager.addObjects(new UIImageButton(ScreenRes.width/10+(690/ScreenRes.downscale), ScreenRes.height/2-ScreenRes.height/13 +(205/ScreenRes.downscale), ScreenRes.width/14, ScreenRes.width/15, Images.versus, () -> {
+		uiManager.addObjects(new UIImageButton(handler.getWidth()/10+(690/ScreenRes.downscale), handler.getHeight()/2-handler.getHeight()/13 +(205/ScreenRes.downscale), handler.getWidth()/14, handler.getWidth()/15, Images.versus, () -> {
 			singlePlayerMode = false;
 			handler.getMouseManager().setUimanager(null);
 			handler.getGame().reStart();
-			Game.GameStates.AudioPlay.stopSound();
+			Game.GameStates.PlayAudio.stopSound();
 			if (!Game.GameStates.OptionsState.soundOff) {
-				Game.GameStates.AudioPlay.playSound(1);
+				Game.GameStates.PlayAudio.playSound(1);
 			}
 			State.setState(handler.getGame().gameState);
 		}));
 
 		
-        uiManager.addObjects(new UIImageButton(ScreenRes.width/10+(690/ScreenRes.downscale), ScreenRes.height/2-ScreenRes.height/13 +(335/ScreenRes.downscale), ScreenRes.width/14, ScreenRes.width/15, Images.titleOptions, () -> {
+        uiManager.addObjects(new UIImageButton(handler.getWidth()/10+(690/ScreenRes.downscale), handler.getHeight()/2-handler.getHeight()/13 +(335/ScreenRes.downscale), handler.getWidth()/14, handler.getWidth()/15, Images.titleOptions, () -> {
             optionMode = true;
         	handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().optionsState);

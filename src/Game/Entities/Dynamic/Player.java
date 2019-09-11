@@ -1,19 +1,19 @@
 package Game.Entities.Dynamic;
 
-import Main.Handler;
-import Main.ScreenRes;
-import Resources.Images;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-
 import java.util.Random;
 
+import Game.Entities.Static.Apple;
+import Game.GameStates.GameOverState;
 import Game.GameStates.GameState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
-import Game.Entities.Static.Apple;
-import Game.GameStates.GameOverState;
+import Main.Handler;
+import Main.ScreenRes;
+import Resources.Images;
 
 /**
  * Created by AlexVR on 7/2/2018.
@@ -90,9 +90,9 @@ public class Player {
 
 		//Menu keys
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
-			Game.GameStates.AudioPlay.stopSound();
+			Game.GameStates.PlayAudio.stopSound();
 			if (!Game.GameStates.OptionsState.soundOff) {
-				Game.GameStates.AudioPlay.playSound(2);
+				Game.GameStates.PlayAudio.playSound(2);
 			}
 			GameState.setState(pauseState);
 		}
@@ -185,9 +185,9 @@ public class Player {
 		for (Tail i: handler.getWorld().body){
 			if (i.x == xCoord && i.y == yCoord) {
 				playerOneLost = true;
-				Game.GameStates.AudioPlay.stopSound();
+				Game.GameStates.PlayAudio.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.AudioPlay.playSound(3);
+					Game.GameStates.PlayAudio.playSound(3);
 				}
 				GameState.setState(gameOverState);
 			}
@@ -200,9 +200,9 @@ public class Player {
 		for (TailTwo i: handler.getWorld().body2){
 			if (i.x == xCoord && i.y == yCoord) {
 				playerOneLost = true;
-				Game.GameStates.AudioPlay.stopSound();
+				Game.GameStates.PlayAudio.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.AudioPlay.playSound(3);
+					Game.GameStates.PlayAudio.playSound(3);
 				}
 				GameState.setState(gameOverState);
 			}

@@ -1,5 +1,9 @@
 package Main;
 
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+
 import Display.DisplayScreen;
 import Game.GameStates.GameState;
 import Game.GameStates.MenuState;
@@ -10,15 +14,6 @@ import Game.GameStates.State;
 import Input.KeyManager;
 import Input.MouseManager;
 import Resources.Images;
-
-import javax.sound.sampled.*;
-
-
-import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -83,7 +78,7 @@ public class GameSetUp implements Runnable {
 
         State.setState(menuState);
         
-        Game.GameStates.AudioPlay.playSound(0);
+        Game.GameStates.PlayAudio.playSound(0);
         
     }
 
