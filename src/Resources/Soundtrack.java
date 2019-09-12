@@ -1,4 +1,4 @@
-package Game.GameStates;
+package Resources;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,18 +13,18 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class PlayAudio {
+public class Soundtrack {
 
 	private static Clip clip;
 	public static InputStream audioFile;
 	private static AudioFormat format;
 	private static DataLine.Info info;
 
-	public PlayAudio() {
+	public Soundtrack() {
 		try {
 			this.clip = AudioSystem.getClip();
 		} catch (LineUnavailableException ex) {
-			Logger.getLogger(PlayAudio.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(Soundtrack.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}
@@ -37,21 +37,25 @@ public class PlayAudio {
 	public static void playSound(int a){
 
 		String[] sounds = new String[10];
-		sounds[0]= "/music/menumusic.wav";
-		sounds[1]= "/music/gamemusic.wav";
-		sounds[2]= "/music/pausemusic.wav";
-		sounds[3]= "/music/collision.wav";
-		sounds[4]= "/music/selection.wav";
+		sounds[0]= "/Music/TitleMusic.wav";
+		sounds[1]= "/Music/GameMusic.wav";
+		sounds[2]= "/Music/PauseMenuMusic.wav";
+		sounds[3]= "/Music/SPGameOver.wav";
+		sounds[4]="/Music/VersusGameOver.wav";
+		sounds[5]="/Music/Eat.wav";
+		sounds[6]= "/Music/SelectionSound.wav";
 		
 		try {
 
-			audioFile = PlayAudio.class.getResourceAsStream(sounds[a]);
+			audioFile = Soundtrack.class.getResourceAsStream(sounds[a]);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
 			format = audioStream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(audioStream);
-			if (a == 3 || a == 4) {
+			
+			//Ensures that audio is only played once for sounds 3 and up.
+			if (a >= 3) {
 				clip.start();
 			} else {
 				clip.loop(Clip.LOOP_CONTINUOUSLY);

@@ -78,7 +78,7 @@ public class GameSetUp implements Runnable {
 
         State.setState(menuState);
         
-        Game.GameStates.PlayAudio.playSound(0);
+        Resources.Soundtrack.playSound(0);
         
     }
 

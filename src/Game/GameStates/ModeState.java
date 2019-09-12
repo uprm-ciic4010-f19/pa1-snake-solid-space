@@ -27,9 +27,9 @@ public class ModeState extends State{
 			singlePlayerMode = true;
 			handler.getMouseManager().setUimanager(null);
 			handler.getGame().reStart();
-			Game.GameStates.PlayAudio.stopSound();
+			Resources.Soundtrack.stopSound();
 			if (!Game.GameStates.OptionsState.soundOff) {
-				Game.GameStates.PlayAudio.playSound(1);
+				Resources.Soundtrack.playSound(1);
 			}
 			State.setState(handler.getGame().gameState);
 		}));
@@ -39,9 +39,9 @@ public class ModeState extends State{
 			singlePlayerMode = false;
 			handler.getMouseManager().setUimanager(null);
 			handler.getGame().reStart();
-			Game.GameStates.PlayAudio.stopSound();
+			Resources.Soundtrack.stopSound();
 			if (!Game.GameStates.OptionsState.soundOff) {
-				Game.GameStates.PlayAudio.playSound(1);
+				Resources.Soundtrack.playSound(1);
 			}
 			State.setState(handler.getGame().gameState);
 		}));

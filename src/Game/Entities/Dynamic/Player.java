@@ -9,6 +9,7 @@ import java.util.Random;
 import Game.Entities.Static.Apple;
 import Game.GameStates.GameOverState;
 import Game.GameStates.GameState;
+import Game.GameStates.ModeState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
 import Main.Handler;
@@ -90,9 +91,9 @@ public class Player {
 
 		//Menu keys
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
-			Game.GameStates.PlayAudio.stopSound();
+			Resources.Soundtrack.stopSound();
 			if (!Game.GameStates.OptionsState.soundOff) {
-				Game.GameStates.PlayAudio.playSound(2);
+				Resources.Soundtrack.playSound(2);
 			}
 			GameState.setState(pauseState);
 		}
@@ -185,9 +186,11 @@ public class Player {
 		for (Tail i: handler.getWorld().body){
 			if (i.x == xCoord && i.y == yCoord) {
 				playerOneLost = true;
-				Game.GameStates.PlayAudio.stopSound();
-				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.PlayAudio.playSound(3);
+				Resources.Soundtrack.stopSound();
+				if (!Game.GameStates.OptionsState.soundOff && ModeState.singlePlayerMode) {
+					Resources.Soundtrack.playSound(3);
+				} else {
+					Resources.Soundtrack.playSound(4);
 				}
 				GameState.setState(gameOverState);
 			}
@@ -200,9 +203,11 @@ public class Player {
 		for (TailTwo i: handler.getWorld().body2){
 			if (i.x == xCoord && i.y == yCoord) {
 				playerOneLost = true;
-				Game.GameStates.PlayAudio.stopSound();
-				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.PlayAudio.playSound(3);
+				Resources.Soundtrack.stopSound();
+				if (!Game.GameStates.OptionsState.soundOff && ModeState.singlePlayerMode) {
+					Resources.Soundtrack.playSound(3);
+				} else {
+					Resources.Soundtrack.playSound(4);
 				}
 				GameState.setState(gameOverState);
 			}
@@ -215,14 +220,14 @@ public class Player {
 		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) {//handler.getWorld().GridWidthHeightPixelCount
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
-				if(gameScore >= 0) {
-					Color GO = new Color(0,171,102); 
-					g.setColor(GO);
-					g.setFont(new Font("arial", Font.PLAIN, 60/ScreenRes.downscale));
-					g.drawString("" +(int)gameScore, 0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10, ScreenRes.height/5 + ScreenRes.height/20);
-					g.drawString("PTS", (ScreenRes.GridPixelsize*GameState.boardLocationStartX)-(ScreenRes.GridPixelsize*GameState.boardLocationStartX)/3, ScreenRes.height/5 + ScreenRes.height/20);
 
-				}
+				Color GO = new Color(0,171,102); 
+				g.setColor(GO);
+				g.setFont(new Font("arial", Font.PLAIN, 60/ScreenRes.downscale));
+				g.drawString("" +(int)gameScore, 0 + (ScreenRes.GridPixelsize*GameState.boardLocationStartX)/10, ScreenRes.height/5 + ScreenRes.height/20);
+				g.drawString("PTS", (ScreenRes.GridPixelsize*GameState.boardLocationStartX)-(ScreenRes.GridPixelsize*GameState.boardLocationStartX)/3, ScreenRes.height/5 + ScreenRes.height/20);
+
+
 				if(colorEatChange != null) {
 					g.setColor(colorEatChange);
 				}else {
@@ -246,7 +251,7 @@ public class Player {
 					if (Apple.isGood()) {
 						g.drawImage(Images.apple, (i * handler.getWorld().GridPixelsize)-handler.getWorld().GridPixelsize/2, (j * handler.getWorld().GridPixelsize)-handler.getWorld().GridPixelsize/2,handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
 					} else {
-						g.drawImage(Images.rottenApple, (i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
+						g.drawImage(Images.rottenApple, (i * handler.getWorld().GridPixelsize)-handler.getWorld().GridPixelsize/2, (j * handler.getWorld().GridPixelsize)-handler.getWorld().GridPixelsize/2,handler.getWorld().GridPixelsize+6, handler.getWorld().GridPixelsize+6, null);
 					}
 
 				}
@@ -268,13 +273,17 @@ public class Player {
 		}
 
 
-		gameScore += Math.sqrt(2 * gameScore + 1);
+		gameScore += Math.sqrt(Math.abs(2 * (gameScore) + 1));
 		System.out.println("Score: "+gameScore);
 		colorEatChange = EntityColor.colorChange();
 		Tail tail= null;
 		handler.getWorld().appleLocation[xCoord][yCoord]=false;
 		handler.getWorld().appleLocation2[xCoord][yCoord] = false;
 		handler.getWorld().appleOnBoard = false;
+
+		if (!Game.GameStates.OptionsState.soundOff) {
+			Resources.Soundtrack.playSound(5);
+		}
 
 		switch (direction){
 		case "Left":
@@ -390,8 +399,6 @@ public class Player {
 		lenght++;
 		Tail tail= null;
 		System.out.println("Length of snake is currently " + lenght + ".");
-		handler.getWorld().appleLocation[xCoord][yCoord]=false;
-		handler.getWorld().appleOnBoard=true;
 		switch (direction){
 		case "Left":
 			if( handler.getWorld().body.isEmpty()){
@@ -491,15 +498,16 @@ public class Player {
 			}
 			break;
 		}
+
 		handler.getWorld().body.addLast(tail);
 		handler.getWorld().playerLocation[tail.x][tail.y] = true;
 	}
 
 	public void rottenEat() {
 		snakeSpeedModifier -= (lastStudentIDDigit + 1);
-		gameScore -= Math.sqrt(2 * gameScore + 1);
+		gameScore -= Math.sqrt(Math.abs(2 * (gameScore) + 1));
 		eat();
-		gameScore -= Math.sqrt(2 * (gameScore) + 1);
+		gameScore -= Math.sqrt(Math.abs(2 * (gameScore) + 1));
 	}
 
 	public void shorten(){

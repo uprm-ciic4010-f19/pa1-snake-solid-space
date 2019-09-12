@@ -23,9 +23,9 @@ public class PauseState extends State {
         uiManager.addObjects(new UIImageButton(handler.getWidth()/33, handler.getHeight()/4-handler.getHeight()/43, handler.getWidth()/13, handler.getWidth()/15, Images.Resume, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().gameState);
-            Game.GameStates.PlayAudio.stopSound();
+            Resources.Soundtrack.stopSound();
             if (!Game.GameStates.OptionsState.soundOff) {
-            	Game.GameStates.PlayAudio.playSound(1);
+            	Resources.Soundtrack.playSound(1);
             }
         }));
 
@@ -37,9 +37,9 @@ public class PauseState extends State {
         uiManager.addObjects(new UIImageButton(handler.getWidth()/33, (handler.getHeight()/3+handler.getHeight()/10), handler.getWidth()/13, handler.getWidth()/15, Images.BTitle, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().menuState);
-            Game.GameStates.PlayAudio.stopSound();
+            Resources.Soundtrack.stopSound();
             if (!Game.GameStates.OptionsState.soundOff) {
-            	Game.GameStates.PlayAudio.playSound(0);
+            	Resources.Soundtrack.playSound(0);
             }
         }));
 

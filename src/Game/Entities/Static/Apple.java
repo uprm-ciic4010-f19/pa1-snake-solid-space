@@ -21,7 +21,7 @@ public class Apple {
     }
     
     public static Boolean isGood(){
-    	return (!(Player.totalMovement >= 150 && (Player.gameScore >= 5 && PlayerTwo.gameScore2 >=5)));
+    	return (!(Player.totalMovement >= 300));
     }
 
 

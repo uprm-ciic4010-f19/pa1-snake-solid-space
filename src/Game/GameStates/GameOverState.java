@@ -25,9 +25,9 @@ public class GameOverState extends State {
 			uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(-52/ScreenRes.downscale), handler.getHeight()-(616/ScreenRes.downscale), 90/ScreenRes.downscale, 15/ScreenRes.downscale, Images.gTitle, () -> {
 				handler.getMouseManager().setUimanager(null);
 				State.setState(handler.getGame().menuState);
-				Game.GameStates.PlayAudio.stopSound();
+				Resources.Soundtrack.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.PlayAudio.playSound(0);
+					Resources.Soundtrack.playSound(0);
 				}
 			}));
 
@@ -36,9 +36,9 @@ public class GameOverState extends State {
 				State.setState(handler.getGame().gameState);
 				Game.Entities.Dynamic.Player.gameScore = 0;
 				Game.Entities.Dynamic.PlayerTwo.gameScore2 = 0;
-				Game.GameStates.PlayAudio.stopSound();
+				Resources.Soundtrack.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.PlayAudio.playSound(1);
+					Resources.Soundtrack.playSound(1);
 				}
 			}));
 		}

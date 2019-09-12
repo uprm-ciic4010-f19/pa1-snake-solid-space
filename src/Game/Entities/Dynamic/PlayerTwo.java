@@ -9,6 +9,7 @@ import java.util.Random;
 import Game.Entities.Static.Apple;
 import Game.GameStates.GameOverState;
 import Game.GameStates.GameState;
+import Game.GameStates.ModeState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
 import Main.Handler;
@@ -157,7 +158,7 @@ public class PlayerTwo {
 		handler.getWorld().playerLocation2[xCoord2][yCoord2] = true;
 
 
-		if(handler.getWorld().appleLocation[xCoord2][yCoord2]||handler.getWorld().appleLocation2[xCoord2][yCoord2] && !Game.GameStates.ModeState.singlePlayerMode){
+		if((handler.getWorld().appleLocation[xCoord2][yCoord2]||handler.getWorld().appleLocation2[xCoord2][yCoord2]) && !Game.GameStates.ModeState.singlePlayerMode){
 			if (Apple.isGood()) {
 				eat();
 			} else {
@@ -178,10 +179,12 @@ public class PlayerTwo {
 	public void selfCollisionCheck() {
 		for (TailTwo i : handler.getWorld().body2) {
 			if (i.x == xCoord2 && i.y == yCoord2) {
-				Game.GameStates.PlayAudio.stopSound();
+				Resources.Soundtrack.stopSound();
 				Player.playerOneLost = false;
-				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.PlayAudio.playSound(3);
+				if (!Game.GameStates.OptionsState.soundOff && ModeState.singlePlayerMode) {
+					Resources.Soundtrack.playSound(3);
+				} else {
+					Resources.Soundtrack.playSound(4);
 				}
 				GameState.setState(gameOverState);
 			}
@@ -192,10 +195,12 @@ public class PlayerTwo {
 	public void playerCollisionCheck() {
 		for (Tail i: handler.getWorld().body){
 			if (i.x == xCoord2 && i.y == yCoord2) {
-				Game.GameStates.PlayAudio.stopSound();
+				Resources.Soundtrack.stopSound();
 				Player.playerOneLost = false;
-				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.PlayAudio.playSound(3);
+				if (!Game.GameStates.OptionsState.soundOff && ModeState.singlePlayerMode) {
+					Resources.Soundtrack.playSound(3);
+				} else {
+					Resources.Soundtrack.playSound(4);
 				}
 				GameState.setState(gameOverState);
 			}
@@ -208,7 +213,7 @@ public class PlayerTwo {
 		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
-				if (gameScore2 >= 0 && !Game.GameStates.ModeState.singlePlayerMode) {
+				if (!Game.GameStates.ModeState.singlePlayerMode) {
 					Color GO = new Color(0, 171, 102);
 					g.setColor(GO);
 					g.setFont(new Font("arial", Font.PLAIN, 60 / ScreenRes.downscale));
@@ -250,13 +255,17 @@ public class PlayerTwo {
 			additionalSpeed2 += lastStudentIDDigit2 + 1;
 		}
 
-		gameScore2 += Math.sqrt(2 * gameScore2 + 1);
+		gameScore2 += Math.sqrt(Math.abs(2 * (gameScore2) + 1));
 		System.out.println("Score: " + gameScore2);
 		colorEatChange2 = EntityColor.colorChange();
 		TailTwo tail = null;
 		handler.getWorld().appleLocation2[xCoord2][yCoord2] = false;
 		handler.getWorld().appleLocation[xCoord2][yCoord2] = false;
 		handler.getWorld().appleOnBoard = false;
+		
+		if (!Game.GameStates.OptionsState.soundOff) {
+			Resources.Soundtrack.playSound(5);
+		}
 
 		switch (direction2) {
 		case "Left":
@@ -480,9 +489,10 @@ public class PlayerTwo {
 
 	public void rottenEat() {
 		snakeSpeedModifier2 -= (lastStudentIDDigit2 + 1);
-		gameScore2 -= Math.sqrt(2 * gameScore2 + 1);
+		gameScore2 -= Math.sqrt(Math.abs(2 * (gameScore2) + 1));
 		eat();
-		gameScore2 -= Math.sqrt(2 * (gameScore2) + 1);
+		gameScore2 -= Math.sqrt(Math.abs(2 * (gameScore2) + 1));
+		
 	}
 
 	public void shorten() {

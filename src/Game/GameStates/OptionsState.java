@@ -25,9 +25,9 @@ public class OptionsState extends State {
         if(ModeState.optionMode) {
         	uiManager.addObjects(new UIImageButton(handler.getWidth()/33, handler.getHeight()/4-handler.getHeight()/43, handler.getWidth()/13, handler.getWidth()/15, Images.Resume, () -> {
     			handler.getMouseManager().setUimanager(null);
-				Game.GameStates.PlayAudio.stopSound();
+				Resources.Soundtrack.stopSound();
 				if (!Game.GameStates.OptionsState.soundOff) {
-					Game.GameStates.PlayAudio.playSound(0);
+					Resources.Soundtrack.playSound(0);
 				}
     			State.setState(handler.getGame().modeState);
     			ModeState.optionMode = false;
@@ -36,32 +36,32 @@ public class OptionsState extends State {
         uiManager.addObjects(new UIImageButton(handler.getWidth()/33, handler.getHeight()/4-handler.getHeight()/43, handler.getWidth()/13, handler.getWidth()/15, Images.Resume, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().gameState);
-            Game.GameStates.PlayAudio.stopSound();
+            Resources.Soundtrack.stopSound();
             if (!soundOff) {
-            	Game.GameStates.PlayAudio.playSound(1);
+            	Resources.Soundtrack.playSound(1);
             }
         }));
         }
         
         uiManager.addObjects(new UIImageButton(handler.getWidth()/8, handler.getHeight()/2, handler.getWidth()/13, handler.getWidth()/15, Images.On, () -> {
             handler.getMouseManager().setUimanager(null);
-            Game.GameStates.PlayAudio.stopSound();
-            Game.GameStates.PlayAudio.playSound(2);
+            Resources.Soundtrack.stopSound();
+            Resources.Soundtrack.playSound(2);
             soundOff = false;
         }));
         
         uiManager.addObjects(new UIImageButton(handler.getWidth()/5, handler.getHeight()/2, handler.getWidth()/13, handler.getWidth()/15, Images.Off, () -> {
         	handler.getMouseManager().setUimanager(null);
-        	Game.GameStates.PlayAudio.stopSound();
+        	Resources.Soundtrack.stopSound();
         	soundOff = true;
         }));
 
         uiManager.addObjects(new UIImageButton(handler.getWidth()/33, handler.getHeight()/3, handler.getWidth()/13, handler.getWidth()/15, Images.BTitle, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().menuState);
-            Game.GameStates.PlayAudio.stopSound();
+            Resources.Soundtrack.stopSound();
             if (!soundOff) {
-            	Game.GameStates.PlayAudio.playSound(0);
+            	Resources.Soundtrack.playSound(0);
             }
         }));
 
