@@ -41,6 +41,26 @@ public class GameOverState extends State {
 					Resources.Soundtrack.playSound(1);
 				}
 			}));
+		} else {
+			uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(-22/ScreenRes.downscale), handler.getHeight()-(516/ScreenRes.downscale), 150/ScreenRes.downscale, 20/ScreenRes.downscale, Images.gTitle, () -> {
+				handler.getMouseManager().setUimanager(null);
+				State.setState(handler.getGame().menuState);
+				Resources.Soundtrack.stopSound();
+				if (!Resources.Soundtrack.getSoundOff()) {
+					Resources.Soundtrack.playSound(0);
+				}
+			}));
+
+			uiManager.addObjects(new UIImageButton(handler.getWidth()/2+(200/ScreenRes.downscale), handler.getHeight()-(516/ScreenRes.downscale), 150/ScreenRes.downscale, 20/ScreenRes.downscale, Images.Continue, () -> {
+				handler.getMouseManager().setUimanager(null);
+				State.setState(handler.getGame().gameState);
+				Game.Entities.Dynamic.Player.gameScore = 0;
+				Game.Entities.Dynamic.PlayerTwo.gameScore2 = 0;
+				Resources.Soundtrack.stopSound();
+				if (!Resources.Soundtrack.getSoundOff()) {
+					Resources.Soundtrack.playSound(1);
+				}
+			}));
 		}
 
 	}
@@ -138,26 +158,6 @@ public class GameOverState extends State {
 				//crt effect
 				g.drawImage(Images.crt,0,0,handler.getWidth(),handler.getHeight(),null); //crt effect
 			}
-			
-			uiManager.addObjects(new UIImageButton(handler.getWidth()/2-(-22/ScreenRes.downscale), handler.getHeight()-(516/ScreenRes.downscale), 150/ScreenRes.downscale, 20/ScreenRes.downscale, Images.gTitle, () -> {
-				handler.getMouseManager().setUimanager(null);
-				State.setState(handler.getGame().menuState);
-				Resources.Soundtrack.stopSound();
-				if (!Resources.Soundtrack.getSoundOff()) {
-					Resources.Soundtrack.playSound(0);
-				}
-			}));
-
-			uiManager.addObjects(new UIImageButton(handler.getWidth()/2+(200/ScreenRes.downscale), handler.getHeight()-(516/ScreenRes.downscale), 150/ScreenRes.downscale, 20/ScreenRes.downscale, Images.Continue, () -> {
-				handler.getMouseManager().setUimanager(null);
-				State.setState(handler.getGame().gameState);
-				Game.Entities.Dynamic.Player.gameScore = 0;
-				Game.Entities.Dynamic.PlayerTwo.gameScore2 = 0;
-				Resources.Soundtrack.stopSound();
-				if (!Resources.Soundtrack.getSoundOff()) {
-					Resources.Soundtrack.playSound(1);
-				}
-			}));
 
 			uiManager.Render(g);
 		}
