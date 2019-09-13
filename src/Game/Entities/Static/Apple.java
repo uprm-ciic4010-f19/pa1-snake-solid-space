@@ -21,7 +21,7 @@ public class Apple {
     }
     
     public static Boolean isGood(){
-    	return (!(Player.totalMovement >= 300));
+    	return (!(Player.totalMovement >= 180));
     }
 
 

@@ -52,6 +52,7 @@ public class Player {
 		lenght= 1;
 		maxSpeed = 8;
 		additionalSpeed = 0;
+		totalMovement = 0;
 
 	}
 
@@ -59,7 +60,7 @@ public class Player {
 		moveCounter++;
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
-		if(moveCounter>=maxSpeed-snakeSpeedModifier) {
+		if(moveCounter>=(maxSpeed-snakeSpeedModifier)+1) {
 			checkCollisionAndMove();
 			if(additionalSpeed >=64) {
 				checkCollisionAndMove();
@@ -512,7 +513,7 @@ public class Player {
 
 	public void shorten(){
 		lenght = 0;
-		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) { //handler.getWorld().GridWidthHeightPixelCount
+		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) { 
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
 				handler.getWorld().playerLocation[i][j]=false;
