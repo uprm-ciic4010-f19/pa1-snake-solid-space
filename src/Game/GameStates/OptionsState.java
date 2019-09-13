@@ -14,7 +14,6 @@ import UI.UIManager;
 public class OptionsState extends State {
 
 	private int count = 0;
-	public static Boolean soundOff = false;
 	private UIManager uiManager;
 
 	public OptionsState(Handler handler) {
@@ -27,7 +26,7 @@ public class OptionsState extends State {
 			handler.getMouseManager().setUimanager(null);
 			State.setState(handler.getGame().gameState);
 			Resources.Soundtrack.stopSound();
-			if (!soundOff) {
+			if (!Resources.Soundtrack.getSoundOff()) {
 				Resources.Soundtrack.playSound(1);
 			}
 		}));
@@ -36,20 +35,20 @@ public class OptionsState extends State {
 			handler.getMouseManager().setUimanager(null);
 			Resources.Soundtrack.stopSound();
 			Resources.Soundtrack.playSound(2);
-			soundOff = false;
+			Resources.Soundtrack.setSoundOff(false);
 		}));
 
 		uiManager.addObjects(new UIImageButton(handler.getWidth()/5, handler.getHeight()/2, handler.getWidth()/13, handler.getWidth()/15, Images.Off, () -> {
 			handler.getMouseManager().setUimanager(null);
 			Resources.Soundtrack.stopSound();
-			soundOff = true;
+			Resources.Soundtrack.setSoundOff(true);
 		}));
 
 		uiManager.addObjects(new UIImageButton(handler.getWidth()/33, handler.getHeight()/3, handler.getWidth()/13, handler.getWidth()/15, Images.BTitle, () -> {
 			handler.getMouseManager().setUimanager(null);
 			State.setState(handler.getGame().menuState);
 			Resources.Soundtrack.stopSound();
-			if (!soundOff) {
+			if (!Resources.Soundtrack.getSoundOff()) {
 				Resources.Soundtrack.playSound(0);
 			}
 		}));

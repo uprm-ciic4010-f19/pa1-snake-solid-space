@@ -19,6 +19,16 @@ public class Soundtrack {
 	public static InputStream audioFile;
 	private static AudioFormat format;
 	private static DataLine.Info info;
+	
+	private static Boolean soundOff = false;
+	
+	public static Boolean getSoundOff() {
+		return soundOff;
+	}
+	public static void setSoundOff(Boolean soundOff) {
+		Soundtrack.soundOff = soundOff;
+	}
+
 
 	public Soundtrack() {
 		try {

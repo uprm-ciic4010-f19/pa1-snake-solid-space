@@ -27,7 +27,7 @@ public class ModeState extends State{
 			handler.getMouseManager().setUimanager(null);
 			handler.getGame().reStart();
 			Resources.Soundtrack.stopSound();
-			if (!Game.GameStates.OptionsState.soundOff) {
+			if (!Resources.Soundtrack.getSoundOff()) {
 				Resources.Soundtrack.playSound(1);
 			}
 			State.setState(handler.getGame().gameState);
@@ -39,7 +39,7 @@ public class ModeState extends State{
 			handler.getMouseManager().setUimanager(null);
 			handler.getGame().reStart();
 			Resources.Soundtrack.stopSound();
-			if (!Game.GameStates.OptionsState.soundOff) {
+			if (!Resources.Soundtrack.getSoundOff()) {
 				Resources.Soundtrack.playSound(1);
 			}
 			State.setState(handler.getGame().gameState);

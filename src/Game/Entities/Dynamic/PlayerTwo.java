@@ -183,7 +183,7 @@ public class PlayerTwo {
 			if (i.x == xCoord2 && i.y == yCoord2) {
 				Resources.Soundtrack.stopSound();
 				Player.playerOneLost = false;
-				if (!Game.GameStates.OptionsState.soundOff && ModeState.singlePlayerMode) {
+				if (!Resources.Soundtrack.getSoundOff() && ModeState.singlePlayerMode) {
 					Resources.Soundtrack.playSound(3);
 				} else {
 					Resources.Soundtrack.playSound(4);
@@ -199,7 +199,7 @@ public class PlayerTwo {
 			if (i.x == xCoord2 && i.y == yCoord2) {
 				Resources.Soundtrack.stopSound();
 				Player.playerOneLost = false;
-				if (!Game.GameStates.OptionsState.soundOff && ModeState.singlePlayerMode) {
+				if (!Resources.Soundtrack.getSoundOff() && ModeState.singlePlayerMode) {
 					Resources.Soundtrack.playSound(3);
 				} else {
 					Resources.Soundtrack.playSound(4);
@@ -268,7 +268,7 @@ public class PlayerTwo {
 		handler.getWorld().appleLocation[xCoord2][yCoord2] = false;
 		handler.getWorld().appleOnBoard = false;
 		
-		if (!Game.GameStates.OptionsState.soundOff) {
+		if (!Resources.Soundtrack.getSoundOff()) {
 			Resources.Soundtrack.playSound(5);
 		}
 

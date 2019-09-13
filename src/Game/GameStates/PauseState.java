@@ -24,7 +24,7 @@ public class PauseState extends State {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().gameState);
             Resources.Soundtrack.stopSound();
-            if (!Game.GameStates.OptionsState.soundOff) {
+            if (!Resources.Soundtrack.getSoundOff()) {
             	Resources.Soundtrack.playSound(1);
             }
         }));
@@ -38,7 +38,7 @@ public class PauseState extends State {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().menuState);
             Resources.Soundtrack.stopSound();
-            if (!Game.GameStates.OptionsState.soundOff) {
+            if (!Resources.Soundtrack.getSoundOff()) {
             	Resources.Soundtrack.playSound(0);
             }
         }));

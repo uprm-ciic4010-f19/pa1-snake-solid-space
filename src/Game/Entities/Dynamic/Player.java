@@ -93,7 +93,7 @@ public class Player {
 		//Menu keys
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
 			Resources.Soundtrack.stopSound();
-			if (!Game.GameStates.OptionsState.soundOff) {
+			if (!Resources.Soundtrack.getSoundOff()) {
 				Resources.Soundtrack.playSound(2);
 			}
 			GameState.setState(pauseState);
@@ -193,7 +193,7 @@ public class Player {
 			if (i.x == xCoord && i.y == yCoord) {
 				playerOneLost = true;
 				Resources.Soundtrack.stopSound();
-				if (!Game.GameStates.OptionsState.soundOff && ModeState.singlePlayerMode) {
+				if (!Resources.Soundtrack.getSoundOff() && ModeState.singlePlayerMode) {
 					Resources.Soundtrack.playSound(3);
 				} else {
 					Resources.Soundtrack.playSound(4);
@@ -210,7 +210,7 @@ public class Player {
 			if (i.x == xCoord && i.y == yCoord) {
 				playerOneLost = true;
 				Resources.Soundtrack.stopSound();
-				if (!Game.GameStates.OptionsState.soundOff && ModeState.singlePlayerMode) {
+				if (!Resources.Soundtrack.getSoundOff() && ModeState.singlePlayerMode) {
 					Resources.Soundtrack.playSound(3);
 				} else {
 					Resources.Soundtrack.playSound(4);
@@ -289,7 +289,7 @@ public class Player {
 		handler.getWorld().appleLocation2[xCoord][yCoord] = false;
 		handler.getWorld().appleOnBoard = false;
 
-		if (!Game.GameStates.OptionsState.soundOff) {
+		if (!Resources.Soundtrack.getSoundOff()) {
 			Resources.Soundtrack.playSound(5);
 		}
 
