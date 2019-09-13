@@ -11,25 +11,24 @@ import UI.UIManager;
 /**
  * Created by AlexVR on 7/1/2018.
  */
-public class OptionsState extends State {
+public class MenuOptionsState extends State {
 
 	private int count = 0;
 	public static Boolean soundOff = false;
 	private UIManager uiManager;
 
-	public OptionsState(Handler handler) {
+	public MenuOptionsState(Handler handler) {
 		super(handler);
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
 
-
-		uiManager.addObjects(new UIImageButton(handler.getWidth()/33, handler.getHeight()/4-handler.getHeight()/43, handler.getWidth()/13, handler.getWidth()/15, Images.Resume, () -> {
+		uiManager.addObjects(new UIImageButton(handler.getWidth()/33, handler.getHeight()/4-handler.getHeight()/43, handler.getWidth()/13, handler.getWidth()/15, Images.Back, () -> {
 			handler.getMouseManager().setUimanager(null);
-			State.setState(handler.getGame().gameState);
 			Resources.Soundtrack.stopSound();
-			if (!soundOff) {
-				Resources.Soundtrack.playSound(1);
+			if (!Game.GameStates.OptionsState.soundOff) {
+				Resources.Soundtrack.playSound(0);
 			}
+			State.setState(handler.getGame().modeState);
 		}));
 
 		uiManager.addObjects(new UIImageButton(handler.getWidth()/8, handler.getHeight()/2, handler.getWidth()/13, handler.getWidth()/15, Images.On, () -> {

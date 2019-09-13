@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import Display.DisplayScreen;
 import Game.GameStates.GameState;
+import Game.GameStates.MenuOptionsState;
 import Game.GameStates.MenuState;
 import Game.GameStates.ModeState;
 import Game.GameStates.OptionsState;
@@ -45,6 +46,7 @@ public class GameSetUp implements Runnable {
     public State pauseState;
     public State optionsState;
     public State modeState;
+    public State menuOptionsState;
 
     private BufferedImage loading;
 
@@ -75,6 +77,7 @@ public class GameSetUp implements Runnable {
         pauseState = new PauseState(handler);
         optionsState = new OptionsState(handler);
         modeState = new ModeState(handler);
+        menuOptionsState = new MenuOptionsState(handler);
 
         State.setState(menuState);
         

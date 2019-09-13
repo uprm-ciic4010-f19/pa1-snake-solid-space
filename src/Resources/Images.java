@@ -18,6 +18,7 @@ public class Images {
     public static BufferedImage title;
     public static BufferedImage Pause;
     public static BufferedImage[] Resume;
+    public static BufferedImage[] Back;
     public static BufferedImage[] BTitle;
     public static BufferedImage[] Options;
     public static ImageIcon icon;
@@ -56,6 +57,7 @@ public class Images {
         Continue = new BufferedImage[2];
         gTitle = new BufferedImage[2];
         Resume = new BufferedImage[2];
+        Back = new BufferedImage[2];
         BTitle = new BufferedImage[2];
         Options = new BufferedImage[2];
         Off = new BufferedImage[2];
@@ -71,6 +73,8 @@ public class Images {
             Pause = ImageIO.read(getClass().getResourceAsStream("/Sheets/Pause.png"));
             Resume[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Resume.png"));
             Resume[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/ResumeP.png"));
+            Back[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Back.png"));
+            Back[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BackP.png"));
             Continue[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Continue.png"));
             Continue[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/ContinueP.png"));
             BTitle[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitle.png"));

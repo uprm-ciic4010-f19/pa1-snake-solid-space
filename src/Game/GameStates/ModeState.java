@@ -16,7 +16,6 @@ public class ModeState extends State{
 	private int count = 0;
 	private UIManager uiManager;
 	public static Boolean  singlePlayerMode;
-	public static Boolean  optionMode = true;
 
 	public ModeState(Handler handler) {
 		super(handler);
@@ -48,9 +47,8 @@ public class ModeState extends State{
 
 		
         uiManager.addObjects(new UIImageButton(handler.getWidth()/10+(690/ScreenRes.downscale), handler.getHeight()/2-handler.getHeight()/13 +(335/ScreenRes.downscale), handler.getWidth()/14, handler.getWidth()/15, Images.titleOptions, () -> {
-            optionMode = true;
         	handler.getMouseManager().setUimanager(null);
-            State.setState(handler.getGame().optionsState);
+            State.setState(handler.getGame().menuOptionsState);
         }));
 		
 		
