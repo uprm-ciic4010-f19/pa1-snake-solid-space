@@ -93,6 +93,7 @@ public class Player {
 		//Menu keys
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
 			Resources.Soundtrack.stopSound();
+			Resources.Soundtrack.stopSound();
 			if (!Resources.Soundtrack.getSoundOff()) {
 				Resources.Soundtrack.playSound(2);
 			}
@@ -288,10 +289,6 @@ public class Player {
 		handler.getWorld().appleLocation[xCoord][yCoord]=false;
 		handler.getWorld().appleLocation2[xCoord][yCoord] = false;
 		handler.getWorld().appleOnBoard = false;
-
-		if (!Resources.Soundtrack.getSoundOff()) {
-			Resources.Soundtrack.playSound(5);
-		}
 
 		switch (direction){
 		case "Left":
@@ -518,7 +515,6 @@ public class Player {
 		if (snakeSpeedModifier < 0 ) {
 			snakeSpeedModifier = 0;
 		}
-		gameScore -= Math.sqrt(Math.abs(2 * (gameScore) + 1));
 		eat();
 		snakeSpeedModifier = 0;
 	}

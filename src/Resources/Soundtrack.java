@@ -40,8 +40,8 @@ public class Soundtrack {
 	}
 	public static void stopSound() {
 		clip.stop();   
-		clip.flush();
-		clip.close();
+		//clip.flush();
+		//clip.close();
 	}
 
 	public static void playSound(int a){

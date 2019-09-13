@@ -267,10 +267,6 @@ public class PlayerTwo {
 		handler.getWorld().appleLocation2[xCoord2][yCoord2] = false;
 		handler.getWorld().appleLocation[xCoord2][yCoord2] = false;
 		handler.getWorld().appleOnBoard = false;
-		
-		if (!Resources.Soundtrack.getSoundOff()) {
-			Resources.Soundtrack.playSound(5);
-		}
 
 		switch (direction2) {
 		case "Left":
