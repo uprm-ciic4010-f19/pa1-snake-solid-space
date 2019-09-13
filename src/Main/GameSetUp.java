@@ -5,6 +5,8 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import Display.DisplayScreen;
+import Game.Entities.Dynamic.Player;
+import Game.Entities.Dynamic.PlayerTwo;
 import Game.GameStates.GameState;
 import Game.GameStates.MenuOptionsState;
 import Game.GameStates.MenuState;
@@ -86,6 +88,8 @@ public class GameSetUp implements Runnable {
     }
 
     public void reStart(){
+    	Player.gameScore = 0;
+    	PlayerTwo.gameScore2 = 0;
         gameState = new GameState(handler);
     }
 

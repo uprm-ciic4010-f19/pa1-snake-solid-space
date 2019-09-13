@@ -117,9 +117,12 @@ public class Player {
 			colorEatChange = EntityColor.colorChange();
 			System.out.println("Color changed.");
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_K)){ //Insta Game Over
+			playerOneLost = false;
 			GameState.setState(gameOverState);
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E)){ //Add score debug button
 			scoreDebug();
+		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_B)) { //Instant rotten apple
+			totalMovement = 180;
 		}
 	}
 
@@ -169,8 +172,10 @@ public class Player {
 
 		if(handler.getWorld().appleLocation[xCoord][yCoord]||handler.getWorld().appleLocation2[xCoord][yCoord]){
 			if (Apple.isGood()) {
+				gameScore += Math.sqrt(Math.abs(2 * (gameScore) + 1));
 				eat();
 			} else {
+				gameScore -= Math.sqrt(Math.abs(2 * (gameScore) + 1));
 				rottenEat();
 			}
 		}
@@ -218,7 +223,7 @@ public class Player {
 
 	public void render(Graphics g,Boolean[][] playeLocation){
 		Random r = new Random();
-		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) {//handler.getWorld().GridWidthHeightPixelCount
+		for (int i = GameState.boardLocationStartX; i < GameState.boardLocationEndX; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
 
@@ -267,6 +272,9 @@ public class Player {
 		lenght++;
 		totalMovement = 0;
 		PlayerTwo.totalMovement2 = 0;
+		if (gameScore < 0) {
+			gameScore = 0;
+		}
 		if (snakeSpeedModifier < maxSpeed) {
 			snakeSpeedModifier += lastStudentIDDigit + 1;
 		}else {
@@ -274,7 +282,6 @@ public class Player {
 		}
 
 
-		gameScore += Math.sqrt(Math.abs(2 * (gameScore) + 1));
 		System.out.println("Score: "+gameScore);
 		colorEatChange = EntityColor.colorChange();
 		Tail tail= null;
@@ -392,7 +399,7 @@ public class Player {
 	}
 
 	public void scoreDebug() {
-		gameScore += Math.sqrt(2 * gameScore + 1);
+		gameScore += Math.sqrt(Math.abs(2 * (gameScore) + 1));
 		System.out.println("Score: "+gameScore);
 	}
 
@@ -505,10 +512,15 @@ public class Player {
 	}
 
 	public void rottenEat() {
-		snakeSpeedModifier -= (lastStudentIDDigit + 1);
+		if (snakeSpeedModifier > 0) {
+			snakeSpeedModifier -= (lastStudentIDDigit + 1);
+		}
+		if (snakeSpeedModifier < 0 ) {
+			snakeSpeedModifier = 0;
+		}
 		gameScore -= Math.sqrt(Math.abs(2 * (gameScore) + 1));
 		eat();
-		gameScore -= Math.sqrt(Math.abs(2 * (gameScore) + 1));
+		snakeSpeedModifier = 0;
 	}
 
 	public void shorten(){

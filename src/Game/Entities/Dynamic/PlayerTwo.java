@@ -54,7 +54,7 @@ public class PlayerTwo {
 		moveCounter2++;
 		pauseState = new PauseState(handler);
 		gameOverState = new GameOverState(handler);
-		if (moveCounter2 >= maxSpeed2 - snakeSpeedModifier2) {
+		if (moveCounter2 >= (maxSpeed2-snakeSpeedModifier2)+1) {
 			checkCollisionAndMove();
 			if(additionalSpeed2 >=64) {
 				checkCollisionAndMove();
@@ -160,9 +160,11 @@ public class PlayerTwo {
 
 		if((handler.getWorld().appleLocation[xCoord2][yCoord2]||handler.getWorld().appleLocation2[xCoord2][yCoord2]) && !Game.GameStates.ModeState.singlePlayerMode){
 			if (Apple.isGood()) {
+				gameScore2 += Math.sqrt(Math.abs(2 * (gameScore2) + 1));
 				eat();
 			} else {
 				if(!Game.GameStates.ModeState.singlePlayerMode) {
+					gameScore2 -= Math.sqrt(Math.abs(2 * (gameScore2) + 1));
 					rottenEat();
 				}
 			}
@@ -255,7 +257,10 @@ public class PlayerTwo {
 			additionalSpeed2 += lastStudentIDDigit2 + 1;
 		}
 
-		gameScore2 += Math.sqrt(Math.abs(2 * (gameScore2) + 1));
+		if (gameScore2 < 0) {
+			gameScore2 = 0;
+		}
+		
 		System.out.println("Score: " + gameScore2);
 		colorEatChange2 = EntityColor.colorChange();
 		TailTwo tail = null;
@@ -373,7 +378,7 @@ public class PlayerTwo {
 	}
 
 	public void scoreDebug() {
-		gameScore2 += Math.sqrt(2 * gameScore2 + 1);
+		gameScore2 += Math.sqrt(Math.abs(2 * (gameScore2) + 1));
 		System.out.println("Score: " + gameScore2);
 	}
 
@@ -488,11 +493,15 @@ public class PlayerTwo {
 	}
 
 	public void rottenEat() {
-		snakeSpeedModifier2 -= (lastStudentIDDigit2 + 1);
+		if (snakeSpeedModifier2 > 0) {
+			snakeSpeedModifier2 -= (lastStudentIDDigit2 + 1);
+		}
+		if (snakeSpeedModifier2 < 0 ) {
+			snakeSpeedModifier2 = 0;
+		}
 		gameScore2 -= Math.sqrt(Math.abs(2 * (gameScore2) + 1));
 		eat();
-		gameScore2 -= Math.sqrt(Math.abs(2 * (gameScore2) + 1));
-		
+		snakeSpeedModifier2 = 0;
 	}
 
 	public void shorten() {
